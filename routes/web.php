@@ -17,10 +17,15 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin.auth.login');
 // });
 
-Route::name('landing')->group(function () {
+Route::name('landing.')->group(function () {
     Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'home'])->name('home');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['middleware' => ['role:admin'], 'as' => 'admin.', 'prefix' => 'admin'], function () {
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'dashboard'])->name('dashboard');
+});

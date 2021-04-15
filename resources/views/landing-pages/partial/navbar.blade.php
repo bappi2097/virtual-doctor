@@ -56,8 +56,14 @@
                     </div>
                   </li> -->
       </ul>
+      @guest
       <a class="btn font-weight-500 ml-lg-4 btn-primary bg-gradient-primary-to-secondary" href="{{route('login')}}">Sign
         In<i class="ml-2" data-feather="arrow-right"></i></a>
+      @endguest
+      @auth
+      <a class="btn font-weight-500 ml-lg-4 btn-primary bg-gradient-primary-to-secondary"
+        href="{{dashboardURL()}}">Dashboard<i class="ml-2" data-feather="arrow-right"></i></a>
+      @endauth
     </div>
   </div>
 </nav>

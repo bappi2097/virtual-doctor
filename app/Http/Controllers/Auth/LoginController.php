@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RedirectsUsers;
@@ -161,19 +162,9 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        if ($user->hasRole('customer')) {
+        if ($user->hasRole('admin')) {
             Toastr::success('Welcome To Dashboard', 'Welcome');
-            return redirect()->intended(route("customer.dashboard"));
-        }
-
-        if ($user->hasRole('company')) {
-            Toastr::success('Welcome To Dashboard', 'Welcome');
-            return redirect()->intended(route("company.dashboard"));
-        }
-
-        if ($user->hasRole('driver')) {
-            Toastr::success('Welcome To Dashboard', 'Welcome');
-            return redirect()->intended(route("driver.dashboard"));
+            return redirect()->intended(route("admin.dashboard"));
         }
     }
 

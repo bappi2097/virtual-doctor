@@ -48,6 +48,11 @@
                     </form>
                 </li>
             </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-dark" href="{{route('landing.home')}}">Home</a>
+                </li>
+            </ul>
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
             <!-- ============================================================== -->
@@ -67,6 +72,11 @@
                             Balance</a>
                         <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
                             Inbox</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button class="dropdown-item"><i class="ti-email m-r-5 m-l-5"></i>
+                                Logout</button>
+                        </form>
                     </ul>
                 </li>
                 <!-- ============================================================== -->
