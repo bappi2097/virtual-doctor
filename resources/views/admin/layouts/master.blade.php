@@ -41,6 +41,8 @@
     <!-- Custom CSS -->
     <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet" />
     <link href="{{asset('dist/css/custom.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
+    @stack('link')
 </head>
 
 <body>
@@ -72,6 +74,9 @@
     <script src="{{asset('assets/libs/chartist/dist/chartist.min.js')}}"></script>
     <script src="{{asset('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
     <script src="{{asset('dist/js/pages/dashboards/dashboard1.js')}}"></script>
+    <script src="{{asset('js/toastr.js')}}"></script>
+    {!! Toastr::message() !!}
+    @stack('script')
 </body>
 
 </html>

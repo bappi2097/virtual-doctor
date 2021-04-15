@@ -9,24 +9,24 @@
                         <center class="m-t-30">
                             <img src="{{asset('dist/image/undraw_mobile_login_ikmv.svg')}}" class="rounded-circle"
                                 width="150" />
-                            <h4 class="card-title m-t-10">Login as Patient</h4>
+                            <h4 class="card-title m-t-10">Login</h4>
                             <!-- <h6 class="card-subtitle">Accoubts Manager Amix corp</h6> -->
                         </center>
                         <div class="row">
                             <!-- column -->
-                            <form action="/" method="post" class="form-horizontal form-material mx-2">
+                            <form action="{{url('login')}}" method="post" class="form-horizontal form-material mx-2">
+                                @csrf
                                 <div class="form-group">
                                     <label for="example-email" class="col-md-12">Email</label>
                                     <div class="col-md-12">
                                         <input type="email" placeholder="johnathan@admin.com"
-                                            class="form-control form-control-line" name="example-email"
-                                            id="example-email" />
+                                            class="form-control form-control-line" name="email" id="example-email" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Password</label>
                                     <div class="col-md-12">
-                                        <input type="password" value="password"
+                                        <input type="password" placeholder="*******" name="password"
                                             class="form-control form-control-line" />
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <a class="text-decoration-underline" href="register.html">Create a new
+                                    <a class="text-decoration-underline" href="{{route('register')}}">Create a new
                                         account</a>
                                 </div>
                             </form>

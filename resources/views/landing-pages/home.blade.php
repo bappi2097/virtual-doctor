@@ -13,7 +13,7 @@
                         best practices for cleanliness.
                     </p>
                     <a class="btn btn-primary bg-gradient-primary-to-secondary font-weight-500 mr-2"
-                        href="/pages/register.html">SIGN UP<i class="ml-2" data-feather="arrow-right"></i></a><a
+                        href="{{route('register')}}">SIGN UP<i class="ml-2" data-feather="arrow-right"></i></a><a
                         class="btn btn-outline-primary font-weight-500" href="#!">Learn More</a>
                 </div>
                 <div class="col-lg-5 col-md-12 d-lg-block">
