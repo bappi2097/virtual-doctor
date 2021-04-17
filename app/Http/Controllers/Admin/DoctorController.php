@@ -121,6 +121,15 @@ class DoctorController extends Controller
             "address" => $request->address,
         ];
 
+        if ($request->ban == 'on' && !$user->hasRole('ban')) {
+            $user->assignRole('ban');
+        }
+
+        if (empty($request->ban)) {
+            $user->removeRole('ban');
+        }
+
+
         if ($request->hasFile('image')) {
             if (Storage::disk("local")->exists($user->image)) {
                 Storage::disk("local")->delete($user->image);

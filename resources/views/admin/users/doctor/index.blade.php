@@ -21,6 +21,7 @@
                                         <th class="border-top-0">Name</th>
                                         <th class="border-top-0">Email</th>
                                         <th class="border-top-0">Status</th>
+                                        <th class="border-top-0">Banned</th>
                                         <th class="border-top-0">Action</th>
                                     </tr>
                                 </thead>
@@ -53,6 +54,10 @@
                                             <td>
                                                 <label
                                                     class="label label-{{ isActiveClass($user->isActive) }}">{{ isActiveText($user->isActive) }}</label>
+                                            </td>
+                                            <td>
+                                                <label
+                                                    class="label label-{{ isBan($user, 'class') }}">{{ isBan($user, 'text') }}</label>
                                             </td>
                                             <td class="">
                                                 <a href="{{ route('admin.users.doctor.show', $user->id) }}"

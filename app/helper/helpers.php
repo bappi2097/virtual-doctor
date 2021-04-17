@@ -54,10 +54,31 @@ function isActiveText($no)
     return $text[$no];
 }
 
+function isBan($user, $str = "bool")
+{
+    if ($str == 'text') {
+        return $user->hasRole('ban') ? 'True' : 'False';
+    } else if ($str == 'bool') {
+        return $user->hasRole('ban');
+    } else if ($str == 'check') {
+        return $user->hasRole('ban') ? 'checked' : '';
+    } else if ($str == 'class') {
+        return $user->hasRole('ban') ? 'danger' : 'success';
+    }
+}
+
 function isActiveClass($no)
 {
     $class = ['danger', 'success'];
     return $class[$no];
+}
+
+function roleText()
+{
+    if (auth()->check()) {
+        $role = ucwords(join(' ', auth()->user()->getRoleNames()->all()));
+        return $role;
+    }
 }
 
 function randomColor()

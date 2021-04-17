@@ -37,6 +37,19 @@
 
 /***/ }),
 
+/***/ "./resources/template/assets/styles.css":
+/*!**********************************************!*\
+  !*** ./resources/template/assets/styles.css ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/toastr.css":
 /*!**********************************!*\
   !*** ./resources/css/toastr.css ***!
@@ -76,6 +89,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/template/assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css":
+/*!********************************************************************************************!*\
+  !*** ./resources/template/assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/template/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css":
 /*!***********************************************************************************************!*\
   !*** ./resources/template/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css ***!
@@ -106,19 +132,6 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./resources/template/dist/css/custom.css ***!
   \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./resources/template/assets/styles.css":
-/*!**********************************************!*\
-  !*** ./resources/template/assets/styles.css ***!
-  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -215,12 +228,13 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
 /******/ 			"dist/css/style.min": 0,
-/******/ 			"css/styles": 0,
 /******/ 			"dist/css/custom": 0,
 /******/ 			"assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4": 0,
+/******/ 			"assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min": 0,
 /******/ 			"assets/libs/chartist/dist/chartist.min": 0,
 /******/ 			"dist/css/preloader": 0,
-/******/ 			"css/toastr": 0
+/******/ 			"css/toastr": 0,
+/******/ 			"css/styles": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -268,14 +282,15 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","css/styles","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","css/styles","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr"], () => (__webpack_require__("./resources/template/assets/libs/chartist/dist/chartist.min.css")))
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","css/styles","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr"], () => (__webpack_require__("./resources/template/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css")))
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","css/styles","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr"], () => (__webpack_require__("./resources/template/dist/css/style.min.css")))
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","css/styles","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr"], () => (__webpack_require__("./resources/template/dist/css/custom.css")))
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","css/styles","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr"], () => (__webpack_require__("./resources/template/assets/styles.css")))
-/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","css/styles","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr"], () => (__webpack_require__("./resources/css/toastr.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["dist/css/style.min","css/styles","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr"], () => (__webpack_require__("./resources/template/dist/css/preloader.css")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr","css/styles"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr","css/styles"], () => (__webpack_require__("./resources/template/assets/libs/chartist/dist/chartist.min.css")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr","css/styles"], () => (__webpack_require__("./resources/template/assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr","css/styles"], () => (__webpack_require__("./resources/template/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr","css/styles"], () => (__webpack_require__("./resources/template/dist/css/style.min.css")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr","css/styles"], () => (__webpack_require__("./resources/template/dist/css/custom.css")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr","css/styles"], () => (__webpack_require__("./resources/template/assets/styles.css")))
+/******/ 	__webpack_require__.O(undefined, ["dist/css/style.min","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr","css/styles"], () => (__webpack_require__("./resources/css/toastr.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["dist/css/style.min","dist/css/custom","assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4","assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min","assets/libs/chartist/dist/chartist.min","dist/css/preloader","css/toastr","css/styles"], () => (__webpack_require__("./resources/template/dist/css/preloader.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

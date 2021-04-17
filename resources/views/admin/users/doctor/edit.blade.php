@@ -80,8 +80,18 @@
                                                         <strong>{{ $message }}</strong> </span> @enderror </div>
                                             </div>
                                             <div class="form-group">
-                                                <div class="col-sm-12"> <button
-                                                        class="btn btn-info text-white">Save</button> </div>
+                                                <label>
+                                                    User Banned
+                                                    <input name="ban" {{ isBan($user, 'check') }} class="toggle"
+                                                        type="checkbox" data-toggle="toggle" data-onstyle="info"
+                                                        data-offstyle="light" data-on="True" data-off="False"
+                                                        data-width="100">
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <button class="btn btn-info text-white">Save</button>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>

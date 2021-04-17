@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('admin.auth.login');
-// });
 
 Route::name('landing.')->group(function () {
     Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'home'])->name('home');
@@ -27,9 +24,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['middleware' => ['role:admin'], 'as' => 'admin.', 'prefix' => 'admin'], function () {
+    // Route::get('/dashboard', function () {
+    //     // dd(auth()->user()->assignRole('super'));
+    //     dd(auth()->user()->getRoleNames());
+    // })->name('dashboard');
+
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'dashboard'])->name('dashboard');
+
+    Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('edit');
+        Route::put('/', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('update');
+        Route::put('/change-password', [\App\Http\Controllers\Admin\ProfileController::class, 'changePassword'])->name('change-password');
+    });
+
+
     Route::group(['as' => 'users.', 'prefix' => 'users'], function () {
-        Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
+
+        Route::group(['middleware' => ['role:super'], 'as' => 'admin.', 'prefix' => 'admin'], function () {
             Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('index');
             Route::get('/create', [\App\Http\Controllers\Admin\AdminController::class, 'create'])->name('create');
             Route::post('/', [\App\Http\Controllers\Admin\AdminController::class, 'store'])->name('store');
@@ -39,6 +50,7 @@ Route::group(['middleware' => ['role:admin'], 'as' => 'admin.', 'prefix' => 'adm
             Route::put('/change-password/{user}', [\App\Http\Controllers\Admin\AdminController::class, 'changePassword'])->name('change-password');
             Route::delete('/{user}', [\App\Http\Controllers\Admin\AdminController::class, 'destroy'])->name('delete');
         });
+
         Route::group(['as' => 'doctor.', 'prefix' => 'doctor'], function () {
             Route::get('/', [\App\Http\Controllers\Admin\DoctorController::class, 'index'])->name('index');
             Route::get('/create', [\App\Http\Controllers\Admin\DoctorController::class, 'create'])->name('create');
@@ -49,6 +61,7 @@ Route::group(['middleware' => ['role:admin'], 'as' => 'admin.', 'prefix' => 'adm
             Route::put('/change-password/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'changePassword'])->name('change-password');
             Route::delete('/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'destroy'])->name('delete');
         });
+
         Route::group(['as' => 'patient.', 'prefix' => 'patient'], function () {
             Route::get('/', [\App\Http\Controllers\Admin\PatientController::class, 'index'])->name('index');
             Route::get('/create', [\App\Http\Controllers\Admin\PatientController::class, 'create'])->name('create');

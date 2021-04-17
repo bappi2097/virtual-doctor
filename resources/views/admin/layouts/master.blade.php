@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180" />
     <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png" />
-    <link rel="manifest" href="{{asset('mix-manifest.json')}}" />
+    <link rel="manifest" href="{{ asset('mix-manifest.json') }}" />
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#563d7c" />
     <link rel="icon" href="favicon.ico" />
     <meta name="msapplication-config" content="browserconfig.xml" />
@@ -35,14 +35,15 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}" />
     <!-- Custom CSS -->
-    <link href="{{asset('assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('dist/css/custom.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
+    <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('dist/css/custom.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastr.css') }}">
     @stack('link')
 </head>
 
@@ -60,27 +61,30 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('dist/js/app-style-switcher.js')}}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('dist/js/app-style-switcher.js') }}"></script>
     <!--Wave Effects -->
-    <script src="{{asset('dist/js/waves.js')}}"></script>
+    <script src="{{ asset('dist/js/waves.js') }}"></script>
     <!--Menu sidebar -->
-    <script src="{{asset('dist/js/sidebarmenu.js')}}"></script>
+    <script src="{{ asset('dist/js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
-    <script src="{{asset('dist/js/custom.js')}}"></script>
+    <script src="{{ asset('dist/js/custom.js') }}"></script>
     <!--This page JavaScript -->
     <!--chartis chart-->
-    <script src="{{asset('assets/libs/chartist/dist/chartist.min.js')}}"></script>
-    <script src="{{asset('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
-    <script src="{{asset('dist/js/pages/dashboards/dashboard1.js')}}"></script>
-    <script src="{{asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
+    <script src="{{ asset('assets/libs/chartist/dist/chartist.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
+    <script src="{{ asset('dist/js/pages/dashboards/dashboard1.js') }}"></script>
+    <script src="{{ asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js') }}"></script>
     <script>
         $('#zero_config').DataTable();
+        $('.toggle').bootstrapToggle('enable');
+
     </script>
-    <script src="{{asset('js/toastr.js')}}"></script>
+    <script src="{{ asset('js/toastr.js') }}"></script>
     {!! Toastr::message() !!}
     @stack('script')
 </body>
