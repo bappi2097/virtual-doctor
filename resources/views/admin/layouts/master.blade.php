@@ -41,6 +41,7 @@
     <!-- Custom CSS -->
     <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet" />
     <link href="{{asset('dist/css/custom.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
     @stack('link')
 </head>
@@ -74,6 +75,11 @@
     <script src="{{asset('assets/libs/chartist/dist/chartist.min.js')}}"></script>
     <script src="{{asset('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
     <script src="{{asset('dist/js/pages/dashboards/dashboard1.js')}}"></script>
+    <script src="{{asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
+    <script>
+        $('#zero_config').DataTable();
+    </script>
     <script src="{{asset('js/toastr.js')}}"></script>
     {!! Toastr::message() !!}
     @stack('script')

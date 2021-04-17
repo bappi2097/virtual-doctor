@@ -13,11 +13,5 @@
                 </nav>
             </div>
         </div>
-        <div class="col-7">
-            <div class="text-end upgrade-btn">
-                <a href="https://www.wrappixel.com/templates/xtremeadmin/" class="btn btn-danger text-white"
-                    target="_blank">Upgrade to Pro</a>
-            </div>
-        </div>
     </div>
 </div>

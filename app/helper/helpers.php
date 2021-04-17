@@ -48,6 +48,24 @@ function selected($data1, $data2)
     }
 }
 
+function isActiveText($no)
+{
+    $text = ['Deactive', 'Active'];
+    return $text[$no];
+}
+
+function isActiveClass($no)
+{
+    $class = ['danger', 'success'];
+    return $class[$no];
+}
+
+function randomColor()
+{
+    $class = ['danger', 'info', 'primary', 'success', 'warning', 'orange', 'purple'];
+    return $class[random_int(0, 7)];
+}
+
 // function tripStatus($no)
 // {
 //     switch ($no) {
