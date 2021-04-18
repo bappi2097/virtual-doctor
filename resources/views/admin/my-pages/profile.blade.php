@@ -18,7 +18,7 @@
                                 <i class="mdi mdi-camera"></i>
                             </button>
                             <h4 class="card-title m-t-10">{{ $user->name }}</h4>
-                            <h6 class="card-subtitle">{{ '@' . $user->name }}</h6>
+                            <h6 class="card-subtitle">{{ '@' . $user->user_name }}</h6>
                             <div class="row text-center justify-content-md-center">
                                 <div class="col-4">
                                     <a href="javascript:void(0)" class="link">

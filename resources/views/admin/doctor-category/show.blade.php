@@ -8,8 +8,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.users.doctor.index') }}" class="btn waves-effect waves-light btn-info">
-                            <i class="mdi mdi-arrow-left"></i> Back </a>
+                        <a href="{{ route('admin.users.admin.index') }}" class="btn waves-effect waves-light btn-info">
+                            <i class="mdi mdi-arrow-left"></i> Back
+                        </a>
                         <br>
                         <hr><br>
                         <div class="row">
@@ -18,17 +19,15 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <center class="m-t-30">
-                                            <img id="user-image" class="rounded-circle" alt="{{ $user->name }}"
-                                                width="150"
-                                                src="{{ asset($user->image ?: 'assets/images/users/male_avatar.svg') }}" />
-                                            </button>
+                                            <img src="{{ asset($user->image ?: 'assets/images/users/male_avatar.svg') }}"
+                                                class="rounded-circle" width="150" />
                                             <h4 class="card-title m-t-10">{{ $user->name }}</h4>
                                             <h6 class="card-subtitle">{{ '@' . $user->user_name }}</h6>
                                             <div class="row text-center justify-content-md-center">
                                                 <div class="col-4">
                                                     <a href="javascript:void(0)" class="link">
                                                         <i class="icon-people"></i>
-                                                        <font class="font-medium">{{ roleText() }}</font>
+                                                        <font class="font-medium">Admin</font>
                                                     </a>
                                                 </div>
                                                 <div class="col-4">
@@ -52,18 +51,6 @@
                                         <h6>{{ $user->phone_no }}</h6>
                                         <small class="text-muted p-t-30 db">Address</small>
                                         <h6>{{ $user->address }}</h6>
-                                        <div class="map-box">
-                                            <iframe width="600" height="150" id="gmap_canvas"
-                                                src="https://maps.google.com/maps?q={{ strtolower(join('+', preg_split('/[\s,]+/', $user->address))) }}&t=k&z=11&ie=UTF8&iwloc=&output=embed"
-                                                width="100%" height="150" frameborder="0" style="border:0" allowfullscreen
-                                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                                        </div>
-                                        <small class="text-muted p-t-30 db">Social Profile</small>
-                                        <br />
-                                        <button class="btn btn-circle btn-secondary"><i
-                                                class="fab fa-facebook-f"></i></button>
-                                        <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
-                                        <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button>
                                     </div>
                                 </div>
                             </div>
