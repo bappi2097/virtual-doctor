@@ -33,3 +33,15 @@ $(function() {
     $(window).on("resize", setsidebartype);
 
 });
+
+$(document).ready(() => {
+    $('.slug-input').on('input', (e) => {
+        let name = $(e.target).val();
+        if (name) {
+            $('.slug-output').val(name.replace(/[^a-zA-Z0-9 -]/g, "").toLowerCase().split(" ").join(
+                '-'));
+        } else {
+            $('.slug-output').val("");
+        }
+    });
+});

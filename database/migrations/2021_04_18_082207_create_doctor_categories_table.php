@@ -16,6 +16,7 @@ class CreateDoctorCategoriesTable extends Migration
         Schema::create('doctor_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->boolean('isActive')->default(1);

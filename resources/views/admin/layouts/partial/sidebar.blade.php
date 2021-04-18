@@ -63,6 +63,13 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="{{ route('admin.doctor-category.index') }}" aria-expanded="false">
+                        <i class="mdi mdi-format-list-bulleted"></i>
+                        <span class="hide-menu">Doctor Category</span>
+                    </a>
+                </li>
             </ul>
 
         </nav>

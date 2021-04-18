@@ -76,4 +76,14 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
             Route::delete('/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'destroy'])->name('delete');
         });
     });
+
+    Route::group(['as' => 'doctor-category.', 'prefix' => 'doctor-category'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'store'])->name('store');
+        Route::get('/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'show'])->name('show');
+        Route::get('/edit/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'edit'])->name('edit');
+        Route::put('/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'update'])->name('update');
+        Route::delete('/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'destroy'])->name('delete');
+    });
 });

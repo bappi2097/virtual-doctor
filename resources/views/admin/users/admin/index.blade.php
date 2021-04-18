@@ -75,10 +75,10 @@
                                                 </a>
                                                 <a href="{{ route('admin.users.admin.delete', $user->id) }}"
                                                     class="btn btn-danger text-white" title="delete"
-                                                    onclick="event.preventDefault(); document.getElementById('delete-user').submit();">
+                                                    onclick="event.preventDefault(); document.getElementById('delete-item{{ $user->id }}').submit();">
                                                     <i class="mdi mdi-delete"></i>
                                                 </a>
-                                                <form id="delete-user"
+                                                <form id="delete-item{{ $user->id }}"
                                                     action="{{ route('admin.users.admin.delete', $user->id) }}"
                                                     method="POST" class="d-none">
                                                     @csrf

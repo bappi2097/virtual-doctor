@@ -16,6 +16,7 @@ class DoctorCategory extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'image',
         'description',
         'isActive',
