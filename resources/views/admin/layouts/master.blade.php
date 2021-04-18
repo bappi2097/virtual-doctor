@@ -35,6 +35,7 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}" />
     <!-- Custom CSS -->
     <link href="{{ asset('assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet" />
@@ -82,6 +83,11 @@
     <script>
         $('#zero_config').DataTable();
         $('.toggle').bootstrapToggle('enable');
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            }
+        });
 
     </script>
     <script src="{{ asset('js/toastr.js') }}"></script>

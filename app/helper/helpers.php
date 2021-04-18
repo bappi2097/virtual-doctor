@@ -84,7 +84,7 @@ function roleText()
 function randomColor()
 {
     $class = ['danger', 'info', 'primary', 'success', 'warning', 'orange', 'purple'];
-    return $class[random_int(0, 7)];
+    return $class[random_int(0, 6)];
 }
 
 // function tripStatus($no)

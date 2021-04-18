@@ -55,9 +55,17 @@
                                                 <label
                                                     class="label label-{{ isActiveClass($user->isActive) }}">{{ isActiveText($user->isActive) }}</label>
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 <label
                                                     class="label label-{{ isBan($user, 'class') }}">{{ isBan($user, 'text') }}</label>
+                                            </td> --}}
+                                            <td>
+                                                <div class="form-group">
+                                                    <input name="ban" {{ isBan($user, 'check') }} data-onstyle="info"
+                                                        data-offstyle="light" data-on="True" class="toggle doctor-ban"
+                                                        type="checkbox" data-toggle="toggle" data-off="False"
+                                                        data-width="100" itemid="{{ $user->id }}">
+                                                </div>
                                             </td>
                                             <td class="">
                                                 <a href="{{ route('admin.users.doctor.show', $user->id) }}"
@@ -101,3 +109,31 @@
         <!-- ============================================================== -->
     </div>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(() => {
+            $('.doctor-ban').on('change', (e) => {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('admin.users.doctor.ban') }}",
+                    data: {
+                        id: e.target.getAttribute('itemid'),
+                        ban: $(event.target).hasClass('toggle-on')
+                    },
+                    success: function(data) {
+                        if (data) {
+                            toastr.info("User not Banned");
+                        } else {
+                            toastr.info("User successfullly Banned");
+                        }
+                    },
+                    error: function(error) {
+                        toastr.error("Something Went Wrong!");
+                    }
+                });
+            });
+        });
+
+    </script>
+@endpush

@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::group(['middleware' => ['role:admin'], 'as' => 'admin.', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', 'prefix' => 'admin'], function () {
     // Route::get('/dashboard', function () {
     //     // dd(auth()->user()->assignRole('super'));
     //     dd(auth()->user()->getRoleNames());
@@ -44,6 +44,7 @@ Route::group(['middleware' => ['role:admin'], 'as' => 'admin.', 'prefix' => 'adm
             Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('index');
             Route::get('/create', [\App\Http\Controllers\Admin\AdminController::class, 'create'])->name('create');
             Route::post('/', [\App\Http\Controllers\Admin\AdminController::class, 'store'])->name('store');
+            Route::post('/ban', [\App\Http\Controllers\Admin\AdminController::class, 'ban'])->name('ban');
             Route::get('/{user}', [\App\Http\Controllers\Admin\AdminController::class, 'show'])->name('show');
             Route::get('/edit/{user}', [\App\Http\Controllers\Admin\AdminController::class, 'edit'])->name('edit');
             Route::put('/{user}', [\App\Http\Controllers\Admin\AdminController::class, 'update'])->name('update');
@@ -55,6 +56,7 @@ Route::group(['middleware' => ['role:admin'], 'as' => 'admin.', 'prefix' => 'adm
             Route::get('/', [\App\Http\Controllers\Admin\DoctorController::class, 'index'])->name('index');
             Route::get('/create', [\App\Http\Controllers\Admin\DoctorController::class, 'create'])->name('create');
             Route::post('/', [\App\Http\Controllers\Admin\DoctorController::class, 'store'])->name('store');
+            Route::post('/ban', [\App\Http\Controllers\Admin\DoctorController::class, 'ban'])->name('ban');
             Route::get('/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'show'])->name('show');
             Route::get('/edit/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'edit'])->name('edit');
             Route::put('/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'update'])->name('update');
@@ -66,6 +68,7 @@ Route::group(['middleware' => ['role:admin'], 'as' => 'admin.', 'prefix' => 'adm
             Route::get('/', [\App\Http\Controllers\Admin\PatientController::class, 'index'])->name('index');
             Route::get('/create', [\App\Http\Controllers\Admin\PatientController::class, 'create'])->name('create');
             Route::post('/', [\App\Http\Controllers\Admin\PatientController::class, 'store'])->name('store');
+            Route::post('/ban', [\App\Http\Controllers\Admin\PatientController::class, 'ban'])->name('ban');
             Route::get('/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'show'])->name('show');
             Route::get('/edit/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'edit'])->name('edit');
             Route::put('/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'update'])->name('update');

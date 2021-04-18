@@ -125,7 +125,7 @@ class DoctorController extends Controller
             $user->assignRole('ban');
         }
 
-        if (empty($request->ban)) {
+        if (empty($request->ban) && $user->hasRole('ban')) {
             $user->removeRole('ban');
         }
 
@@ -186,5 +186,24 @@ class DoctorController extends Controller
             Toastr::error('Something Went Wrong!', "Error");
         }
         return redirect()->back();
+    }
+
+    /**
+     * add role ban to user
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return true|false
+     */
+
+    public function ban(Request $request)
+    {
+        $user = User::role('doctor')->where('id', $request->id)->first();
+        if ($request->ban == 'true') {
+            $user->removeRole('ban');
+            return true;
+        } else {
+            $user->assignRole('ban');
+            return false;
+        }
     }
 }

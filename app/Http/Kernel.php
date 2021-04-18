@@ -42,7 +42,7 @@ class Kernel extends HttpKernel
              * Custom Middleware
              */
 
-            \App\Http\Middleware\BanUser::class,
+            // \App\Http\Middleware\BanUser::class,
         ],
 
         'api' => [
@@ -76,5 +76,13 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+
+        /**
+         * 
+         * custom middleware
+         * 
+         */
+
+        'ban' => \App\Http\Middleware\BanUser::class,
     ];
 }

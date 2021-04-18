@@ -113,6 +113,7 @@ class PatientController extends Controller
             "image" => "nullable|file",
             "address" => "required|string",
         ]);
+
         $data = [
             "name" => $request->name,
             "email" => $request->email,
@@ -120,6 +121,14 @@ class PatientController extends Controller
             "user_name" => $request->user_name,
             "address" => $request->address,
         ];
+
+        if ($request->ban == 'on' && !$user->hasRole('ban')) {
+            $user->assignRole('ban');
+        }
+
+        if (empty($request->ban) && $user->hasRole('ban')) {
+            $user->removeRole('ban');
+        }
 
         if ($request->hasFile('image')) {
             if (Storage::disk("local")->exists($user->image)) {
@@ -177,5 +186,23 @@ class PatientController extends Controller
             Toastr::error('Something Went Wrong!', "Error");
         }
         return redirect()->back();
+    }
+    /**
+     * add role ban to user
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return true|false
+     */
+
+    public function ban(Request $request)
+    {
+        $user = User::role('patient')->where('id', $request->id)->first();
+        if ($request->ban == 'true') {
+            $user->removeRole('ban');
+            return true;
+        } else {
+            $user->assignRole('ban');
+            return false;
+        }
     }
 }

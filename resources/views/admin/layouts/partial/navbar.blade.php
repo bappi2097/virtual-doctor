@@ -79,7 +79,7 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="dropdown-item">
-                                <i class="ti-email m-r-5 m-l-5"></i> Logout
+                                <i class="mdi mdi-logout m-r-5 m-l-5"></i> Logout
                             </button>
                         </form>
                     </ul>
