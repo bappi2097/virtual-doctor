@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Storage;
 
 class DoctorController extends Controller
@@ -48,6 +48,7 @@ class DoctorController extends Controller
             "password" => "required|string|min:8|max:25|confirmed",
             "image" => "nullable|file",
             "address" => "required|string",
+            "doctor_category_id" => "required|exists:doctor_categories,id",
         ]);
         $data = [
             "name" => $request->name,
@@ -56,6 +57,7 @@ class DoctorController extends Controller
             "user_name" => $request->user_name,
             "address" => $request->address,
             "password" => bcrypt($request->password),
+            "doctor_category_id" => $request->doctor_category_id,
         ];
         if ($request->hasFile('image')) {
             $data['image'] = Storage::disk("local")->put("images\\doctors", $request->image);
@@ -112,6 +114,7 @@ class DoctorController extends Controller
             "phone_no" => "required|string|max:25",
             "image" => "nullable|file",
             "address" => "required|string",
+            "doctor_category_id" => "required|exists:doctor_categories,id",
         ]);
         $data = [
             "name" => $request->name,
@@ -119,6 +122,7 @@ class DoctorController extends Controller
             "phone_no" => $request->phone_no,
             "user_name" => $request->user_name,
             "address" => $request->address,
+            "doctor_category_id" => $request->doctor_category_id,
         ];
 
         if ($request->ban == 'on' && !$user->hasRole('ban')) {

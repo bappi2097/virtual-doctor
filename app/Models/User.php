@@ -27,6 +27,7 @@ class User extends Authenticatable
         'address',
         'phone_no',
         'isActive',
+        'doctor_category_id',
     ];
 
     /**
@@ -59,8 +60,8 @@ class User extends Authenticatable
         return $this->isActive == 1;
     }
 
-    public function doctorCategories()
+    public function doctorCategory()
     {
-        return $this->belongsToMany(DoctorCategory::class);
+        return $this->belongsTo(DoctorCategory::class);
     }
 }

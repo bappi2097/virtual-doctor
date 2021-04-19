@@ -1,58 +1,58 @@
 @extends('admin.layouts.master')
 @section('app')
 
-<!-- ============================================================== -->
-<!-- Main wrapper - style you can find in pages.scss -->
-<!-- ============================================================== -->
-<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
-    data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
     <!-- ============================================================== -->
-    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    @include('admin.layouts.partial.navbar')
-    <!-- ============================================================== -->
-    <!-- End Topbar header -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-    @include('admin.layouts.partial.sidebar')
-    <!-- ============================================================== -->
-    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Page wrapper  -->
-    <!-- ============================================================== -->
-    <div class="page-wrapper">
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
         <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
+        <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        @include('admin.layouts.partial.breadcrumb')
+        @include('admin.layouts.partial.navbar')
         <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- End Topbar header -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
-        <!-- Container fluid  -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <div class="container-fluid">
-            @yield('content')
+        @include('admin.layouts.partial.sidebar')
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            @yield('breadcrumbs', Breadcrumbs::render('admin.dashboard'))
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                @yield('content')
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                All Rights Reserved by Xtreme Admin. Designed and Developed by
+                <a href="https://www.wrappixel.com">WrapPixel</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer text-center">
-            All Rights Reserved by Xtreme Admin. Designed and Developed by
-            <a href="https://www.wrappixel.com">WrapPixel</a>.
-        </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
+        <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
-    <!-- ============================================================== -->
-</div>
 @endsection

@@ -1,4 +1,7 @@
 @extends('admin.layouts.app')
+
+@section('breadcrumbs', Breadcrumbs::render('edit', $user->id))
+
 @section('content')
     <div class="container-fluid">
         <!-- ============================================================== -->
@@ -63,6 +66,26 @@
                                                         class="form-control form-control-line" name="user_name"
                                                         value="{{ $user->user_name }}" id="user_name"> @error('user_name')
                                                         <span class="text-danger"> <strong>{{ $message }}</strong> </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="doctor-category" class="col-md-12">Doctor Category</label>
+                                                <div class="col-md-12">
+                                                    <select name="doctor_category_id" id="doctor-category"
+                                                        class="form-control form-control-line" required>
+                                                        <option selected>Select</option>
+                                                        @foreach (\App\Models\DoctorCategory::all() as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ selected($item->id, $user->doctor_category_id) }}>
+                                                                {{ $item->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('doctor-category')
+                                                        <span class="text-danger">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
                                                     @enderror
                                                 </div>
                                             </div>

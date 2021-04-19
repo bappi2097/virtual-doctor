@@ -1,4 +1,7 @@
 @extends('admin.layouts.app')
+
+@section('breadcrumbs', Breadcrumbs::render('doctor'))
+
 @section('content')
     <div class="container-fluid">
         <!-- ============================================================== -->
@@ -20,6 +23,7 @@
                                         <th class="border-top-0">User</th>
                                         <th class="border-top-0">Name</th>
                                         <th class="border-top-0">Email</th>
+                                        <th class="border-top-0">Category</th>
                                         <th class="border-top-0">Status</th>
                                         <th class="border-top-0">Banned</th>
                                         <th class="border-top-0">Action</th>
@@ -51,6 +55,7 @@
                                             </td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
+                                            <td>{{ $user->doctorCategory->name }}</td>
                                             <td>
                                                 <label
                                                     class="label label-{{ isActiveClass($user->isActive) }}">{{ isActiveText($user->isActive) }}</label>

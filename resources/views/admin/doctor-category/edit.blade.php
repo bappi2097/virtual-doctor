@@ -1,4 +1,7 @@
 @extends('admin.layouts.app')
+
+@section('breadcrumbs', Breadcrumbs::render('admin.doctor-category.edit', $doctorCategory->id))
+
 @section('content')
     <div class="container-fluid">
         <!-- ============================================================== -->

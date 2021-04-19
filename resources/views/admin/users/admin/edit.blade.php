@@ -1,4 +1,8 @@
-@extends('admin.layouts.app') @section('content') <div class="container-fluid">
+@extends('admin.layouts.app')
+
+@section('breadcrumbs', Breadcrumbs::render('admin.edit', $user->id))
+
+@section('content') <div class="container-fluid">
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->

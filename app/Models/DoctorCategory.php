@@ -24,6 +24,6 @@ class DoctorCategory extends Model
 
     public function doctors()
     {
-        return $this->belongsToMany(User::class)->role('doctor');
+        return $this->hasMany(User::class)->role('doctor');
     }
 }
