@@ -42,14 +42,12 @@ class DoctorCategoryController extends Controller
     {
         $this->validate($request, [
             "name" => "required|string|max:255",
-            "slug" => "required|string|max:255|unique:doctor_categories,slug",
             "image" => "required|file",
             "description" => "required|string",
         ]);
 
         $data = [
             "name" => $request->name,
-            "slug" => $request->slug,
             "description" => $request->description,
         ];
 
@@ -105,14 +103,12 @@ class DoctorCategoryController extends Controller
     {
         $this->validate($request, [
             "name" => "required|string|max:255",
-            "slug" => "required|string|max:255|unique:doctor_categories,slug," . $doctorCategory->id,
             "image" => "nullable|file",
             "description" => "required|string",
         ]);
 
         $data = [
             "name" => $request->name,
-            "slug" => $request->slug,
             "description" => $request->description,
         ];
 

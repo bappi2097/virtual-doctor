@@ -20,9 +20,9 @@
                             <table id="zero_config" class="table v-middle">
                                 <thead>
                                     <tr class="bg-light">
-                                        <th class="border-top-0">User</th>
+                                        <th class="border-top-0">Image</th>
                                         <th class="border-top-0">Name</th>
-                                        <th class="border-top-0">Email</th>
+                                        <th class="border-top-0">Description</th>
                                         <th class="border-top-0">Action</th>
                                     </tr>
                                 </thead>

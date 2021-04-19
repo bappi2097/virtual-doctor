@@ -58,19 +58,6 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Category Slug</label>
-                                                <div class="col-md-12">
-                                                    <input type="text" placeholder="psychiatrist" name="slug"
-                                                        value="{{ $doctorCategory->slug }}"
-                                                        class="form-control form-control-line slug-output">
-                                                    @error('slug')
-                                                        <span class="text-danger">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
                                             <input type='file' name="image" id="user-image-btn" style="display: none;"
                                                 onchange="readURL(this);" accept="image/*" />
                                             <div class="form-group">

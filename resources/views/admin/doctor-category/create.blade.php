@@ -62,19 +62,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-12">Category Slug</label>
-                                                    <div class="col-md-12">
-                                                        <input type="text" placeholder="psychiatrist" name="slug"
-                                                            value="{{ old('slug') }}"
-                                                            class="form-control form-control-line slug-output">
-                                                        @error('slug')
-                                                            <span class="text-danger">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label class="col-md-12">Description</label>
                                                     <div class="col-md-12">
