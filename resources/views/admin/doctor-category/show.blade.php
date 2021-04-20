@@ -15,6 +15,10 @@
                             class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back
                         </a>
+                        <a href="{{ route('admin.doctor-category.doctor.doctor-index', $doctorCategory->slug) }}"
+                            class="btn waves-effect waves-light btn-info mx-2">
+                            <i class="mdi mdi-eye"></i> Doctors
+                        </a>
                         <br>
                         <hr><br>
                         <div class="row">

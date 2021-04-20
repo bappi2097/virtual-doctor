@@ -141,3 +141,21 @@ function time_elapsed_string($datetime, $full = false)
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
+
+function days($value = null)
+{
+    $days = [
+        ["id" => 0, "name" => "saturday", "value" => "satur"],
+        ["id" => 1, "name" => "sunday", "value" => "sun"],
+        ["id" => 2, "name" => "monday", "value" => "mon"],
+        ["id" => 3, "name" => "tuesday", "value" => "tues"],
+        ["id" => 4, "name" => "wednesday", "value" => "wednes"],
+        ["id" => 5, "name" => "thursday", "value" => "thurs"],
+        ["id" => 6, "name" => "friday", "value" => "fri"],
+    ];
+    if ($value == null) {
+        return $days;
+    } else {
+        return collect($days)->where("value", $value)->first();
+    }
+}

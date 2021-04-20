@@ -146,4 +146,11 @@ class DoctorCategoryController extends Controller
         }
         return redirect()->back();
     }
+
+    public function doctorIndex($slug)
+    {
+        return view("admin.users.doctor.index", [
+            "users" => DoctorCategory::where("slug", $slug)->first()->doctors()
+        ]);
+    }
 }

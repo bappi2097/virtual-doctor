@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('show', $user->id))
+@section('breadcrumbs', Breadcrumbs::render('doctor.show', $user->id))
 
 @section('content')
     <div class="container-fluid">

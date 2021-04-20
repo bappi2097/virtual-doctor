@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(DoctorCategory::class);
     }
+
+    public function doctorSchedules()
+    {
+        return $this->hasMany(DoctorSchedule::class);
+    }
 }

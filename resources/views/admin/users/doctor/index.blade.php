@@ -73,6 +73,10 @@
                                                 </div>
                                             </td>
                                             <td class="">
+                                                <a href="{{ route('admin.users.doctor.doctor-schedule.edit', $user->id) }}"
+                                                    class="btn btn-purple" title="schedule">
+                                                    <i class="mdi mdi-calendar-clock"></i>
+                                                </a>
                                                 <a href="{{ route('admin.users.doctor.show', $user->id) }}"
                                                     class="btn btn-success text-white" title="show">
                                                     <i class="mdi mdi-eye"></i>
