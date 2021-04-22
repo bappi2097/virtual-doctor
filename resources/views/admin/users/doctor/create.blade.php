@@ -94,7 +94,7 @@
                                                     <label for="doctor-category" class="col-md-12">Doctor Category</label>
                                                     <div class="col-md-12">
                                                         <select name="doctor_category_id" id="doctor-category"
-                                                            class="form-control form-control-line" required>
+                                                            class="form-control form-control-line selectpicker" required>
                                                             <option selected>Select</option>
                                                             @foreach (\App\Models\DoctorCategory::all() as $item)
                                                                 <option value="{{ $item->id }}">{{ $item->name }}
@@ -197,4 +197,5 @@
         }
 
     </script>
+
 @endpush

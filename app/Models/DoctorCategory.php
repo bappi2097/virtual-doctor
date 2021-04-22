@@ -39,4 +39,20 @@ class DoctorCategory extends Model
     {
         return $this->hasMany(User::class)->role('doctor');
     }
+
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'doctor_category_id');
+    }
+
+    public function doctorsData()
+    {
+        return $this->doctors()->get()->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'name' => $item->name
+            ];
+        })->all();
+    }
 }

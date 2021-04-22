@@ -60,6 +60,12 @@ Breadcrumbs::for('doctor.edit', function ($trail, $id) {
     $trail->push('Edit', route('admin.users.doctor.edit', $id));
 });
 
+// Dashboard > Doctor > Schedule
+Breadcrumbs::for('doctor.schedule', function ($trail, $id) {
+    $trail->parent('doctor');
+    $trail->push('Schedule', route('admin.users.doctor.doctor-schedule.edit', $id));
+});
+
 // Dashboard > Patient
 Breadcrumbs::for('patient', function ($trail) {
     $trail->parent('admin.dashboard');
@@ -85,28 +91,53 @@ Breadcrumbs::for('patient.edit', function ($trail, $id) {
 });
 
 
-// Dashboard > Patient
+// Dashboard > Doctor Category
 Breadcrumbs::for('admin.doctor-category', function ($trail) {
     $trail->parent('admin.dashboard');
     $trail->push('Doctor Category', route('admin.doctor-category.index'));
 });
 
-// Dashboard > Patient > Create
+// Dashboard > Doctor Category > Create
 Breadcrumbs::for('admin.doctor-category.create', function ($trail) {
     $trail->parent('admin.doctor-category');
     $trail->push('Create', route('admin.doctor-category.create'));
 });
 
-// Dashboard > Patient > Show
+// Dashboard > Doctor Category > Show
 Breadcrumbs::for('admin.doctor-category.show', function ($trail, $id) {
     $trail->parent('admin.doctor-category');
     $trail->push('Show', route('admin.doctor-category.show', $id));
 });
 
-// Dashboard > Patient > Edit
+// Dashboard > Doctor Category > Edit
 Breadcrumbs::for('admin.doctor-category.edit', function ($trail, $id) {
     $trail->parent('admin.doctor-category');
     $trail->push('Edit', route('admin.doctor-category.edit', $id));
+});
+
+
+// Dashboard > Appointment
+Breadcrumbs::for('admin.appointment', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Appointment', route('admin.appointments.index'));
+});
+
+// Dashboard > Appointment > Create
+Breadcrumbs::for('admin.appointment.create', function ($trail) {
+    $trail->parent('admin.appointment');
+    $trail->push('Create', route('admin.appointments.create'));
+});
+
+// Dashboard > Appointment > Show
+Breadcrumbs::for('admin.appointment.show', function ($trail, $id) {
+    $trail->parent('admin.appointment');
+    $trail->push('Show', route('admin.appointments.show', $id));
+});
+
+// Dashboard > Appointment > Edit
+Breadcrumbs::for('admin.appointment.edit', function ($trail, $id) {
+    $trail->parent('admin.appointment');
+    $trail->push('Edit', route('admin.appointments.edit', $id));
 });
 
 

@@ -96,4 +96,14 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
             Route::get('/{slug}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'doctorIndex'])->name('doctor-index');
         });
     });
+
+    Route::group(['as' => 'appointments.', 'prefix' => 'appointments'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\AppointmentController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\AppointmentController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\AppointmentController::class, 'store'])->name('store');
+        Route::get('/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'show'])->name('show');
+        Route::get('/edit/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'edit'])->name('edit');
+        Route::put('/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'update'])->name('update');
+        Route::delete('/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'destroy'])->name('delete');
+    });
 });

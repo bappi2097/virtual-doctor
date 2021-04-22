@@ -70,6 +70,13 @@
                         <span class="hide-menu">Doctor Category</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="{{ route('admin.appointments.index') }}" aria-expanded="false">
+                        <i class="mdi mdi-calendar-check"></i>
+                        <span class="hide-menu">Appointments</span>
+                    </a>
+                </li>
             </ul>
 
         </nav>

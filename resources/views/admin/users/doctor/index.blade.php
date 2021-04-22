@@ -25,7 +25,7 @@
                                         <th class="border-top-0">Email</th>
                                         <th class="border-top-0">Category</th>
                                         <th class="border-top-0">Status</th>
-                                        <th class="border-top-0">Banned</th>
+                                        {{-- <th class="border-top-0">Banned</th> --}}
                                         <th class="border-top-0">Action</th>
                                     </tr>
                                 </thead>
@@ -61,18 +61,14 @@
                                                     class="label label-{{ isActiveClass($user->isActive) }}">{{ isActiveText($user->isActive) }}</label>
                                             </td>
                                             {{-- <td>
-                                                <label
-                                                    class="label label-{{ isBan($user, 'class') }}">{{ isBan($user, 'text') }}</label>
-                                            </td> --}}
-                                            <td>
                                                 <div class="form-group">
                                                     <input name="ban" {{ isBan($user, 'check') }} data-onstyle="info"
                                                         data-offstyle="light" data-on="True" class="toggle doctor-ban"
                                                         type="checkbox" data-toggle="toggle" data-off="False"
                                                         data-width="100" itemid="{{ $user->id }}">
                                                 </div>
-                                            </td>
-                                            <td class="">
+                                            </td> --}}
+                                            <td class="d-flex justify-content-around">
                                                 <a href="{{ route('admin.users.doctor.doctor-schedule.edit', $user->id) }}"
                                                     class="btn btn-purple" title="schedule">
                                                     <i class="mdi mdi-calendar-clock"></i>

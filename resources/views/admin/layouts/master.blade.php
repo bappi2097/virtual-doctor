@@ -44,6 +44,8 @@
     <link href="{{ asset('dist/css/custom.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/select2@4.1.0-rc.0/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/summernote-0.8.18-dist/summernote-lite.css') }}">
     <link rel="stylesheet" href="{{ asset('css/toastr.css') }}">
     @stack('link')
 </head>
@@ -80,9 +82,20 @@
     <script src="{{ asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/select2@4.1.0-rc.0/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/moment.js/2.29.1/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/summernote-0.8.18-dist/summernote-lite.js') }}"></script>
+    <script src="{{ asset('js/summernote.js') }}"></script>
+
+
     <script>
         $('#zero_config').DataTable();
         $('.toggle').bootstrapToggle('enable');
+        $('.selectpicker').select2();
+        $('.summernote').summernote({
+            height: 150,
+        });
+
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
