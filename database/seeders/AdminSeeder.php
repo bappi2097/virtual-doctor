@@ -24,5 +24,9 @@ class AdminSeeder extends Seeder
         ]);
         $user->assignRole('admin');
         $user->assignRole('super');
+
+        \App\Models\User::factory(15)->create()->each(function ($user) {
+            $user->assignRole('admin');
+        });
     }
 }

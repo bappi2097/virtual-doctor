@@ -73,6 +73,10 @@
                                                     class="btn btn-purple" title="schedule">
                                                     <i class="mdi mdi-calendar-clock"></i>
                                                 </a>
+                                                <a href="{{ route('admin.users.doctor.appointment-index', $user->id) }}"
+                                                    class="btn btn-secondary" title="appointment">
+                                                    <i class="mdi mdi-calendar-check"></i>
+                                                </a>
                                                 <a href="{{ route('admin.users.doctor.show', $user->id) }}"
                                                     class="btn btn-success text-white" title="show">
                                                     <i class="mdi mdi-eye"></i>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\DoctorCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Appointment;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Storage;
 
@@ -151,6 +152,13 @@ class DoctorCategoryController extends Controller
     {
         return view("admin.users.doctor.index", [
             "users" => DoctorCategory::where("slug", $slug)->first()->doctors()
+        ]);
+    }
+
+    public function appointmentIndex(DoctorCategory $doctorCategory)
+    {
+        return view('admin.appointment.index', [
+            'appointments' => Appointment::where('doctor_category_id', $doctorCategory->id)->with('doctor', 'patient', 'doctorCategory')->get()
         ]);
     }
 }

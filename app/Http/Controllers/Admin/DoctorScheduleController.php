@@ -83,4 +83,9 @@ class DoctorScheduleController extends Controller
         }
         return redirect()->back();
     }
+
+    public function schedule(User $user)
+    {
+        return $user->doctorSchedules()->get();
+    }
 }

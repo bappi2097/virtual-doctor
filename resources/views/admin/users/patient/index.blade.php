@@ -67,6 +67,10 @@
                                                 </div>
                                             </td>
                                             <td class="">
+                                                <a href="{{ route('admin.users.patient.appointment-index', $user->id) }}"
+                                                    class="btn btn-secondary" title="appointment">
+                                                    <i class="mdi mdi-calendar-check"></i>
+                                                </a>
                                                 <a href="{{ route('admin.users.patient.show', $user->id) }}"
                                                     class="btn btn-success text-white" title="show">
                                                     <i class="mdi mdi-eye"></i>
@@ -120,7 +124,6 @@
                         ban: $(event.target).hasClass('toggle-on')
                     },
                     success: function(data) {
-                        console.log(data);
                         if (data === true) {
                             toastr.info("User not Banned");
                         } else if (data == false) {

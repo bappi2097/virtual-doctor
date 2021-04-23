@@ -41,6 +41,10 @@
                                             <td>{{ $item->description }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
+                                                    <a href="{{ route('admin.doctor-category.appointment-index', $item->id) }}"
+                                                        class="btn btn-secondary" title="appointment">
+                                                        <i class="mdi mdi-calendar-check"></i>
+                                                    </a>
                                                     <a href="{{ route('admin.doctor-category.show', $item->id) }}"
                                                         class="btn btn-success text-white mx-2" title="show">
                                                         <i class="mdi mdi-eye"></i>

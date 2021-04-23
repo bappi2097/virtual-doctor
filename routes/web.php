@@ -62,8 +62,11 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
             Route::put('/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'update'])->name('update');
             Route::put('/change-password/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'changePassword'])->name('change-password');
             Route::delete('/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'destroy'])->name('delete');
+            Route::get('/appointment/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'appointmentIndex'])->name('appointment-index');
 
             Route::group(['as' => 'doctor-schedule.', 'prefix' => 'doctor-schedule'], function () {
+                // doctor schedule ajax
+                Route::get('/schedule/{user}', [\App\Http\Controllers\Admin\DoctorScheduleController::class, 'schedule'])->name('schedule');
                 Route::get('/edit/{user}', [\App\Http\Controllers\Admin\DoctorScheduleController::class, 'edit'])->name('edit');
                 Route::put('/{user}', [\App\Http\Controllers\Admin\DoctorScheduleController::class, 'update'])->name('update');
                 Route::delete('/{doctorSchedule}', [\App\Http\Controllers\Admin\DoctorScheduleController::class, 'destroy'])->name('delete');
@@ -80,6 +83,7 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
             Route::put('/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'update'])->name('update');
             Route::put('/change-password/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'changePassword'])->name('change-password');
             Route::delete('/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'destroy'])->name('delete');
+            Route::get('/appointment/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'appointmentIndex'])->name('appointment-index');
         });
     });
 
@@ -91,6 +95,8 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
         Route::get('/edit/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'edit'])->name('edit');
         Route::put('/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'update'])->name('update');
         Route::delete('/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'destroy'])->name('delete');
+        Route::get('/appointment/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'appointmentIndex'])->name('appointment-index');
+
 
         Route::group(['as' => 'doctor.', 'prefix' => 'doctor'], function () {
             Route::get('/{slug}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'doctorIndex'])->name('doctor-index');

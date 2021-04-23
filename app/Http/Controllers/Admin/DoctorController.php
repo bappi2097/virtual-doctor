@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -209,5 +210,12 @@ class DoctorController extends Controller
             $user->assignRole('ban');
             return false;
         }
+    }
+
+    public function appointmentIndex(User $user)
+    {
+        return view('admin.appointment.index', [
+            'appointments' => Appointment::where('doctor_id', $user->id)->with('doctor', 'patient', 'doctorCategory')->get()
+        ]);
     }
 }

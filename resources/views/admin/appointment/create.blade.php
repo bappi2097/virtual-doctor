@@ -27,6 +27,16 @@
                                             <center class="m-t-30">
                                                 <img id="user-image" class="img-fluid rounded"
                                                     src="{{ asset('assets/images/Calendar.svg') }}" alt="your image" />
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Day</td>
+                                                            <td>Start</td>
+                                                            <td>End</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="schedule"></tbody>
+                                                </table>
                                             </center>
                                         </div>
                                         <div>
@@ -181,6 +191,15 @@
         $(document).ready(() => {
 
             let data = {!! json_encode($doctorCategories) !!};
+            let days = {
+                satur: "Saturday",
+                sun: "Sunday",
+                mon: "Monday",
+                tues: "Tuesday",
+                wednes: "Wednesday",
+                thurs: "Thursdayday",
+                fri: "Friday",
+            };
 
             $('#doctor-category').on('input', (e) => {
                 $('#doctor').empty();
@@ -210,6 +229,32 @@
                     });
                 }
             });
+
+            $('#doctor').on('input', (e) => {
+                if ($(e.target).val() != 'Select Doctor') {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ url('admin/users/doctor/doctor-schedule/schedule') . '/' }}" +
+                            $('#doctor').val(),
+                        success: function(data) {
+                            $('#schedule').empty();
+                            if (data.length != 0) {
+                                data.forEach(element => {
+                                    $('#schedule').append(
+                                        ` <tr> <td>${days[element.day]}</td><td>${moment.utc(element.start, 'HH:mm').format('hh:mm A')}</td> <td>${moment.utc(element.end, 'HH:mm').format('hh:mm A')}</td> </tr> `
+                                    );
+                                });
+                            }
+                        },
+                        error: function(error) {
+                            toastr.error("Something Went Wrong!");
+                        }
+                    });
+                } else {
+                    $('#schedule').empty();
+                }
+            });
+
             $('#start').on('input', (e) => {
                 $('#end').val(moment.utc(e.target.value, 'HH:mm').add(30, 'minutes').format('HH:mm'));
             });

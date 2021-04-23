@@ -25,17 +25,30 @@
                                             <tbody>
                                                 <tr>
                                                     <td>Doctor Category</td>
-                                                    <td>{{ $appointment->doctorCategory->name }}</td>
+
+                                                    <td>
+                                                        <a
+                                                            href="{{ route('admin.doctor-category.show', $appointment->doctorCategory->id) }}">{{ $appointment->doctorCategory->name }}</a>
+                                                    </td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td>Doctor</td>
-                                                    <td>{{ $appointment->doctor->name }}</td>
+                                                    <td rowspan="2">Doctor</td>
+                                                    <td>
+                                                        <a
+                                                            href="{{ route('admin.users.doctor.show', $appointment->doctor->id) }}">{{ $appointment->doctor->name }}</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ $appointment->doctor->email }}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td rowspan="2">Patient</td>
-                                                    <td>{{ $appointment->patient->name }}</td>
+                                                    <td>
+                                                        <a
+                                                            href="{{ route('admin.users.patient.show', $appointment->patient->id) }}">{{ $appointment->patient->name }}</a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>{{ $appointment->patient->email }}</td>
