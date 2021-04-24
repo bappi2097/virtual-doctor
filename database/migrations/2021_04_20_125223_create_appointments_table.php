@@ -19,9 +19,9 @@ class CreateAppointmentsTable extends Migration
             $table->foreignId('patient_id');
             $table->foreignId('doctor_category_id');
             $table->longText("description")->nullable();
-            $table->date("day");
-            $table->time('start');
-            $table->time("end");
+            $table->date("day")->nullable();
+            $table->time('start')->nullable();
+            $table->time("end")->nullable();
             $table->timestamps();
         });
     }

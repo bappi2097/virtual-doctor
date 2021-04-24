@@ -112,4 +112,24 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
         Route::put('/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'update'])->name('update');
         Route::delete('/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'destroy'])->name('delete');
     });
+
+    Route::group(['as' => 'healths.', 'prefix' => 'healths'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\DailyHealthController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\DailyHealthController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\DailyHealthController::class, 'store'])->name('store');
+        Route::get('/{dailyHealth}', [\App\Http\Controllers\Admin\DailyHealthController::class, 'show'])->name('show');
+        Route::get('/edit/{dailyHealth}', [\App\Http\Controllers\Admin\DailyHealthController::class, 'edit'])->name('edit');
+        Route::put('/{dailyHealth}', [\App\Http\Controllers\Admin\DailyHealthController::class, 'update'])->name('update');
+        Route::delete('/{dailyHealth}', [\App\Http\Controllers\Admin\DailyHealthController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'reports.', 'prefix' => 'reports'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ReportController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\ReportController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\ReportController::class, 'store'])->name('store');
+        Route::get('/{dailyHealth}', [\App\Http\Controllers\Admin\ReportController::class, 'show'])->name('show');
+        Route::get('/edit/{dailyHealth}', [\App\Http\Controllers\Admin\ReportController::class, 'edit'])->name('edit');
+        Route::put('/{dailyHealth}', [\App\Http\Controllers\Admin\ReportController::class, 'update'])->name('update');
+        Route::delete('/{dailyHealth}', [\App\Http\Controllers\Admin\ReportController::class, 'destroy'])->name('delete');
+    });
 });

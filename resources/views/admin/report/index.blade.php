@@ -1,30 +1,17 @@
 @extends('admin.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.appointment'))
+@section('breadcrumbs', Breadcrumbs::render('admin.doctor-category'))
 
 @section('content')
     <div class="container-fluid">
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="round align-self-center round-success">
-                        <i class="ti-wallet"></i>
-                    </div>
-                    <div class="ml-3 align-self-center">
-                        <h3 class="mb-0">$18090</h3>
-                        <span class="text-muted">Income</span>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.appointments.create') }}"
+                        <a href="{{ route('admin.doctor-category.create') }}"
                             class="btn waves-effect waves-light btn-info">Add
                             Data</a>
                         <br>
@@ -33,40 +20,46 @@
                             <table id="zero_config" class="table v-middle">
                                 <thead>
                                     <tr class="bg-light">
-                                        <th class="border-top-0">Category</th>
-                                        <th class="border-top-0">Doctor</th>
-                                        <th class="border-top-0">Patient</th>
-                                        <th class="border-top-0">Date</th>
-                                        <th class="border-top-0">Start-End</th>
+                                        <th class="border-top-0">Image</th>
+                                        <th class="border-top-0">Name</th>
+                                        <th class="border-top-0">Description</th>
                                         <th class="border-top-0">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($appointments as $item)
+                                    @foreach ($doctorCategories as $item)
                                         <tr>
-                                            <td>{{ $item->doctorCategory->name }}</td>
-                                            <td>{{ $item->doctor->name }}</td>
-                                            <td>{{ $item->patient->name }}</td>
-                                            <td>{{ date('l F j, Y', strtotime($item->day)) }}</td>
-                                            <td>{{ date('g:i A', strtotime($item->start)) . '-' . date('g:i A', strtotime($item->end)) }}
-                                            </td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <a href="{{ route('admin.appointments.show', $item->id) }}"
+                                                    <div class="m-r-10">
+                                                        <img src="{{ asset($item->image ?: 'assets/images/doctor-category/undraw_doctor_kw5l.svg') }}"
+                                                            alt="users" class="rounded-circle" width="90" />
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->description }}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <a href="{{ route('admin.doctor-category.appointment-index', $item->id) }}"
+                                                        class="btn btn-secondary" title="appointment">
+                                                        <i class="mdi mdi-calendar-check"></i>
+                                                    </a>
+                                                    <a href="{{ route('admin.doctor-category.show', $item->id) }}"
                                                         class="btn btn-success text-white mx-2" title="show">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.appointments.edit', $item->id) }}"
+                                                    <a href="{{ route('admin.doctor-category.edit', $item->id) }}"
                                                         class="btn btn-info text-white mx-2" title="edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.appointments.delete', $item->id) }}"
+                                                    <a href="{{ route('admin.doctor-category.delete', $item->id) }}"
                                                         class="btn btn-danger text-white mx-2" title="delete"
                                                         onclick="event.preventDefault(); document.getElementById('delete-item{{ $item->id }}').submit();">
                                                         <i class="mdi mdi-delete"></i>
                                                     </a>
                                                     <form id="delete-item{{ $item->id }}"
-                                                        action="{{ route('admin.appointments.delete', $item->id) }}"
+                                                        action="{{ route('admin.doctor-category.delete', $item->id) }}"
                                                         method="POST" class="d-none">
                                                         @csrf
                                                         @method('DELETE')

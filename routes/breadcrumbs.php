@@ -141,6 +141,55 @@ Breadcrumbs::for('admin.appointment.edit', function ($trail, $id) {
 });
 
 
+// Dashboard > Health
+Breadcrumbs::for('admin.health', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Health', route('admin.healths.index'));
+});
+
+// Dashboard > Health > Create
+Breadcrumbs::for('admin.health.create', function ($trail) {
+    $trail->parent('admin.health');
+    $trail->push('Create', route('admin.healths.create'));
+});
+
+// Dashboard > Health > Show
+Breadcrumbs::for('admin.health.show', function ($trail, $id) {
+    $trail->parent('admin.health');
+    $trail->push('Show', route('admin.healths.show', $id));
+});
+
+// Dashboard > Health > Edit
+Breadcrumbs::for('admin.health.edit', function ($trail, $id) {
+    $trail->parent('admin.health');
+    $trail->push('Edit', route('admin.healths.edit', $id));
+});
+
+
+// Dashboard > Report
+Breadcrumbs::for('admin.report', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Report', route('admin.reports.index'));
+});
+
+// Dashboard > Report > Create
+Breadcrumbs::for('admin.report.create', function ($trail) {
+    $trail->parent('admin.report');
+    $trail->push('Create', route('admin.reports.create'));
+});
+
+// Dashboard > Report > Show
+Breadcrumbs::for('admin.report.show', function ($trail, $id) {
+    $trail->parent('admin.report');
+    $trail->push('Show', route('admin.reports.show', $id));
+});
+
+// Dashboard > Report > Edit
+Breadcrumbs::for('admin.report.edit', function ($trail, $id) {
+    $trail->parent('admin.report');
+    $trail->push('Edit', route('admin.reports.edit', $id));
+});
+
 
 
 

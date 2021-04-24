@@ -22,8 +22,10 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $blood = ['o+', 'o-', 'a+', 'a-', 'b+', 'b-', 'ab+', 'ab-', 'g'];
+        $gender = ['male', 'female'][rand(0, 1)];
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->name($gender),
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => bcrypt('password'), // password
@@ -33,6 +35,8 @@ class UserFactory extends Factory
             'isActive' => 1,
             'phone_no' => $this->faker->phoneNumber,
             'image' => 'assets/images/users/' . rand(1, 7) . '.jpg',
+            'blood' => $blood[rand(0, 8)],
+            'gender' => $gender,
         ];
     }
 

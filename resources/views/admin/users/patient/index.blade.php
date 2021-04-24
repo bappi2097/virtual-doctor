@@ -24,7 +24,7 @@
                                         <th class="border-top-0">Name</th>
                                         <th class="border-top-0">Email</th>
                                         <th class="border-top-0">Status</th>
-                                        <th class="border-top-0">Banned</th>
+                                        {{-- <th class="border-top-0">Banned</th> --}}
                                         <th class="border-top-0">Action</th>
                                     </tr>
                                 </thead>
@@ -58,15 +58,19 @@
                                                 <label
                                                     class="label label-{{ isActiveClass($user->isActive) }}">{{ isActiveText($user->isActive) }}</label>
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 <div class="form-group">
                                                     <input name="ban" {{ isBan($user, 'check') }} data-onstyle="info"
                                                         data-offstyle="light" data-on="True" class="toggle patient-ban"
                                                         type="checkbox" data-toggle="toggle" data-off="False"
                                                         data-width="100" itemid="{{ $user->id }}">
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                             <td class="">
+                                                <a href="{{ route('admin.users.patient.appointment-index', $user->id) }}"
+                                                    class="btn btn-outline-danger" title="appointment">
+                                                    <i class="mdi mdi-heart-pulse"></i>
+                                                </a>
                                                 <a href="{{ route('admin.users.patient.appointment-index', $user->id) }}"
                                                     class="btn btn-secondary" title="appointment">
                                                     <i class="mdi mdi-calendar-check"></i>
@@ -112,30 +116,3 @@
         <!-- ============================================================== -->
     </div>
 @endsection
-@push('script')
-    <script>
-        $(document).ready(() => {
-            $('.patient-ban').on('change', (e) => {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('admin.users.patient.ban') }}",
-                    data: {
-                        id: e.target.getAttribute('itemid'),
-                        ban: $(event.target).hasClass('toggle-on')
-                    },
-                    success: function(data) {
-                        if (data === true) {
-                            toastr.info("User not Banned");
-                        } else if (data == false) {
-                            toastr.info("User successfullly Banned");
-                        }
-                    },
-                    error: function(error) {
-                        toastr.error("Something Went Wrong!");
-                    }
-                });
-            });
-        });
-
-    </script>
-@endpush

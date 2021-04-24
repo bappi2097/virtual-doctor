@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('address')->nullable();
             $table->string('phone_no')->nullable();
+            $table->string('blood')->nullable();
+            $table->string('gender')->nullable();
             $table->boolean('isActive')->default(1);
             $table->softDeletes();
             $table->rememberToken();

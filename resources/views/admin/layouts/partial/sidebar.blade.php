@@ -77,6 +77,21 @@
                         <span class="hide-menu">Appointments</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="{{ route('admin.healths.index') }}" aria-expanded="false">
+                        <i class="mdi mdi-heart-pulse"></i>
+                        <span class="hide-menu">Health</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="{{ route('admin.reports.index') }}" aria-expanded="false">
+                        <i class="mdi mdi-file-document"></i>
+                        <span class="hide-menu">Report</span>
+                    </a>
+                </li>
             </ul>
 
         </nav>
