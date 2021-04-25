@@ -50,6 +50,8 @@ class DoctorController extends Controller
             "image" => "nullable|file",
             "address" => "required|string",
             "doctor_category_id" => "required|exists:doctor_categories,id",
+            "blood" => "required|string|in:a+,a-,b+,b-,ab+,ab-,o+,o-",
+            "gender" => "required|string|in:male,female",
         ]);
         $data = [
             "name" => $request->name,
@@ -57,6 +59,8 @@ class DoctorController extends Controller
             "phone_no" => $request->phone_no,
             "user_name" => $request->user_name,
             "address" => $request->address,
+            "blood" => $request->blood,
+            "gender" => $request->gender,
             "password" => bcrypt($request->password),
             "doctor_category_id" => $request->doctor_category_id,
         ];
@@ -116,6 +120,8 @@ class DoctorController extends Controller
             "image" => "nullable|file",
             "address" => "required|string",
             "doctor_category_id" => "required|exists:doctor_categories,id",
+            "blood" => "required|string|in:a+,a-,b+,b-,ab+,ab-,o+,o-",
+            "gender" => "required|string|in:male,female",
         ]);
         $data = [
             "name" => $request->name,
@@ -123,6 +129,8 @@ class DoctorController extends Controller
             "phone_no" => $request->phone_no,
             "user_name" => $request->user_name,
             "address" => $request->address,
+            "blood" => $request->blood,
+            "gender" => $request->gender,
             "doctor_category_id" => $request->doctor_category_id,
         ];
 

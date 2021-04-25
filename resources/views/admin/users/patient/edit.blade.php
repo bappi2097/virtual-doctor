@@ -49,6 +49,51 @@
                                                             class="text-danger"> <strong>{{ $message }}</strong> </span>
                                                     @enderror </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12" for="blood">Blood Group</label>
+                                                <div class="col-md-12">
+                                                    <select name="blood" id="blood"
+                                                        class="form-control form-control-line selectpicker">
+                                                        <option value="a+" @if ($user->blood == 'a+') selected @endif>A+</option>
+                                                        <option value="a-" @if ($user->blood == 'a-') selected @endif>A-</option>
+                                                        <option value="b+" @if ($user->blood == 'b+') selected @endif>B+</option>
+                                                        <option value="b-" @if ($user->blood == 'b-') selected @endif>B-</option>
+                                                        <option value="ab+" @if ($user->blood == 'ab+') selected @endif>AB+</option>
+                                                        <option value="ab-" @if ($user->blood == 'ab-') selected @endif>AB-</option>
+                                                        <option value="o+" @if ($user->blood == 'o+') selected @endif>O+</option>
+                                                        <option value="o-" @if ($user->blood == 'o-') selected @endif>O-</option>
+                                                    </select>
+                                                    @error('blood')
+                                                        <span class="text-danger">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">Gender</label>
+                                                <div class="col-md-12">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            value="male" id="male" @if ($user->gender == 'male') checked @endif>
+                                                        <label class="form-check-label" for="male">
+                                                            Male
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="gender" @if ($user->gender == 'female') checked @endif value="female"
+                                                            id="female">
+                                                        <label class="form-check-label" for="female">
+                                                            Female
+                                                        </label>
+                                                    </div>
+                                                    @error('gender')
+                                                        <span class="text-danger">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                             <input type='file' name="image" id="user-image-btn" style="display: none;"
                                                 onchange="readURL(this);" accept="image/*" />
                                             <div class="form-group"> <label for="email" class="col-md-12">Email</label>
@@ -64,7 +109,8 @@
                                                     Name</label>
                                                 <div class="col-md-12"> <input type="user_name" placeholder="john12"
                                                         class="form-control form-control-line" name="user_name"
-                                                        value="{{ $user->user_name }}" id="user_name"> @error('user_name')
+                                                        value="{{ $user->user_name }}" id="user_name">
+                                                    @error('user_name')
                                                         <span class="text-danger"> <strong>{{ $message }}</strong> </span>
                                                     @enderror
                                                 </div>

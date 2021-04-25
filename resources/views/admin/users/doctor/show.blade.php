@@ -49,12 +49,22 @@
                                         <hr>
                                     </div>
                                     <div class="card-body">
-                                        <small class="text-muted">Email address </small>
-                                        <h6>{{ $user->email }}</h6>
-                                        <small class="text-muted p-t-30 db">Phone</small>
-                                        <h6>{{ $user->phone_no }}</h6>
-                                        <small class="text-muted p-t-30 db">Address</small>
-                                        <h6>{{ $user->address }}</h6>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <small class="text-muted">Email address </small>
+                                                <h6>{{ $user->email }}</h6>
+                                                <small class="text-muted p-t-30 db">Phone</small>
+                                                <h6>{{ $user->phone_no }}</h6>
+                                                <small class="text-muted p-t-30 db">Address</small>
+                                                <h6>{{ $user->address }}</h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <small class="text-muted">Gender </small>
+                                                <h6>{{ strtoupper($user->gender) }}</h6>
+                                                <small class="text-muted p-t-30 db">Blood Group</small>
+                                                <h6>{{ strtoupper($user->blood) }}</h6>
+                                            </div>
+                                        </div>
                                         <div class="map-box">
                                             <iframe width="600" height="150" id="gmap_canvas"
                                                 src="https://maps.google.com/maps?q={{ strtolower(join('+', preg_split('/[\s,]+/', $user->address))) }}&t=k&z=11&ie=UTF8&iwloc=&output=embed"

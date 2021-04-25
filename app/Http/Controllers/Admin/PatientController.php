@@ -49,12 +49,16 @@ class PatientController extends Controller
             "password" => "required|string|min:8|max:25|confirmed",
             "image" => "nullable|file",
             "address" => "required|string",
+            "blood" => "required|string|in:a+,a-,b+,b-,ab+,ab-,o+,o-",
+            "gender" => "required|string|in:male,female",
         ]);
         $data = [
             "name" => $request->name,
             "email" => $request->email,
             "phone_no" => $request->phone_no,
             "user_name" => $request->user_name,
+            "blood" => $request->blood,
+            "gender" => $request->gender,
             "address" => $request->address,
             "password" => bcrypt($request->password),
         ];
@@ -113,12 +117,16 @@ class PatientController extends Controller
             "phone_no" => "required|string|max:25",
             "image" => "nullable|file",
             "address" => "required|string",
+            "blood" => "required|string|in:a+,a-,b+,b-,ab+,ab-,o+,o-",
+            "gender" => "required|string|in:male,female",
         ]);
 
         $data = [
             "name" => $request->name,
             "email" => $request->email,
             "phone_no" => $request->phone_no,
+            "blood" => $request->blood,
+            "gender" => $request->gender,
             "user_name" => $request->user_name,
             "address" => $request->address,
         ];

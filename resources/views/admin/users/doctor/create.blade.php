@@ -65,6 +65,52 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label class="col-md-12" for="blood">Blood Group</label>
+                                                    <div class="col-md-12">
+                                                        <select name="blood" id="blood"
+                                                            class="form-control form-control-line selectpicker">
+                                                            <option selected>Blood Group</option>
+                                                            <option value="a+">A+</option>
+                                                            <option value="a-">A-</option>
+                                                            <option value="b+">B+</option>
+                                                            <option value="b-">B-</option>
+                                                            <option value="ab+">AB+</option>
+                                                            <option value="ab-">AB-</option>
+                                                            <option value="o+">O+</option>
+                                                            <option value="o-">O-</option>
+                                                        </select>
+                                                        @error('blood')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-12">Gender</label>
+                                                    <div class="col-md-12">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="gender"
+                                                                value="male" id="male">
+                                                            <label class="form-check-label" for="male">
+                                                                Male
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="gender"
+                                                                value="female" id="female">
+                                                            <label class="form-check-label" for="female">
+                                                                Female
+                                                            </label>
+                                                        </div>
+                                                        @error('gender')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="email" class="col-md-12">Email</label>
                                                     <div class="col-md-12">
                                                         <input type="email" placeholder="johnathan@admin.com"
