@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.doctor-category.edit', $doctorCategory->id))
+@section('breadcrumbs', Breadcrumbs::render('admin.health.edit', $dailyHealth->id))
 
 @section('content')
     <div class="container-fluid">
@@ -10,80 +10,172 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    <form action="{{ route('admin.healths.update', $dailyHealth->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="card-body">
+                            <a href="{{ route('admin.healths.index') }}" class="btn waves-effect waves-light btn-info">
+                                <i class="mdi mdi-arrow-left"></i> Back
+                            </a>
+                            <br>
+                            <hr><br>
+                            <div class="row">
+                                <!-- Column -->
+                                <div class="col-lg-4 col-xlg-3 col-md-5">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <center class="m-t-30">
+                                                <img id="user-image" alt="doctor category images" width="250"
+                                                    src="{{ asset('dist/image/undraw_doctors_hwty.svg') }}" />
+                                            </center>
+                                        </div>
+                                        <div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div> <!-- Column -->
+                                <!-- Column -->
+                                <div class="col-lg-8 col-xlg-9 col-md-7">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form class="form-horizontal form-material mx-2">
+                                                <div class="form-group">
+                                                    <label class="col-md-12" for="patient_id">Patient</label>
+                                                    <div class="col-md-12">
+                                                        <select name="patient_id" id="patient_id"
+                                                            class="form-control form-control-line selectpicker" required>
+                                                            @foreach (\App\Models\User::role('patient')->get() as $item)
+                                                                <option value="{{ $item->id }}"
+                                                                    {{ selected($item->id, $dailyHealth->patient_id) }}>
+                                                                    {{ $item->user_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('patient_id')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="heart_beat" class="col-md-12">Heart Beat (in BPM)</label>
+                                                    <div class="col-md-12">
+                                                        <input type="number" name="heart_beat" placeholder="72"
+                                                            class="form-control form-control-line" min="0" max="200"
+                                                            value="{{ $dailyHealth->heart_beat }}" required>
+                                                        @error('heart_beat')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
 
-                    <div class="card-body">
-                        <a href="{{ route('admin.doctor-category.index') }}"
-                            class="btn waves-effect waves-light btn-info">
-                            <i class="mdi mdi-arrow-left"></i> Back </a>
-                        <br>
-                        <hr><br>
-                        <div class="row">
-                            <!-- Column -->
-                            <div class="col-lg-4 col-xlg-3 col-md-5">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <center class="m-t-30">
-                                            <img id="user-image" class="img-fluid" alt="{{ $doctorCategory->name }}"
-                                                src="{{ asset($doctorCategory->image ?: 'assets/images/users/male_avatar.svg') }}" />
-                                            <button type="button" class="btn btn-outline-info"
-                                                onclick="document.getElementById('user-image-btn').click();">
-                                                <i class="mdi mdi-camera"></i>
-                                            </button>
-                                        </center>
-                                    </div>
-                                    <div>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div> <!-- Column -->
-                            <!-- Column -->
-                            <div class="col-lg-8 col-xlg-9 col-md-7">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form class="form-horizontal form-material mx-2"
-                                            action="{{ route('admin.doctor-category.update', $doctorCategory->id) }}"
-                                            method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="form-group">
-                                                <label class="col-md-12">Category Name</label>
-                                                <div class="col-md-12">
-                                                    <input type="text" placeholder="Psychiatrist" name="name"
-                                                        value="{{ $doctorCategory->name }}"
-                                                        class="form-control form-control-line slug-input">
-                                                    @error('name')
-                                                        <span class="text-danger">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                <div class="form-group">
+                                                    <label for="pressure_high" class="col-md-12">Blood Pressure</label>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <input type="number" name="pressure[]" id="pressure_high"
+                                                                class="form-control form-control-line" placeholder="80"
+                                                                min="0" max="200"
+                                                                value="{{ $dailyHealth->pressure('high') }}" required>
+                                                            @error('pressure')
+                                                                <span class="text-danger">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="number" name="pressure[]" id="pressure_low"
+                                                                class="form-control form-control-line" placeholder="120"
+                                                                min="0" max="200"
+                                                                value="{{ $dailyHealth->pressure('low') }}" required>
+                                                            @error('pressure')
+                                                                <span class="text-danger">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <input type='file' name="image" id="user-image-btn" style="display: none;"
-                                                onchange="readURL(this);" accept="image/*" />
-                                            <div class="form-group">
-                                                <label class="col-md-12">Description</label>
-                                                <div class="col-md-12">
-                                                    <textarea rows="5" name="description"
-                                                        class="form-control form-control-line"
-                                                        placeholder="Pediatricians provide primary health care to children, including immunizations, well-baby checks, school physicals .....">{{ $doctorCategory->description }}</textarea>
-                                                    @error('description')
-                                                        <span class="text-danger">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+
+                                                <div class="form-group">
+                                                    <label for="sugar" class="col-md-12">Blood Sugar (in mg/dl) <span
+                                                            class="text-warning">(optional)</span></label>
+                                                    <div class="col-md-12">
+                                                        <input type="number" name="sugar"
+                                                            class="form-control form-control-line" placeholder="5.2" min="0"
+                                                            max="50" step=".01" value="{{ $dailyHealth->sugar }}">
+                                                        @error('sugar')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <button class="btn btn-info text-white">Update</button>
+                                                <br>
+                                                <div class="row">
+                                                    <label> BMI (<span class="text-warning">Leave Empty if not
+                                                            changed</span>)</label>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="height" class="col-md-12">Height (in cm)</label>
+                                                            <div class="col-md-12">
+                                                                <input type="number" name="height"
+                                                                    class="form-control form-control-line" placeholder="170"
+                                                                    id="height" min="0" max="250" step=".01"
+                                                                    value="{{ $dailyHealth->extra('height') }}">
+                                                                @error('height')
+                                                                    <span class="text-danger">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="width" class="col-md-12">Weight (in kg)</label>
+                                                            <div class="col-md-12">
+                                                                <input type="number" name="weight"
+                                                                    class="form-control form-control-line" placeholder="68"
+                                                                    id="weight" min="0" max="200" step=".01"
+                                                                    value="{{ $dailyHealth->extra('weight') }}">
+                                                                @error('width')
+                                                                    <span class="text-danger">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                                <div class="form-group">
+                                                    <label for="bmi" class="col-md-12">BMI</label>
+                                                    <div class="col-md-12">
+                                                        <input type="text" name="bmi" class="form-control form-control-line"
+                                                            placeholder="22" readonly id="bmi"
+                                                            value="{{ $dailyHealth->extra('bmi') }}">
+                                                        @error('bmi')
+                                                            <span class="text-danger">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <button class="btn btn-info text-white">Save</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </div> <!-- Column -->
+                                </div> <!-- Column -->
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div> <!-- ============================================================== -->
@@ -100,15 +192,24 @@
 @endsection
 @push('script')
     <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#user-image').attr('src', e.target.result);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        $(window).ready(() => {
+            $('#height').on('input', () => {
+                let height = $('#height').val();
+                let weight = $('#weight').val();
+                if (height && weight) {
+                    let bmi = weight / ((height * height) / 10000);
+                    $('#bmi').val(bmi.toFixed(2));
+                }
+            });
+            $('#weight').on('input', () => {
+                let height = $('#height').val();
+                let weight = $('#weight').val();
+                if (height && weight) {
+                    let bmi = weight / ((height * height) / 10000);
+                    $('#bmi').val(bmi.toFixed(2));
+                }
+            });
+        });
 
     </script>
 @endpush

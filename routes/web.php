@@ -127,9 +127,14 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
         Route::get('/', [\App\Http\Controllers\Admin\ReportController::class, 'index'])->name('index');
         Route::get('/create', [\App\Http\Controllers\Admin\ReportController::class, 'create'])->name('create');
         Route::post('/', [\App\Http\Controllers\Admin\ReportController::class, 'store'])->name('store');
-        Route::get('/{dailyHealth}', [\App\Http\Controllers\Admin\ReportController::class, 'show'])->name('show');
-        Route::get('/edit/{dailyHealth}', [\App\Http\Controllers\Admin\ReportController::class, 'edit'])->name('edit');
-        Route::put('/{dailyHealth}', [\App\Http\Controllers\Admin\ReportController::class, 'update'])->name('update');
-        Route::delete('/{dailyHealth}', [\App\Http\Controllers\Admin\ReportController::class, 'destroy'])->name('delete');
+        Route::get('/{report}', [\App\Http\Controllers\Admin\ReportController::class, 'show'])->name('show');
+        Route::get('/edit/{report}', [\App\Http\Controllers\Admin\ReportController::class, 'edit'])->name('edit');
+        Route::put('/{report}', [\App\Http\Controllers\Admin\ReportController::class, 'update'])->name('update');
+        Route::delete('/{report}', [\App\Http\Controllers\Admin\ReportController::class, 'destroy'])->name('delete');
+        Route::get('download-document/{document}', [\App\Http\Controllers\Admin\ReportController::class, 'downloadDocument'])->name('download-document');
+    });
+    Route::group(['as' => 'documents.', 'prefix' => 'documents'], function () {
+        Route::post('/{report}', [\App\Http\Controllers\Admin\DocumentController::class, 'store'])->name('store');
+        Route::delete('/{document}', [\App\Http\Controllers\Admin\DocumentController::class, 'destroy'])->name('delete');
     });
 });

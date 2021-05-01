@@ -13,6 +13,7 @@ class Document extends Model
     protected $fillable = [
         'patient_id',
         'report_id',
+        'file_name',
         'path',
     ];
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DailyHealth;
+use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class DailyHealthController extends Controller
@@ -16,7 +18,7 @@ class DailyHealthController extends Controller
     public function index()
     {
         return view('admin.health.index', [
-            'healths' => DailyHealth::with('patient')->get()
+            'healths' => DailyHealth::with('patient')->latest()->get()
         ]);
     }
 
@@ -38,7 +40,53 @@ class DailyHealthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'patient_id' => 'required|exists:users,id',
+            'heart_beat' => 'required|numeric',
+            'pressure' => 'required|array',
+            'pressure.*' => 'required|numeric',
+            'sugar' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
+            'weight' => 'nullable|numeric',
+            'bmi' => 'nullable|numeric',
+        ]);
+
+        $data = [
+            'patient_id' => $request->patient_id,
+            'heart_beat' => $request->heart_beat,
+            'pressure' => json_encode([
+                'low' => $request->pressure[0],
+                'high' => $request->pressure[1],
+            ]),
+            'sugar' => $request->sugar ?: null,
+            'extra' => null
+        ];
+        if (empty($request->bmi)) {
+            $health = DailyHealth::where('patient_id', $request->patient_id);
+
+            if ($health->exists()) {
+                $health = $health->latest()->first();
+                $data['extra'] = json_encode([
+                    'height' => $health->extra('height'),
+                    'weight' => $health->extra('weight'),
+                    'bmi' => $health->extra('bmi'),
+                ]);
+            }
+        } else {
+            $data['extra'] = json_encode([
+                'height' => $request->height ?: null,
+                'weight' => $request->weight ?: null,
+                'bmi' => $request->bmi ?: null,
+            ]);
+        }
+
+        $dailyHealth = new DailyHealth($data);
+        if ($dailyHealth->save()) {
+            Toastr::success('Successfully Daily health report Added', "Success");
+        } else {
+            Toastr::error('Something Went Wrong!', "Error");
+        }
+        return redirect()->back();
     }
 
     /**
@@ -49,7 +97,10 @@ class DailyHealthController extends Controller
      */
     public function show(DailyHealth $dailyHealth)
     {
-        //
+        $dailyHealth->loadMissing('patient');
+        return view('admin.health.show', [
+            'dailyHealth' => $dailyHealth
+        ]);
     }
 
     /**
@@ -60,7 +111,9 @@ class DailyHealthController extends Controller
      */
     public function edit(DailyHealth $dailyHealth)
     {
-        //
+        return view('admin.health.edit', [
+            'dailyHealth' => $dailyHealth
+        ]);
     }
 
     /**
@@ -72,7 +125,51 @@ class DailyHealthController extends Controller
      */
     public function update(Request $request, DailyHealth $dailyHealth)
     {
-        //
+        $this->validate($request, [
+            'heart_beat' => 'required|numeric',
+            'pressure' => 'required|array',
+            'pressure.*' => 'required|numeric',
+            'sugar' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
+            'weight' => 'nullable|numeric',
+            'bmi' => 'nullable|numeric',
+        ]);
+
+        $data = [
+            'heart_beat' => $request->heart_beat,
+            'pressure' => json_encode([
+                'low' => $request->pressure[0],
+                'high' => $request->pressure[1],
+            ]),
+            'sugar' => $request->sugar ?: null,
+            'extra' => null
+        ];
+        if (empty($request->bmi)) {
+            $health = DailyHealth::where('patient_id', $request->patient_id);
+
+            if ($health->exists()) {
+                $health = $health->latest()->first();
+                $data['extra'] = json_encode([
+                    'height' => $health->extra('height'),
+                    'weight' => $health->extra('weight'),
+                    'bmi' => $health->extra('bmi'),
+                ]);
+            }
+        } else {
+            $data['extra'] = json_encode([
+                'height' => $request->height ?: null,
+                'weight' => $request->weight ?: null,
+                'bmi' => $request->bmi ?: null,
+            ]);
+        }
+
+        $dailyHealth->fill($data);
+        if ($dailyHealth->save()) {
+            Toastr::success('Successfully Daily health report updated', "Success");
+        } else {
+            Toastr::error('Something Went Wrong!', "Error");
+        }
+        return redirect()->back();
     }
 
     /**
@@ -83,6 +180,11 @@ class DailyHealthController extends Controller
      */
     public function destroy(DailyHealth $dailyHealth)
     {
-        //
+        if ($dailyHealth->delete()) {
+            Toastr::success('Successfully Daily health report deleted', "Success");
+        } else {
+            Toastr::error('Something Went Wrong!', "Error");
+        }
+        return redirect()->back();
     }
 }

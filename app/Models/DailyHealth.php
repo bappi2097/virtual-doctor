@@ -22,4 +22,14 @@ class DailyHealth extends Model
     {
         return $this->belongsTo(User::class, 'patient_id')->role('patient');
     }
+
+    public function pressure($type = 'low')
+    {
+        return json_decode($this->pressure)->$type;
+    }
+
+    public function extra($type = 'bmi')
+    {
+        return json_decode($this->extra)->$type;
+    }
 }

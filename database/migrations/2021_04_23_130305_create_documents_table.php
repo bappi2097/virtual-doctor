@@ -17,6 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->id();
             $table->foreignId("patient_id");
             $table->foreignId("report_id");
+            $table->string("file_name")->default("report-demo");
             $table->string("path")->nullable();
             $table->softDeletes();
             $table->timestamps();

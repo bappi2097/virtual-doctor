@@ -16,7 +16,7 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId("patient_id");
-            $table->string('name')->nullable();
+            $table->string('title')->nullable();
             $table->longText('description')->nullable();
             $table->softDeletes();
             $table->timestamps();

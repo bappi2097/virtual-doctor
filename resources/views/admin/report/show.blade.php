@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.doctor-category.show', $doctorCategory->id))
+@section('breadcrumbs', Breadcrumbs::render('admin.report.show', $report->id))
 
 @section('content')
     <div class="container-fluid">
@@ -11,13 +11,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.doctor-category.index') }}"
-                            class="btn waves-effect waves-light btn-info">
+                        <a href="{{ route('admin.reports.index') }}" class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back
-                        </a>
-                        <a href="{{ route('admin.doctor-category.doctor.doctor-index', $doctorCategory->slug) }}"
-                            class="btn waves-effect waves-light btn-info mx-2">
-                            <i class="mdi mdi-eye"></i> Doctors
                         </a>
                         <br>
                         <hr><br>
@@ -26,19 +21,50 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <center class="m-t-30">
-                                            <img src="{{ asset($doctorCategory->image ?: 'assets/images/doctor-category/undraw_doctor_kw5l.svg') }}"
-                                                class="img-fluid" style="width: 50%" />
-                                            <h4 class="card-title m-t-10">{{ $doctorCategory->name }}</h4>
-
-                                        </center>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <td>{{ $report->title }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <td>{{ $report->description }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div>
                                         <hr>
                                     </div>
                                     <div class="card-body">
-                                        <small class="text-muted">Description </small>
-                                        <h6>{{ $doctorCategory->description }}</h6>
+                                        <div class="row">
+                                            @foreach ($report->documents as $item)
+                                                <div class="col-md-6">
+                                                    <div class="card">
+                                                        <div class="card-body shadow">
+                                                            <div class="row">
+                                                                <div class="col-9">
+                                                                    <a href="{{ asset($item->path) }}" target="_blank"
+                                                                        title="view document">
+                                                                        <h5> {{ $item->file_name }}
+                                                                        </h5>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <a href="{{ route('admin.reports.download-document', $item->id) }}"
+                                                                        class="btn btn-outline-info btn-sm rounded-circle">
+                                                                        <span class="display-6">
+                                                                            <i class="mdi mdi-download"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>

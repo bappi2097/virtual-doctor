@@ -67,7 +67,7 @@
                                                         data-width="100" itemid="{{ $user->id }}">
                                                 </div>
                                             </td>
-                                            <td class="">
+                                            <td class="d-flex justify-content-around">
                                                 <a href="{{ route('admin.users.admin.show', $user->id) }}"
                                                     class="btn btn-success text-white" title="show">
                                                     <i class="mdi mdi-eye"></i>

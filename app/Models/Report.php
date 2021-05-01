@@ -12,7 +12,7 @@ class Report extends Model
 
     protected $fillable = [
         'patient_id',
-        'name',
+        'title',
         'description'
     ];
 

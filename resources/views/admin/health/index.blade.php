@@ -20,11 +20,11 @@
                                 <thead>
                                     <tr class="bg-light">
                                         <th class="border-top-0">Patient</th>
-                                        <th class="border-top-0">Name</th>
+                                        {{-- <th class="border-top-0">Name</th> --}}
                                         <th class="border-top-0">Heart</th>
                                         <th class="border-top-0">Pressure</th>
                                         <th class="border-top-0">Sugar</th>
-                                        <th class="border-top-0">Extra</th>
+                                        <th class="border-top-0">BMI</th>
                                         <th class="border-top-0">Action</th>
                                     </tr>
                                 </thead>
@@ -36,23 +36,22 @@
                                                     <div class="m-r-10">
                                                         <img src="{{ asset($item->patient->image ?: 'assets/images/healths/undraw_doctor_kw5l.svg') }}"
                                                             alt="{{ $item->patient->user_name }}" class="rounded-circle"
-                                                            width="90" />
+                                                            width="40" />
                                                     </div>
                                                     <div class="">
                                                         <h4 class="m-b-0 font-16">{{ $item->patient->user_name }}</h4>
                                                     </div>
                                                 </div>
                                             </td>
+                                            {{-- <td>{{ $item->patient->name }}</td> --}}
                                             <td>{{ $item->heart_beat }}</td>
-                                            <td>{{ $item->pressure }}</td>
+                                            <td>{{ $item->pressure('low') . ' / ' . $item->pressure('high') }}</td>
                                             <td>{{ $item->sugar }}</td>
-                                            <td>{{ $item->extra }}</td>
+                                            <td>
+                                                {{ $item->extra() }}
+                                            </td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <a href="{{ route('admin.healths.appointment-index', $item->id) }}"
-                                                        class="btn btn-secondary" title="appointment">
-                                                        <i class="mdi mdi-calendar-check"></i>
-                                                    </a>
                                                     <a href="{{ route('admin.healths.show', $item->id) }}"
                                                         class="btn btn-success text-white mx-2" title="show">
                                                         <i class="mdi mdi-eye"></i>
