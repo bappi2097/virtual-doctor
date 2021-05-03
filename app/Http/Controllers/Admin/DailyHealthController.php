@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\DailyHealth;
 use App\Models\User;
-use Brian2694\Toastr\Facades\Toastr;
+use App\Models\DailyHealth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class DailyHealthController extends Controller
 {
@@ -19,6 +19,19 @@ class DailyHealthController extends Controller
     {
         return view('admin.health.index', [
             'healths' => DailyHealth::with('patient')->latest()->get()
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $patient
+     * @return \Illuminate\Http\Response
+     */
+    public function single(User $patient)
+    {
+        return view('admin.health.index', [
+            'healths' => DailyHealth::where('patient_id', $patient->id)->with('patient')->latest()->get()
         ]);
     }
 

@@ -22,6 +22,7 @@ class CreateAppointmentsTable extends Migration
             $table->date("day")->nullable();
             $table->time('start')->nullable();
             $table->time("end")->nullable();
+            $table->enum('status', ['request', 'pending', 'completed', 'canceled', 'ignore'])->nullable()->default('request');
             $table->timestamps();
         });
     }

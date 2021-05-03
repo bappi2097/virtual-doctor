@@ -6,7 +6,8 @@
             <!-- ============================================================== -->
             <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
                 <!-- Logo icon -->
-                <b class="logo-icon">
+                <span class="text-gray fs-1 fw-bolder ms-5">V<span class="text-info">Doc.</span></span>
+                {{-- <b class="logo-icon">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
                     <img src="{{ asset('assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
@@ -20,7 +21,7 @@
                     <img src="{{ asset('assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
                     <!-- Light Logo text -->
                     <img src="{{ asset('assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage" />
-                </span>
+                </span> --}}
             </a>
             <!-- ============================================================== -->
             <!-- End Logo -->
@@ -70,12 +71,12 @@
                         <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">
                             <i class="ti-user m-r-5 m-l-5"></i> My Profile
                         </a>
-                        <a class="dropdown-item" href="javascript:void(0)">
+                        {{-- <a class="dropdown-item" href="javascript:void(0)">
                             <i class="ti-wallet m-r-5 m-l-5"></i> My Balance
                         </a>
                         <a class="dropdown-item" href="javascript:void(0)">
                             <i class="ti-email m-r-5 m-l-5"></i> Inbox
-                        </a>
+                        </a> --}}
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="dropdown-item">

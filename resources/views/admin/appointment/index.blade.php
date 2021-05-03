@@ -7,19 +7,6 @@
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="round align-self-center round-success">
-                        <i class="ti-wallet"></i>
-                    </div>
-                    <div class="ml-3 align-self-center">
-                        <h3 class="mb-0">$18090</h3>
-                        <span class="text-muted">Income</span>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">

@@ -66,11 +66,27 @@
                                                         data-width="100" itemid="{{ $user->id }}">
                                                 </div>
                                             </td> --}}
-                                            <td class="">
-                                                <a href="{{ route('admin.users.patient.appointment-index', $user->id) }}"
+                                            <td class="d-flex justify-content-around">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-outline-danger" type="button"
+                                                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        {{-- Dropdown button --}}
+                                                        <i class="mdi mdi-heart-pulse"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item"
+                                                                href="{{ route('admin.healths.single', $user->id) }}">Health</a>
+                                                        </li>
+                                                        <li><a class="dropdown-item"
+                                                                href="{{ route('admin.reports.single', $user->id) }}">Report</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                {{-- <a href="{{ route('admin.users.patient.appointment-index', $user->id) }}"
                                                     class="btn btn-outline-danger" title="appointment">
                                                     <i class="mdi mdi-heart-pulse"></i>
-                                                </a>
+                                                </a> --}}
                                                 <a href="{{ route('admin.users.patient.appointment-index', $user->id) }}"
                                                     class="btn btn-secondary" title="appointment">
                                                     <i class="mdi mdi-calendar-check"></i>

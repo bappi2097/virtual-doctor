@@ -115,6 +115,7 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
 
     Route::group(['as' => 'healths.', 'prefix' => 'healths'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\DailyHealthController::class, 'index'])->name('index');
+        Route::get('/patient/{patient}', [\App\Http\Controllers\Admin\DailyHealthController::class, 'single'])->name('single');
         Route::get('/create', [\App\Http\Controllers\Admin\DailyHealthController::class, 'create'])->name('create');
         Route::post('/', [\App\Http\Controllers\Admin\DailyHealthController::class, 'store'])->name('store');
         Route::get('/{dailyHealth}', [\App\Http\Controllers\Admin\DailyHealthController::class, 'show'])->name('show');
@@ -125,6 +126,7 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
 
     Route::group(['as' => 'reports.', 'prefix' => 'reports'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\ReportController::class, 'index'])->name('index');
+        Route::get('/patient/{patient}', [\App\Http\Controllers\Admin\ReportController::class, 'single'])->name('single');
         Route::get('/create', [\App\Http\Controllers\Admin\ReportController::class, 'create'])->name('create');
         Route::post('/', [\App\Http\Controllers\Admin\ReportController::class, 'store'])->name('store');
         Route::get('/{report}', [\App\Http\Controllers\Admin\ReportController::class, 'show'])->name('show');

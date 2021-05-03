@@ -24,6 +24,19 @@ class ReportController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $patient
+     * @return \Illuminate\Http\Response
+     */
+    public function single(User $patient)
+    {
+        return view('admin.report.index', [
+            'reports' => Report::where('patient_id', $patient->id)->with('patient')->latest()->get()
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
