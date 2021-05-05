@@ -92,6 +92,20 @@
                         <span class="hide-menu">Report</span>
                     </a>
                 </li>
+                @role('super')
+                <li class="sidebar-item">
+                    <a href="{{ url('admin/user-activity') }}" class="sidebar-link" target="_blank">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="hide-menu"> Activity Log </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ url('admin/logs') }}" class="sidebar-link" target="_blank">
+                        <i class="fas fa-bomb"></i>
+                        <span class="hide-menu"> Error Log </span>
+                    </a>
+                </li>
+                @endrole
             </ul>
 
         </nav>

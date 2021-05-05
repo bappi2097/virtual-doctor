@@ -45,28 +45,35 @@
                         <ul class="list-style-none feed-body m-0 p-b-20">
                             <li class="feed-item">
                                 <div class="feed-icon bg-info">
+                                    <i class="ti-user"></i>
+                                </div>
+                                {{ App\Models\User::newRegisteredUser('patient')->count() }} New Patient registered.<span
+                                    class="ms-auto font-12 text-muted">From
+                                    {{ date('l', strtotime(Carbon\Carbon::now()->subDays(7))) }}</span>
+                            </li>
+                            <li class="feed-item">
+                                <div class="feed-icon bg-warning">
                                     <i class="far fa-bell"></i>
                                 </div>
-                                You have 4 pending tasks.
-                                <span class="ms-auto font-12 text-muted">Just Now</span>
+                                New appointment taken
+                                {{ App\Models\Appointment::where('created_at', '>', Carbon\Carbon::now()->subDays(7))->count() }}
+                                <span class="ms-auto font-12 text-muted">From
+                                    {{ date('l', strtotime(Carbon\Carbon::now()->subDays(7))) }}</span>
                             </li>
                             <li class="feed-item">
                                 <div class="feed-icon bg-success">
                                     <i class="ti-server"></i>
                                 </div>
-                                Server #1 overloaded.<span class="ms-auto font-12 text-muted">2 Hours ago</span>
-                            </li>
-                            <li class="feed-item">
-                                <div class="feed-icon bg-warning">
-                                    <i class="ti-shopping-cart"></i>
-                                </div>
-                                New order received.<span class="ms-auto font-12 text-muted">31 May</span>
+                                Active Users {{ (new App\Models\User())->allOnline()->count() }}
+                                <span class="ms-auto font-12 text-muted">2 Hours ago</span>
                             </li>
                             <li class="feed-item">
                                 <div class="feed-icon bg-danger">
                                     <i class="ti-user"></i>
                                 </div>
-                                New user registered.<span class="ms-auto font-12 text-muted">30 May</span>
+                                {{ App\Models\User::newRegisteredUser('doctor')->count() }} New Doctor registered.<span
+                                    class="ms-auto font-12 text-muted">From
+                                    {{ date('l', strtotime(Carbon\Carbon::now()->subDays(7))) }}</span>
                             </li>
                         </ul>
                     </div>
@@ -88,126 +95,125 @@
                     <!-- title -->
                     <div class="d-md-flex">
                         <div>
-                            <h4 class="card-title">Top Selling Products</h4>
+                            <h4 class="card-title">Doctor</h4>
                             <h5 class="card-subtitle">
-                                Overview of Top Selling Items
+                                Overview of Doctor & Appointment
                             </h5>
-                        </div>
-                        <div class="ms-auto">
-                            <div class="dl">
-                                <select class="form-select shadow-none">
-                                    <option value="0" selected>Monthly</option>
-                                    <option value="1">Daily</option>
-                                    <option value="2">Weekly</option>
-                                    <option value="3">Yearly</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                     <!-- title -->
                 </div>
                 <div class="table-responsive">
-                    <table class="table v-middle">
+                    <table class="table v-middle" id="doctor">
                         <thead>
                             <tr class="bg-light">
-                                <th class="border-top-0">Products</th>
-                                <th class="border-top-0">License</th>
-                                <th class="border-top-0">Support Agent</th>
-                                <th class="border-top-0">Technology</th>
-                                <th class="border-top-0">Tickets</th>
-                                <th class="border-top-0">Sales</th>
-                                <th class="border-top-0">Earnings</th>
+                                <th class="border-top-0">Doctor</th>
+                                <th class="border-top-0">Email</th>
+                                <th class="border-top-0">Category</th>
+                                <th class="border-top-0">Appointments</th>
+                                <th class="border-top-0">Complete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="m-r-10">
-                                            <a class="btn btn-circle d-flex btn-info text-white">EA</a>
+                            @foreach (\App\Models\User::role('doctor')->with(['doctorCategory', 'doctorAppointments', 'doctorCompletedAppointments'])->get()
+        as $user)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="m-r-10">
+                                                @empty($user->image)
+                                                    <a href="{{ route('admin.users.admin.show', $user->id) }}"
+                                                        class="btn btn-circle d-flex btn-{{ randomColor() }}">
+                                                        {{ substr($user->name, 0, 2) }}
+                                                    </a>
+                                                @else
+                                                    <a class="" href="{{ route('admin.users.admin.show', $user->id) }}">
+                                                        <img src="{{ asset($user->image ?: 'assets/images/users/male_avatar.svg') }}"
+                                                            alt="users" class="rounded-circle" width="40" />
+                                                    </a>
+                                                @endempty
+                                            </div>
+                                            <div class="">
+                                                <h4 class="m-b-0 font-16">{{ $user->name }}</h4>
+                                            </div>
                                         </div>
-                                        <div class="">
-                                            <h4 class="m-b-0 font-16">Elite Admin</h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Single Use</td>
-                                <td>John Doe</td>
-                                <td>
-                                    <label class="label label-danger">Angular</label>
-                                </td>
-                                <td>46</td>
-                                <td>356</td>
-                                <td>
-                                    <h5 class="m-b-0">$2850.06</h5>
-                                </td>
+                                    </td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>
+                                        <label
+                                            class="label label-{{ randomColor() }}">{{ $user->doctorCategory->name }}</label>
+                                    </td>
+                                    <td>{{ $user->doctorAppointments->count() }}</td>
+                                    <td>{{ $user->doctorCompletedAppointments->count() }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Table -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Table -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <!-- column -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- title -->
+                    <div class="d-md-flex">
+                        <div>
+                            <h4 class="card-title">Patient</h4>
+                            <h5 class="card-subtitle">
+                                Overview of Patient & Appointment
+                            </h5>
+                        </div>
+                    </div>
+                    <!-- title -->
+                </div>
+                <div class="table-responsive">
+                    <table class="table v-middle" id="patient">
+                        <thead>
+                            <tr class="bg-light">
+                                <th class="border-top-0">Patient</th>
+                                <th class="border-top-0">Email</th>
+                                <th class="border-top-0">Appointments</th>
+                                <th class="border-top-0">Complete</th>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="m-r-10">
-                                            <a class="btn btn-circle d-flex btn-orange text-white">MA</a>
+                        </thead>
+                        <tbody>
+                            @foreach (\App\Models\User::role('patient')->with(['patientAppointments', 'patientCompletedAppointments'])->get()
+        as $user)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="m-r-10">
+                                                @empty($user->image)
+                                                    <a href="{{ route('admin.users.admin.show', $user->id) }}"
+                                                        class="btn btn-circle d-flex btn-{{ randomColor() }}">
+                                                        {{ substr($user->name, 0, 2) }}
+                                                    </a>
+                                                @else
+                                                    <a class="" href="{{ route('admin.users.admin.show', $user->id) }}">
+                                                        <img src="{{ asset($user->image ?: 'assets/images/users/male_avatar.svg') }}"
+                                                            alt="users" class="rounded-circle" width="40" />
+                                                    </a>
+                                                @endempty
+                                            </div>
+                                            <div class="">
+                                                <h4 class="m-b-0 font-16">{{ $user->name }}</h4>
+                                            </div>
                                         </div>
-                                        <div class="">
-                                            <h4 class="m-b-0 font-16">Monster Admin</h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Single Use</td>
-                                <td>Venessa Fern</td>
-                                <td>
-                                    <label class="label label-info">Vue Js</label>
-                                </td>
-                                <td>46</td>
-                                <td>356</td>
-                                <td>
-                                    <h5 class="m-b-0">$2850.06</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="m-r-10">
-                                            <a class="btn btn-circle d-flex btn-success text-white">MP</a>
-                                        </div>
-                                        <div class="">
-                                            <h4 class="m-b-0 font-16">Material Pro Admin</h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Single Use</td>
-                                <td>John Doe</td>
-                                <td>
-                                    <label class="label label-success">Bootstrap</label>
-                                </td>
-                                <td>46</td>
-                                <td>356</td>
-                                <td>
-                                    <h5 class="m-b-0">$2850.06</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="m-r-10">
-                                            <a class="btn btn-circle d-flex btn-purple text-white">AA</a>
-                                        </div>
-                                        <div class="">
-                                            <h4 class="m-b-0 font-16">Ample Admin</h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Single Use</td>
-                                <td>John Doe</td>
-                                <td>
-                                    <label class="label label-purple">React</label>
-                                </td>
-                                <td>46</td>
-                                <td>356</td>
-                                <td>
-                                    <h5 class="m-b-0">$2850.06</h5>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->patientAppointments->count() }}</td>
+                                    <td>{{ $user->patientCompletedAppointments->count() }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -363,3 +369,14 @@
     <!-- Recent comment and chats -->
     <!-- ============================================================== -->
 @endsection
+@push('script')
+    <script>
+        $('#doctor').DataTable({
+            "pageLength": 5
+        });
+        $('#patient').DataTable({
+            "pageLength": 5
+        });
+
+    </script>
+@endpush

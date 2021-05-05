@@ -2,7 +2,7 @@
     <div class="page-breadcrumb">
         <div class="row align-items-center">
             <div class="col-5">
-                <h4 class="page-title">{{ $breadcrumbs[0]->title }}</h4>
+                <h4 class="page-title">{{ roleText() }}</h4>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">

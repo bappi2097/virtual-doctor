@@ -7,13 +7,16 @@
     "require": {
         "php": "^7.3|^8.0",
         "brian2694/laravel-toastr": "^5.54",
-        "davejamesmiller/laravel-breadcrumbs": "^5.3",
+        "diglactic/laravel-breadcrumbs": "^6.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "haruncpi/laravel-user-activity": "^1.0",
+        "highideas/laravel-users-online": "^3.0",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
+        "rap2hpoutre/laravel-log-viewer": "^1.7",
         "spatie/laravel-permission": "^4.0",
         "spatie/laravel-sluggable": "^2.6",
         "spatie/laravel-translatable": "^4.6"

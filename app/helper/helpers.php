@@ -83,7 +83,7 @@ function roleText()
 
 function randomColor()
 {
-    $class = ['danger', 'info', 'primary', 'success', 'warning', 'orange', 'purple'];
+    $class = ['danger', 'info', 'primary', 'success', 'warning', 'megna', 'purple'];
     return $class[random_int(0, 6)];
 }
 
