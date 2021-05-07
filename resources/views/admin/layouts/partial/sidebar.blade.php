@@ -78,18 +78,35 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('admin.healths.index') }}" aria-expanded="false">
-                        <i class="mdi mdi-heart-pulse"></i>
-                        <span class="hide-menu">Health</span>
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                        aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                        <span class="hide-menu"> Patient</span>
                     </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('admin.healths.index') }}" aria-expanded="false">
+                                <i class="mdi mdi-heart-pulse"></i>
+                                <span class="hide-menu">Health</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('admin.reports.index') }}" aria-expanded="false">
+                                <i class="mdi mdi-file-document"></i>
+                                <span class="hide-menu">Report</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="{{ route('admin.reports.index') }}" aria-expanded="false">
-                        <i class="mdi mdi-file-document"></i>
-                        <span class="hide-menu">Report</span>
+                        href="{{ route('admin.infos.index') }}" aria-expanded="false">
+                        <i class="mdi mdi-ambulance"></i>
+                        <span class="hide-menu">Information</span>
                     </a>
                 </li>
                 @role('super')

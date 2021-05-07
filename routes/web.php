@@ -25,10 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-    // Route::get('/dashboard', function () {
-    //     // dd(auth()->user()->assignRole('super'));
-    //     dd(auth()->user()->getRoleNames());
-    // })->name('dashboard');
 
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'dashboard'])->name('dashboard');
 
@@ -139,5 +135,15 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
     Route::group(['as' => 'documents.', 'prefix' => 'documents'], function () {
         Route::post('/{report}', [\App\Http\Controllers\Admin\DocumentController::class, 'store'])->name('store');
         Route::delete('/{document}', [\App\Http\Controllers\Admin\DocumentController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'infos.', 'prefix' => 'infos'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\InfoController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\InfoController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\InfoController::class, 'store'])->name('store');
+        Route::get('/{info}', [\App\Http\Controllers\Admin\InfoController::class, 'show'])->name('show');
+        Route::get('/edit/{info}', [\App\Http\Controllers\Admin\InfoController::class, 'edit'])->name('edit');
+        Route::put('/{info}', [\App\Http\Controllers\Admin\InfoController::class, 'update'])->name('update');
+        Route::delete('/{info}', [\App\Http\Controllers\Admin\InfoController::class, 'destroy'])->name('delete');
     });
 });

@@ -191,6 +191,31 @@ Breadcrumbs::for('admin.report.edit', function ($trail, $id) {
 });
 
 
+// Dashboard > Info
+Breadcrumbs::for('admin.info', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Info', route('admin.infos.index'));
+});
+
+// Dashboard > Info > Create
+Breadcrumbs::for('admin.info.create', function ($trail) {
+    $trail->parent('admin.info');
+    $trail->push('Create', route('admin.infos.create'));
+});
+
+// Dashboard > Info > Show
+Breadcrumbs::for('admin.info.show', function ($trail, $id) {
+    $trail->parent('admin.info');
+    $trail->push('Show', route('admin.infos.show', $id));
+});
+
+// Dashboard > Info > Edit
+Breadcrumbs::for('admin.info.edit', function ($trail, $id) {
+    $trail->parent('admin.info');
+    $trail->push('Edit', route('admin.infos.edit', $id));
+});
+
+
 
 
 // // Home > Blog > [Category]
