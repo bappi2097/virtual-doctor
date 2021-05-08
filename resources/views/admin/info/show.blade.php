@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.appointment.show', $appointment->id))
+@section('breadcrumbs', Breadcrumbs::render('admin.info.show', $info->id))
 
 @section('content')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.appointments.index') }}" class="btn waves-effect waves-light btn-info">
+                        <a href="{{ route('admin.infos.index') }}" class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back
                         </a>
                         <br>
@@ -24,46 +24,20 @@
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <tr>
-                                                    <td>Doctor Category</td>
-
-                                                    <td>
-                                                        <a
-                                                            href="{{ route('admin.doctor-category.show', $appointment->doctorCategory->id) }}">{{ $appointment->doctorCategory->name }}</a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td rowspan="2">Doctor</td>
-                                                    <td>
-                                                        <a
-                                                            href="{{ route('admin.users.doctor.show', $appointment->doctor->id) }}">{{ $appointment->doctor->name }}</a>
-                                                    </td>
+                                                    <td>Title</td>
+                                                    <td>{{ $info->title }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>{{ $appointment->doctor->email }}</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td rowspan="2">Patient</td>
-                                                    <td>
-                                                        <a
-                                                            href="{{ route('admin.users.patient.show', $appointment->patient->id) }}">{{ $appointment->patient->name }}</a>
-                                                    </td>
+                                                    <td>Address</td>
+                                                    <td>{{ $info->address }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>{{ $appointment->patient->email }}</td>
+                                                    <td>Phone</td>
+                                                    <td>{{ $info->phone }}</td>
                                                 </tr>
-
                                                 <tr>
-                                                    <td>Date</td>
-                                                    <td>{{ date('l F j, Y', strtotime($appointment->day)) }}</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>Start-End</td>
-                                                    <td>
-                                                        {{ date('g:i A', strtotime($appointment->start)) . '-' . date('g:i A', strtotime($appointment->end)) }}
-                                                    </td>
+                                                    <td>Tag</td>
+                                                    <td>{{ $info->tags[0]->name }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -76,7 +50,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-horizontal form-material mx-2">
-                                            {!! $appointment->description !!}
+                                            {!! $info->details !!}
                                         </div>
                                     </div>
                                 </div>

@@ -51,7 +51,7 @@ function selected($data1, $data2)
 function isActiveText($no)
 {
     $text = ['Deactive', 'Active'];
-    return $text[$no];
+    return $text[$no] ?? '';
 }
 
 function isBan($user, $str = "bool")
@@ -70,7 +70,7 @@ function isBan($user, $str = "bool")
 function isActiveClass($no)
 {
     $class = ['danger', 'success'];
-    return $class[$no];
+    return $class[$no] ?? '';
 }
 
 function roleText()
@@ -84,7 +84,7 @@ function roleText()
 function randomColor()
 {
     $class = ['danger', 'info', 'primary', 'success', 'warning', 'megna', 'purple'];
-    return $class[random_int(0, 6)];
+    return $class[random_int(0, 6)] ?? '';
 }
 
 // function tripStatus($no)

@@ -25,17 +25,8 @@
                                         <div class="card-body">
                                             <center class="m-t-30">
                                                 <img id="user-image" class="img-fluid rounded"
-                                                    src="{{ asset('assets/images/Calendar.svg') }}" alt="your image" />
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>Day</td>
-                                                            <td>Start</td>
-                                                            <td>End</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="schedule"></tbody>
-                                                </table>
+                                                    src="{{ asset('dist/image/undraw_medical_care_movn.svg') }}"
+                                                    alt="your image" />
                                             </center>
                                         </div>
                                         <div>
@@ -50,11 +41,19 @@
                                         <div class="card-body">
                                             <form class="form-horizontal form-material mx-2">
                                                 <div class="form-group">
+                                                    <label for="tag">Tag</label>
+                                                    <select name="tag" id="tag" class="form-control form-control-line">
+                                                        @foreach (Spatie\Tags\Tag::all() as $item)
+                                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="title" class="col-md-12">Title</label>
                                                     <div class="col-md-12">
                                                         <input type="text" name="title" id="title"
                                                             placeholder="Dhaka Ambulance"
-                                                            class="form-control form-control-line" />
+                                                            class="form-control form-control-line" required />
                                                         @error('title')
                                                             <span class="text-danger">
                                                                 <strong>{{ $message }}</strong>
@@ -67,7 +66,7 @@
                                                     <div class="col-md-12">
                                                         <input type="text" name="address" id="address"
                                                             placeholder="22B, Baker St."
-                                                            class="form-control form-control-line" />
+                                                            class="form-control form-control-line" required />
                                                         @error('address')
                                                             <span class="text-danger">
                                                                 <strong>{{ $message }}</strong>
@@ -76,11 +75,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="phone" class="col-md-12">Title</label>
+                                                    <label for="phone" class="col-md-12">Phone</label>
                                                     <div class="col-md-12">
                                                         <input type="text" name="phone" id="phone"
                                                             placeholder="+8801XXXXXXXXX"
-                                                            class="form-control form-control-line" />
+                                                            class="form-control form-control-line" required />
                                                         @error('phone')
                                                             <span class="text-danger">
                                                                 <strong>{{ $message }}</strong>
@@ -89,11 +88,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="description" class="col-md-12">Description</label>
+                                                    <label for="details" class="col-md-12">Description</label>
                                                     <div class="col-md-12">
-                                                        <textarea name="description" id="description" cols="30" rows="10"
-                                                            class="form-control form-control-line"></textarea>
-                                                        @error('description')
+                                                        <textarea name="details" id="details" cols="30" rows="10"
+                                                            class="form-control form-control-line" required></textarea>
+                                                        @error('details')
                                                             <span class="text-danger">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>

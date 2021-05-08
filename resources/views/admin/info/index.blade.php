@@ -24,7 +24,7 @@
                                         <th class="border-top-0">Phone</th>
                                         <th class="border-top-0">Details</th>
                                         <th class="border-top-0">Active</th>
-                                        <th class="border-top-0">Created By</th>
+                                        <th class="border-top-0">Tag</th>
                                         <th class="border-top-0">Action</th>
                                     </tr>
                                 </thead>
@@ -37,9 +37,9 @@
                                             <td>{{ $item->details }}</td>
                                             <td>
                                                 <label
-                                                    class="label label-{{ isActiveClass($item->isActive) }}">{{ isActiveText($item->isActive) }}</label>
+                                                    class="label label-{{ isActiveClass($item->is_active) }}">{{ isActiveText($item->is_active) }}</label>
                                             </td>
-                                            <td>{{ $item->createdBy->name }}</td>
+                                            <td>{{ $item->tags[0]->name }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <a href="{{ route('admin.infos.show', $item->id) }}"
