@@ -166,6 +166,10 @@ class LoginController extends Controller
             Toastr::success('Welcome to Dashboard', 'Welcome');
             return redirect()->intended(route("admin.dashboard"));
         }
+        if ($user->hasRole('doctor')) {
+            Toastr::success('Welcome to Dashboard', 'Welcome');
+            return redirect()->intended(route("doctor.dashboard"));
+        }
     }
 
     /**

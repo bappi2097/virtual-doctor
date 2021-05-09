@@ -17,5 +17,15 @@ class DoctorSeeder extends Seeder
             $user->update(['doctor_category_id' => rand(1, 4)]);
             $user->assignRole('doctor');
         });
+        $user = \App\Models\User::create([
+            "name" => "Doctor",
+            "email" => "doctor@mail.com",
+            "phone_no" => "+99-555-248",
+            "address" => "Rangpur, Bangladesh",
+            "user_name" => "doctor23",
+            "password" => bcrypt("password"),
+            'doctor_category_id' => rand(1, 4),
+        ]);
+        $user->assignRole('doctor');
     }
 }

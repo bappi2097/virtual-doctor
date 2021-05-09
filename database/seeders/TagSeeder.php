@@ -14,12 +14,17 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        Tag::create([
-            'name' => 'Hospital'
-        ]);
 
         Tag::create([
             'name' => 'Ambulance'
+        ]);
+
+        Tag::create([
+            'name' => 'Blood Bank'
+        ]);
+
+        Tag::create([
+            'name' => 'Hospital'
         ]);
     }
 }

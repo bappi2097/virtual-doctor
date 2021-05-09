@@ -33,6 +33,8 @@ function dashboardURL()
     if (auth()->check()) {
         if (auth()->user()->hasRole('admin')) {
             return route('admin.dashboard');
+        } else if (auth()->user()->hasRole('doctor')) {
+            return route('doctor.dashboard');
         } else {
             return route('home');
         }
