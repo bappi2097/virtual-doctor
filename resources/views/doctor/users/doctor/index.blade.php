@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('doctor'))
+@section('breadcrumbs', Breadcrumbs::render('doctor.doctor'))
 
 @section('content')
     <div class="container-fluid">
@@ -11,9 +11,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.users.doctor.create') }}"
-                            class="btn waves-effect waves-light btn-info">Add
-                            Data</a>
                         <br>
                         <hr><br>
                         <div class="table-responsive">
@@ -36,13 +33,13 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="m-r-10">
                                                         @empty($user->image)
-                                                            <a href="{{ route('admin.users.admin.show', $user->id) }}"
+                                                            <a href="{{ route('doctor.users.doctor.show', $user->id) }}"
                                                                 class="btn btn-circle d-flex btn-{{ randomColor() }}">
                                                                 {{ substr($user->name, 0, 2) }}
                                                             </a>
                                                         @else
                                                             <a class=""
-                                                                href="{{ route('admin.users.admin.show', $user->id) }}">
+                                                                href="{{ route('doctor.users.doctor.show', $user->id) }}">
                                                                 <img src="{{ asset($user->image ?: 'assets/images/users/male_avatar.svg') }}"
                                                                     alt="users" class="rounded-circle" width="40" />
                                                             </a>
@@ -69,33 +66,18 @@
                                                 </div>
                                             </td> --}}
                                             <td class="d-flex justify-content-around">
-                                                <a href="{{ route('admin.users.doctor.doctor-schedule.edit', $user->id) }}"
+                                                <a href="{{ route('doctor.users.doctor.doctor-schedule.show', $user->id) }}"
                                                     class="btn btn-purple" title="schedule">
                                                     <i class="mdi mdi-calendar-clock"></i>
                                                 </a>
-                                                <a href="{{ route('admin.users.doctor.appointment-index', $user->id) }}"
+                                                <a href="{{ route('doctor.users.doctor.appointment-index', $user->id) }}"
                                                     class="btn btn-secondary" title="appointment">
                                                     <i class="mdi mdi-calendar-check"></i>
                                                 </a>
-                                                <a href="{{ route('admin.users.doctor.show', $user->id) }}"
+                                                <a href="{{ route('doctor.users.doctor.show', $user->id) }}"
                                                     class="btn btn-success text-white" title="show">
                                                     <i class="mdi mdi-eye"></i>
                                                 </a>
-                                                <a href="{{ route('admin.users.doctor.edit', $user->id) }}"
-                                                    class="btn btn-info text-white" title="edit">
-                                                    <i class="mdi mdi-pencil"></i>
-                                                </a>
-                                                <a href="{{ route('admin.users.doctor.delete', $user->id) }}"
-                                                    class="btn btn-danger text-white" title="delete"
-                                                    onclick="event.preventDefault(); document.getElementById('delete-item{{ $user->id }}').submit();">
-                                                    <i class="mdi mdi-delete"></i>
-                                                </a>
-                                                <form id="delete-item{{ $user->id }}"
-                                                    action="{{ route('admin.users.doctor.delete', $user->id) }}"
-                                                    method="POST" class="d-none">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -118,31 +100,3 @@
         <!-- ============================================================== -->
     </div>
 @endsection
-
-@push('script')
-    <script>
-        $(document).ready(() => {
-            $('.doctor-ban').on('change', (e) => {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('admin.users.doctor.ban') }}",
-                    data: {
-                        id: e.target.getAttribute('itemid'),
-                        ban: $(event.target).hasClass('toggle-on')
-                    },
-                    success: function(data) {
-                        if (data) {
-                            toastr.info("User not Banned");
-                        } else {
-                            toastr.info("User successfullly Banned");
-                        }
-                    },
-                    error: function(error) {
-                        toastr.error("Something Went Wrong!");
-                    }
-                });
-            });
-        });
-
-    </script>
-@endpush

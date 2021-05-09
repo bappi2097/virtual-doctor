@@ -19,7 +19,6 @@ class DoctorScheduleController extends Controller
      */
     public function edit(User $user)
     {
-        // dd($user->doctorSchedules()->get());
         return view('admin.users.doctor.doctor-schedule.schedule', [
             'schedules' => $user->doctorSchedules()->get(),
             'user' => $user,
@@ -58,7 +57,6 @@ class DoctorScheduleController extends Controller
                     "end" => $request->end,
                 ]);
             }
-            // dd($day);
             if ($doctorSchedule->save()) {
                 Toastr::success('Successfully Doctor Schedule Added', "Success");
             } else {

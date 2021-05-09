@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.profile'))
+@section('breadcrumbs', Breadcrumbs::render('doctor.profile'))
 
 @section('content')
     <div class="container-fluid">
@@ -67,7 +67,7 @@
             <div class="col-lg-8 col-xlg-9 col-md-7">
                 <div class="card">
                     <div class="card-body">
-                        <form class="form-horizontal form-material mx-2" action="{{ route('admin.profile.update') }}"
+                        <form class="form-horizontal form-material mx-2" action="{{ route('doctor.profile.update') }}"
                             method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <label for="email" class="col-md-12">Email</label>
                                 <div class="col-md-12">
-                                    <input type="email" placeholder="johnathan@admin.com" name="email" id="email"
+                                    <input type="email" placeholder="johnathan@doctor.com" name="email" id="email"
                                         class="form-control form-control-line" value="{{ $user->email }}">
                                     @error('email')
                                         <span class="text-danger">
@@ -142,7 +142,7 @@
                     </div>
                     <div class="card-body">
                         <form class="form-horizontal form-material mx-2"
-                            action="{{ route('admin.profile.change-password') }}" method="POST">
+                            action="{{ route('doctor.profile.change-password') }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-group">

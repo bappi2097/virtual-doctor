@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.appointment'))
+@section('breadcrumbs', Breadcrumbs::render('doctor.appointment'))
 
 @section('content')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.appointments.create') }}"
+                        <a href="{{ route('doctor.appointments.create') }}"
                             class="btn waves-effect waves-light btn-info">Add
                             Data</a>
                         <br>
@@ -39,21 +39,21 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <a href="{{ route('admin.appointments.show', $item->id) }}"
+                                                    <a href="{{ route('doctor.appointments.show', $item->id) }}"
                                                         class="btn btn-success text-white mx-2" title="show">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.appointments.edit', $item->id) }}"
+                                                    <a href="{{ route('doctor.appointments.edit', $item->id) }}"
                                                         class="btn btn-info text-white mx-2" title="edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.appointments.delete', $item->id) }}"
+                                                    <a href="{{ route('doctor.appointments.delete', $item->id) }}"
                                                         class="btn btn-danger text-white mx-2" title="delete"
                                                         onclick="event.preventDefault(); document.getElementById('delete-item{{ $item->id }}').submit();">
                                                         <i class="mdi mdi-delete"></i>
                                                     </a>
                                                     <form id="delete-item{{ $item->id }}"
-                                                        action="{{ route('admin.appointments.delete', $item->id) }}"
+                                                        action="{{ route('doctor.appointments.delete', $item->id) }}"
                                                         method="POST" class="d-none">
                                                         @csrf
                                                         @method('DELETE')

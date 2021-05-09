@@ -155,21 +155,22 @@ Route::group(['middleware' => ['auth', 'role:doctor', 'ban'], 'as' => 'doctor.',
     Route::get('/dashboard', [\App\Http\Controllers\Doctor\DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('edit');
-        Route::put('/', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('update');
-        Route::put('/change-password', [\App\Http\Controllers\Admin\ProfileController::class, 'changePassword'])->name('change-password');
+        Route::get('/', [\App\Http\Controllers\Doctor\ProfileController::class, 'edit'])->name('edit');
+        Route::put('/', [\App\Http\Controllers\Doctor\ProfileController::class, 'update'])->name('update');
+        Route::put('/change-password', [\App\Http\Controllers\Doctor\ProfileController::class, 'changePassword'])->name('change-password');
     });
 
 
     Route::group(['as' => 'users.', 'prefix' => 'users'], function () {
         Route::group(['as' => 'doctor.', 'prefix' => 'doctor'], function () {
-            Route::get('/', [\App\Http\Controllers\Admin\DoctorController::class, 'index'])->name('index');
-            Route::get('/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'show'])->name('show');
-            Route::get('/appointment/{user}', [\App\Http\Controllers\Admin\DoctorController::class, 'appointmentIndex'])->name('appointment-index');
+            Route::get('/', [\App\Http\Controllers\Doctor\DoctorController::class, 'index'])->name('index');
+            Route::get('/{user}', [\App\Http\Controllers\Doctor\DoctorController::class, 'show'])->name('show');
+            Route::get('/appointment/{user}', [\App\Http\Controllers\Doctor\DoctorController::class, 'appointmentIndex'])->name('appointment-index');
 
             Route::group(['as' => 'doctor-schedule.', 'prefix' => 'doctor-schedule'], function () {
                 // doctor schedule ajax
-                Route::get('/schedule/{user}', [\App\Http\Controllers\Admin\DoctorScheduleController::class, 'schedule'])->name('schedule');
+                Route::get('/show/{user}', [\App\Http\Controllers\Doctor\DoctorScheduleController::class, 'show'])->name('show');
+                Route::get('/schedule/{user}', [\App\Http\Controllers\Doctor\DoctorScheduleController::class, 'schedule'])->name('schedule');
             });
         });
         Route::group(['as' => 'patient.', 'prefix' => 'patient'], function () {

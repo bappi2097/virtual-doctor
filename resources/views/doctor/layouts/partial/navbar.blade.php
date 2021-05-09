@@ -4,7 +4,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
+            <a class="navbar-brand" href="{{ route('doctor.dashboard') }}">
                 <!-- Logo icon -->
                 <span class="text-gray fs-1 fw-bolder ms-5">V<span class="text-info">Doc.</span></span>
                 {{-- <b class="logo-icon">
@@ -68,7 +68,7 @@
                             alt="user" class="rounded-circle" width="31" />
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">
+                        <a class="dropdown-item" href="{{ route('doctor.profile.edit') }}">
                             <i class="ti-user m-r-5 m-l-5"></i> My Profile
                         </a>
                         {{-- <a class="dropdown-item" href="javascript:void(0)">

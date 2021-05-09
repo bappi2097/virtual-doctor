@@ -241,7 +241,7 @@ Breadcrumbs::for('doctor.doctor.show', function ($trail, $id) {
 // Dashboard > Doctor > Schedule
 Breadcrumbs::for('doctor.doctor.schedule', function ($trail, $id) {
     $trail->parent('doctor.doctor');
-    $trail->push('Schedule', route('doctor.users.doctor.doctor-schedule.edit', $id));
+    $trail->push('Schedule', route('doctor.users.doctor.doctor-schedule.show', $id));
 });
 
 // Dashboard > Patient
