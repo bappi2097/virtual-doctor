@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('patient.show', $user->id))
+@section('breadcrumbs', Breadcrumbs::render('doctor.patient.show', $user->id))
 
 @section('content')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.users.patient.index') }}" class="btn waves-effect waves-light btn-info">
+                        <a href="{{ route('doctor.users.patient.index') }}" class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back </a>
                         <br>
                         <hr><br>
@@ -31,7 +31,7 @@
                                                 <div class="col-4">
                                                     <a href="javascript:void(0)" class="link">
                                                         <i class="icon-people"></i>
-                                                        <font class="font-medium">{{ roleText() }}</font>
+                                                        <font class="font-medium">Patient</font>
                                                     </a>
                                                 </div>
                                                 <div class="col-4">

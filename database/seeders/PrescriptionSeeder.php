@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class AppointmentSeeder extends Seeder
+class PrescriptionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,6 @@ class AppointmentSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Appointment::factory(100)->create();
+        //
     }
 }

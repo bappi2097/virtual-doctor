@@ -67,40 +67,119 @@ class User extends Authenticatable
         return $this->isActive == 1;
     }
 
-    public function doctorCategory()
-    {
-        return $this->belongsTo(DoctorCategory::class);
-    }
+    /* -------------------------------------------------------------------------- */
+    /*                              Patient Relation start                        */
+    /* -------------------------------------------------------------------------- */
 
-    public function doctorSchedules()
-    {
-        return $this->hasMany(DoctorSchedule::class);
-    }
-
+    /**
+     * patientAppointments
+     *
+     * @return Appointment
+     */
     public function patientAppointments()
     {
         return $this->hasMany(Appointment::class, 'patient_id');
     }
 
+    /**
+     * patientCompletedAppointments
+     *
+     * @return Appointment
+     */
     public function patientCompletedAppointments()
     {
         return $this->hasMany(Appointment::class, 'patient_id')->where('status', 'completed');
     }
 
+    /**
+     * patientPrescriptions
+     *
+     * @return Prescription
+     */
+    public function patientPrescriptions()
+    {
+        return $this->hasMany(Prescription::class, 'patient_id');
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                              Patient Relation end                          */
+    /* -------------------------------------------------------------------------- */
+
+    /* -------------------------------------------------------------------------- */
+    /*                            Doctor relation start                           */
+    /* -------------------------------------------------------------------------- */
+
+    /**
+     * doctorCategory
+     *
+     * @return DoctorCategory
+     */
+    public function doctorCategory()
+    {
+        return $this->belongsTo(DoctorCategory::class);
+    }
+
+    /**
+     * doctorSchedules
+     *
+     * @return DoctorSchedule
+     */
+    public function doctorSchedules()
+    {
+        return $this->hasMany(DoctorSchedule::class);
+    }
+
+
+    /**
+     * doctorAppointments
+     *
+     * @return Appointment
+     */
     public function doctorAppointments()
     {
         return $this->hasMany(Appointment::class, 'doctor_id');
     }
 
+    /**
+     * doctorCompletedAppointments
+     *
+     * @return Appointment
+     */
     public function doctorCompletedAppointments()
     {
         return $this->hasMany(Appointment::class, 'doctor_id')->where('status', 'completed');
     }
 
+    /**
+     * doctorPrescriptions
+     *
+     * @return Prescription
+     */
+    public function doctorPrescriptions()
+    {
+        return $this->hasMany(Prescription::class, 'doctor_id');
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                             Doctor relation end                            */
+    /* -------------------------------------------------------------------------- */
+
+    /**
+     * log
+     *
+     * @return Log
+     */
     public function log()
     {
         return $this->hasMany(Log::class);
     }
+
+    /**
+     * newRegisteredUser
+     *
+     * @param  mixed $role
+     * @return bool true|false
+     */
     public static function newRegisteredUser($role = null)
     {
         $where = 'where';

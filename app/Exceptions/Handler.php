@@ -2,8 +2,9 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -37,5 +38,24 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($this->isUnauthorized($exception)) {
+            Toastr::error("Already Informd to Admin.", "Something went wrong.");
+            return redirect(dashboardURL());
+        }
+        return parent::render($request, $exception);
+    }
+
+    public function isUnauthorized(Throwable $exception)
+    {
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            if (auth()->check()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

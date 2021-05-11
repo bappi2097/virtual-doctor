@@ -17,26 +17,24 @@
                         <br>
                         <hr><br>
                         <div class="table-responsive">
-                            <table id="zero_config" class="table v-middle">
+                            <table id="appointment_table" class="table v-middle">
                                 <thead>
                                     <tr class="bg-light">
-                                        <th class="border-top-0">Category</th>
-                                        <th class="border-top-0">Doctor</th>
                                         <th class="border-top-0">Patient</th>
                                         <th class="border-top-0">Date</th>
                                         <th class="border-top-0">Start-End</th>
+                                        <th class="border-top-0">Status</th>
                                         <th class="border-top-0">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($appointments as $item)
                                         <tr>
-                                            <td>{{ $item->doctorCategory->name }}</td>
-                                            <td>{{ $item->doctor->name }}</td>
                                             <td>{{ $item->patient->name }}</td>
                                             <td>{{ date('l F j, Y', strtotime($item->day)) }}</td>
                                             <td>{{ date('g:i A', strtotime($item->start)) . '-' . date('g:i A', strtotime($item->end)) }}
                                             </td>
+                                            <td class="text-uppercase">{{ $item->status }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <a href="{{ route('doctor.appointments.show', $item->id) }}"
@@ -81,3 +79,12 @@
         <!-- ============================================================== -->
     </div>
 @endsection
+
+@push('script')
+    <script>
+        $('#appointment_table').DataTable({
+            "ordering": false
+        });
+
+    </script>
+@endpush

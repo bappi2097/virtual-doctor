@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Doctor;
 
 use App\Models\User;
 use App\Models\Appointment;
@@ -18,8 +18,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        return view('admin.appointment.index', [
-            'appointments' => Appointment::with('doctor', 'patient', 'doctorCategory')->get()
+        return view('doctor.appointment.index', [
+            'appointments' => auth()->user()->doctorAppointments()->orderBy('day', 'DESC')->orderBy('start', 'ASC')->get()
         ]);
     }
 
@@ -34,7 +34,7 @@ class AppointmentController extends Controller
             return $item->toArray();
         })->all();
 
-        return view('admin.appointment.create', [
+        return view('doctor.appointment.create', [
             'doctorCategories' => $doctocCategories,
             'patients' => User::role('patient')->get()
         ]);
@@ -85,7 +85,7 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
-        return view('admin.appointment.show', [
+        return view('doctor.appointment.show', [
             'appointment' => $appointment
         ]);
     }
@@ -102,7 +102,7 @@ class AppointmentController extends Controller
             return $item->toArray();
         })->all();
 
-        return view('admin.appointment.edit', [
+        return view('doctor.appointment.edit', [
             'appointment' => $appointment,
             'doctorCategories' => $doctocCategories,
             'patients' => User::role('patient')->get()
@@ -161,5 +161,57 @@ class AppointmentController extends Controller
             Toastr::error('Something Went Wrong!', "Error");
         }
         return redirect()->back();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Appointment  $appointment
+     * @return \Illuminate\Http\Response
+     */
+    public function accepted(Request $request, Appointment $appointment)
+    {
+        $appointment->status = "accepted";
+        if ($appointment->save()) {
+            Toastr::success('Successfully Appointment Accepted', "Success");
+        } else {
+            Toastr::error('Something Went Wrong!', "Error");
+        }
+        return redirect()->route('doctor.appointments.show', $appointment->id);
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Appointment  $appointment
+     * @return \Illuminate\Http\Response
+     */
+    public function rejected(Request $request, Appointment $appointment)
+    {
+        $appointment->status = "canceled";
+        if ($appointment->save()) {
+            Toastr::success('Successfully Appointment Rejected', "Success");
+        } else {
+            Toastr::error('Something Went Wrong!', "Error");
+        }
+        return redirect()->route('doctor.appointments.show', $appointment->id);
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Appointment  $appointment
+     * @return \Illuminate\Http\Response
+     */
+    public function completed(Request $request, Appointment $appointment)
+    {
+        $appointment->status = "completed";
+        if ($appointment->save()) {
+            Toastr::success('Successfully Appointment Completed', "Success");
+        } else {
+            Toastr::error('Something Went Wrong!', "Error");
+        }
+        return redirect()->route('doctor.appointments.show', $appointment->id);
     }
 }

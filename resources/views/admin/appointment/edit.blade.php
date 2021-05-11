@@ -121,7 +121,7 @@
                                                     <div class="col-md-12">
                                                         <input type="time" name="start" id="start" placeholder="09:00 AM"
                                                             class="form-control form-control-line" min="09:00" max="21:00"
-                                                            value="{{ date('G:i', strtotime($appointment->start)) }}"
+                                                            value="{{ date('H:i', strtotime($appointment->start)) }}"
                                                             step="1800" required>
                                                         @error('start')
                                                             <span class="text-danger">
@@ -136,7 +136,7 @@
                                                     <div class="col-md-12">
                                                         <input type="time" name="end" id="end" placeholder="06:30 PM"
                                                             class="form-control form-control-line" min="09:00" max="21:00"
-                                                            value="{{ date('G:i', strtotime($appointment->end)) }}"
+                                                            value="{{ date('H:i', strtotime($appointment->end)) }}"
                                                             step="1800" required>
                                                         @error('end')
                                                             <span class="text-danger">
@@ -149,9 +149,7 @@
                                                     <label for="description" class="col-md-12">Description</label>
                                                     <div class="col-md-12">
                                                         <textarea name="description" id="description" cols="30" rows="10"
-                                                            class="form-control form-control-line summernote">
-                                                                                                                                                                                                    {!! $appointment->description !!}
-                                                                                                                                                                                                </textarea>
+                                                            class="form-control form-control-line summernote"> {!! $appointment->description !!} </textarea>
                                                         @error('description')
                                                             <span class="text-danger">
                                                                 <strong>{{ $message }}</strong>

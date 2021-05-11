@@ -23,7 +23,7 @@ class InfoFactory extends Factory
      */
     public function definition()
     {
-        $admin = User::role('admin')->pluck('id')->all();
+        $admin = User::role(['admin', 'doctor'])->pluck('id')->all();
         return [
             'title' => $this->faker->realText(10, 2),
             'address' => $this->faker->address,

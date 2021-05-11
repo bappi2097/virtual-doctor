@@ -275,24 +275,11 @@ Breadcrumbs::for('doctor.doctor-category', function ($trail) {
     $trail->push('Doctor Category', route('doctor.doctor-category.index'));
 });
 
-// Dashboard > Doctor Category > Create
-Breadcrumbs::for('doctor.doctor-category.create', function ($trail) {
-    $trail->parent('doctor.doctor-category');
-    $trail->push('Create', route('doctor.doctor-category.create'));
-});
-
 // Dashboard > Doctor Category > Show
 Breadcrumbs::for('doctor.doctor-category.show', function ($trail, $id) {
     $trail->parent('doctor.doctor-category');
     $trail->push('Show', route('doctor.doctor-category.show', $id));
 });
-
-// Dashboard > Doctor Category > Edit
-Breadcrumbs::for('doctor.doctor-category.edit', function ($trail, $id) {
-    $trail->parent('doctor.doctor-category');
-    $trail->push('Edit', route('doctor.doctor-category.edit', $id));
-});
-
 
 // Dashboard > Appointment
 Breadcrumbs::for('doctor.appointment', function ($trail) {
@@ -325,24 +312,11 @@ Breadcrumbs::for('doctor.health', function ($trail) {
     $trail->push('Health', route('doctor.healths.index'));
 });
 
-// Dashboard > Health > Create
-Breadcrumbs::for('doctor.health.create', function ($trail) {
-    $trail->parent('doctor.health');
-    $trail->push('Create', route('doctor.healths.create'));
-});
-
 // Dashboard > Health > Show
 Breadcrumbs::for('doctor.health.show', function ($trail, $id) {
     $trail->parent('doctor.health');
     $trail->push('Show', route('doctor.healths.show', $id));
 });
-
-// Dashboard > Health > Edit
-Breadcrumbs::for('doctor.health.edit', function ($trail, $id) {
-    $trail->parent('doctor.health');
-    $trail->push('Edit', route('doctor.healths.edit', $id));
-});
-
 
 // Dashboard > Report
 Breadcrumbs::for('doctor.report', function ($trail) {

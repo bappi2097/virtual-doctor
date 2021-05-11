@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Doctor;
 
 use App\Models\Info;
 use Illuminate\Http\Request;
@@ -16,8 +16,8 @@ class InfoController extends Controller
      */
     public function index()
     {
-        return view('admin.info.index', [
-            'infos' => Info::with('createdBy', 'tags')->latest()->get()
+        return view('doctor.info.index', [
+            'infos' => Info::with('createdBy', 'tags')->where('created_by', auth()->user()->id)->latest()->get()
         ]);
     }
 
@@ -28,7 +28,7 @@ class InfoController extends Controller
      */
     public function create()
     {
-        return view('admin.info.create');
+        return view('doctor.info.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class InfoController extends Controller
      */
     public function show(Info $info)
     {
-        return view('admin.info.show', [
+        return view('doctor.info.show', [
             'info' => $info
         ]);
     }
@@ -86,7 +86,7 @@ class InfoController extends Controller
     public function edit(Info $info)
     {
         $info->loadMissing('tags');
-        return view('admin.info.edit', [
+        return view('doctor.info.edit', [
             'info' => $info
         ]);
     }

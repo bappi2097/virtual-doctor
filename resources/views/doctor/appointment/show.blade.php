@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.appointment.show', $appointment->id))
+@section('breadcrumbs', Breadcrumbs::render('doctor.appointment.show', $appointment->id))
 
 @section('content')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.appointments.index') }}" class="btn waves-effect waves-light btn-info">
+                        <a href="{{ route('doctor.appointments.index') }}" class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back
                         </a>
                         <br>
@@ -24,30 +24,10 @@
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <tr>
-                                                    <td>Doctor Category</td>
-
-                                                    <td>
-                                                        <a
-                                                            href="{{ route('admin.doctor-category.show', $appointment->doctorCategory->id) }}">{{ $appointment->doctorCategory->name }}</a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td rowspan="2">Doctor</td>
-                                                    <td>
-                                                        <a
-                                                            href="{{ route('admin.users.doctor.show', $appointment->doctor->id) }}">{{ $appointment->doctor->name }}</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>{{ $appointment->doctor->email }}</td>
-                                                </tr>
-
-                                                <tr>
                                                     <td rowspan="2">Patient</td>
                                                     <td>
                                                         <a
-                                                            href="{{ route('admin.users.patient.show', $appointment->patient->id) }}">{{ $appointment->patient->name }}</a>
+                                                            href="{{ route('doctor.users.patient.show', $appointment->patient->id) }}">{{ $appointment->patient->name }}</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -81,6 +61,34 @@
                                     </div>
                                 </div>
                             </div> <!-- Column -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 offset-md-4">
+                                <div class="d-flex justify-content-around">
+                                    @if ($appointment->status == 'request')
+                                        <form action="{{ route('doctor.appointments.accepted', $appointment->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="btn btn-success">Accepted</button>
+                                        </form>
+                                        <form action="{{ route('doctor.appointments.rejected', $appointment->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="btn btn-danger">Rejected</button>
+                                        </form>
+                                    @endif
+                                    @if ($appointment->status == 'accepted')
+                                        <form action="{{ route('doctor.appointments.completed', $appointment->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="btn btn-success">Completed</button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <hr>

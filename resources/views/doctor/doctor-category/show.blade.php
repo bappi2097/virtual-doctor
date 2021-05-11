@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.doctor-category.show', $doctorCategory->id))
+@section('breadcrumbs', Breadcrumbs::render('doctor.doctor-category.show', $doctorCategory->id))
 
 @section('content')
     <div class="container-fluid">
@@ -11,11 +11,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.doctor-category.index') }}"
+                        <a href="{{ route('doctor.doctor-category.index') }}"
                             class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back
                         </a>
-                        <a href="{{ route('admin.doctor-category.doctor.doctor-index', $doctorCategory->slug) }}"
+                        <a href="{{ route('doctor.doctor-category.doctor.doctor-index', $doctorCategory->slug) }}"
                             class="btn waves-effect waves-light btn-info mx-2">
                             <i class="mdi mdi-eye"></i> Doctors
                         </a>

@@ -32,7 +32,7 @@
                                                 <div class="col-4">
                                                     <a href="javascript:void(0)" class="link">
                                                         <i class="icon-people"></i>
-                                                        <font class="font-medium">{{ roleText() }}</font>
+                                                        <font class="font-medium">Admin</font>
                                                     </a>
                                                 </div>
                                                 <div class="col-4">

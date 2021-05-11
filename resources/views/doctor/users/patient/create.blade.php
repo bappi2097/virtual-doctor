@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('patient.create'))
+@section('breadcrumbs', Breadcrumbs::render('doctor.patient.create'))
 
 @section('content')
     <div class="container-fluid">
@@ -10,9 +10,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <form action="{{ route('admin.users.patient.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('doctor.users.patient.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="card-body"> <a href="{{ route('admin.users.patient.index') }}"
+                        <div class="card-body"> <a href="{{ route('doctor.users.patient.index') }}"
                                 class="btn waves-effect waves-light btn-info"> <i class="mdi mdi-arrow-left"></i> Back </a>
                             <br>
                             <hr><br>
@@ -110,7 +110,7 @@
                                                 <div class="form-group">
                                                     <label for="email" class="col-md-12">Email</label>
                                                     <div class="col-md-12">
-                                                        <input type="email" placeholder="johnathan@admin.com"
+                                                        <input type="email" placeholder="johnathan@doctor.com"
                                                             class="form-control form-control-line" name="email" id="email"
                                                             value="{{ old('email') }}">
                                                         @error('email')

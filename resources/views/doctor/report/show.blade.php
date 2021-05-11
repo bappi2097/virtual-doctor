@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.report.show', $report->id))
+@section('breadcrumbs', Breadcrumbs::render('doctor.report.show', $report->id))
 
 @section('content')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.reports.index') }}" class="btn waves-effect waves-light btn-info">
+                        <a href="{{ route('doctor.reports.index') }}" class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back
                         </a>
                         <br>
@@ -52,7 +52,7 @@
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-3">
-                                                                    <a href="{{ route('admin.reports.download-document', $item->id) }}"
+                                                                    <a href="{{ route('doctor.reports.download-document', $item->id) }}"
                                                                         class="btn btn-outline-info btn-sm rounded-circle">
                                                                         <span class="display-6">
                                                                             <i class="mdi mdi-download"></i>

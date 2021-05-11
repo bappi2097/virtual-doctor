@@ -14,6 +14,7 @@ class Appointment extends Model
         'start',
         'doctor_id',
         'patient_id',
+        'prescription_id',
         'description',
         'doctor_category_id',
     ];
@@ -31,5 +32,10 @@ class Appointment extends Model
     public function doctorCategory()
     {
         return $this->belongsTo(DoctorCategory::class, 'doctor_category_id');
+    }
+
+    public function prescription()
+    {
+        return $this->hasOne(Prescription::class);
     }
 }

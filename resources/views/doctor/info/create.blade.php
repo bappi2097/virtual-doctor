@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.info.create'))
+@section('breadcrumbs', Breadcrumbs::render('doctor.info.create'))
 
 @section('content')
     <div class="container-fluid">
@@ -10,10 +10,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <form action="{{ route('admin.infos.store') }}" method="POST">
+                    <form action="{{ route('doctor.infos.store') }}" method="POST">
                         @csrf
                         <div class="card-body">
-                            <a href="{{ route('admin.infos.index') }}" class="btn waves-effect waves-light btn-info">
+                            <a href="{{ route('doctor.infos.index') }}" class="btn waves-effect waves-light btn-info">
                                 <i class="mdi mdi-arrow-left"></i> Back
                             </a>
                             <br>

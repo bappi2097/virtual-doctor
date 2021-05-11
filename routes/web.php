@@ -174,65 +174,67 @@ Route::group(['middleware' => ['auth', 'role:doctor', 'ban'], 'as' => 'doctor.',
             });
         });
         Route::group(['as' => 'patient.', 'prefix' => 'patient'], function () {
-            Route::get('/', [\App\Http\Controllers\Admin\PatientController::class, 'index'])->name('index');
-            Route::get('/create', [\App\Http\Controllers\Admin\PatientController::class, 'create'])->name('create');
-            Route::post('/', [\App\Http\Controllers\Admin\PatientController::class, 'store'])->name('store');
-            Route::post('/ban', [\App\Http\Controllers\Admin\PatientController::class, 'ban'])->name('ban');
-            Route::get('/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'show'])->name('show');
-            Route::get('/appointment/{user}', [\App\Http\Controllers\Admin\PatientController::class, 'appointmentIndex'])->name('appointment-index');
+            Route::get('/', [\App\Http\Controllers\Doctor\PatientController::class, 'index'])->name('index');
+            Route::get('/create', [\App\Http\Controllers\Doctor\PatientController::class, 'create'])->name('create');
+            Route::post('/', [\App\Http\Controllers\Doctor\PatientController::class, 'store'])->name('store');
+            Route::get('/{user}', [\App\Http\Controllers\Doctor\PatientController::class, 'show'])->name('show');
+            Route::post('/ban', [\App\Http\Controllers\Doctor\PatientController::class, 'ban'])->name('ban');
+            Route::get('/appointment/{user}', [\App\Http\Controllers\Doctor\PatientController::class, 'appointmentIndex'])->name('appointment-index');
         });
     });
 
     Route::group(['as' => 'doctor-category.', 'prefix' => 'doctor-category'], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'index'])->name('index');
-        Route::get('/create', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'create'])->name('create');
-        Route::post('/', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'store'])->name('store');
-        Route::get('/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'show'])->name('show');
-        Route::get('/edit/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'edit'])->name('edit');
-        Route::put('/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'update'])->name('update');
-        Route::delete('/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'destroy'])->name('delete');
-        Route::get('/appointment/{doctorCategory}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'appointmentIndex'])->name('appointment-index');
+        Route::get('/', [\App\Http\Controllers\Doctor\DoctorCategoryController::class, 'index'])->name('index');
+        Route::get('/{doctorCategory}', [\App\Http\Controllers\Doctor\DoctorCategoryController::class, 'show'])->name('show');
+        Route::get('/appointment/{doctorCategory}', [\App\Http\Controllers\Doctor\DoctorCategoryController::class, 'appointmentIndex'])->name('appointment-index');
 
 
         Route::group(['as' => 'doctor.', 'prefix' => 'doctor'], function () {
-            Route::get('/{slug}', [\App\Http\Controllers\Admin\DoctorCategoryController::class, 'doctorIndex'])->name('doctor-index');
+            Route::get('/{slug}', [\App\Http\Controllers\Doctor\DoctorCategoryController::class, 'doctorIndex'])->name('doctor-index');
         });
     });
 
     Route::group(['as' => 'appointments.', 'prefix' => 'appointments'], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\AppointmentController::class, 'index'])->name('index');
-        Route::get('/create', [\App\Http\Controllers\Admin\AppointmentController::class, 'create'])->name('create');
-        Route::post('/', [\App\Http\Controllers\Admin\AppointmentController::class, 'store'])->name('store');
-        Route::get('/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'show'])->name('show');
-        Route::get('/edit/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'edit'])->name('edit');
-        Route::put('/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'update'])->name('update');
-        Route::delete('/{appointment}', [\App\Http\Controllers\Admin\AppointmentController::class, 'destroy'])->name('delete');
+        Route::get('/', [\App\Http\Controllers\Doctor\AppointmentController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Doctor\AppointmentController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Doctor\AppointmentController::class, 'store'])->name('store');
+        Route::get('/{appointment}', [\App\Http\Controllers\Doctor\AppointmentController::class, 'show'])->name('show');
+        Route::get('/edit/{appointment}', [\App\Http\Controllers\Doctor\AppointmentController::class, 'edit'])->name('edit');
+        Route::put('/{appointment}', [\App\Http\Controllers\Doctor\AppointmentController::class, 'update'])->name('update');
+        Route::put('accepted/{appointment}', [\App\Http\Controllers\Doctor\AppointmentController::class, 'accepted'])->name('accepted');
+        Route::put('rejected/{appointment}', [\App\Http\Controllers\Doctor\AppointmentController::class, 'rejected'])->name('rejected');
+        Route::put('completed/{appointment}', [\App\Http\Controllers\Doctor\AppointmentController::class, 'completed'])->name('completed');
+        Route::delete('/{appointment}', [\App\Http\Controllers\Doctor\AppointmentController::class, 'destroy'])->name('delete');
     });
 
     Route::group(['as' => 'healths.', 'prefix' => 'healths'], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\DailyHealthController::class, 'index'])->name('index');
-        Route::get('/patient/{patient}', [\App\Http\Controllers\Admin\DailyHealthController::class, 'single'])->name('single');
-        Route::get('/{dailyHealth}', [\App\Http\Controllers\Admin\DailyHealthController::class, 'show'])->name('show');
+        Route::get('/', [\App\Http\Controllers\Doctor\DailyHealthController::class, 'index'])->name('index');
+        Route::get('/patient/{patient}', [\App\Http\Controllers\Doctor\DailyHealthController::class, 'single'])->name('single');
+        Route::get('/{dailyHealth}', [\App\Http\Controllers\Doctor\DailyHealthController::class, 'show'])->name('show');
     });
 
     Route::group(['as' => 'reports.', 'prefix' => 'reports'], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\ReportController::class, 'index'])->name('index');
-        Route::get('/patient/{patient}', [\App\Http\Controllers\Admin\ReportController::class, 'single'])->name('single');
-        Route::get('/{report}', [\App\Http\Controllers\Admin\ReportController::class, 'show'])->name('show');
-        Route::get('download-document/{document}', [\App\Http\Controllers\Admin\ReportController::class, 'downloadDocument'])->name('download-document');
+        Route::get('/', [\App\Http\Controllers\Doctor\ReportController::class, 'index'])->name('index');
+        Route::get('/patient/{patient}', [\App\Http\Controllers\Doctor\ReportController::class, 'single'])->name('single');
+        Route::get('/create', [\App\Http\Controllers\Doctor\ReportController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Doctor\ReportController::class, 'store'])->name('store');
+        Route::get('/{report}', [\App\Http\Controllers\Doctor\ReportController::class, 'show'])->name('show');
+        Route::get('/edit/{report}', [\App\Http\Controllers\Doctor\ReportController::class, 'edit'])->name('edit');
+        Route::put('/{report}', [\App\Http\Controllers\Doctor\ReportController::class, 'update'])->name('update');
+        Route::delete('/{report}', [\App\Http\Controllers\Doctor\ReportController::class, 'destroy'])->name('delete');
+        Route::get('download-document/{document}', [\App\Http\Controllers\Doctor\ReportController::class, 'downloadDocument'])->name('download-document');
     });
     Route::group(['as' => 'documents.', 'prefix' => 'documents'], function () {
-        Route::post('/{report}', [\App\Http\Controllers\Admin\DocumentController::class, 'store'])->name('store');
-        Route::delete('/{document}', [\App\Http\Controllers\Admin\DocumentController::class, 'destroy'])->name('delete');
+        Route::post('/{report}', [\App\Http\Controllers\Doctor\DocumentController::class, 'store'])->name('store');
+        Route::delete('/{document}', [\App\Http\Controllers\Doctor\DocumentController::class, 'destroy'])->name('delete');
     });
-
     Route::group(['as' => 'infos.', 'prefix' => 'infos'], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\InfoController::class, 'index'])->name('index');
-        Route::get('/create', [\App\Http\Controllers\Admin\InfoController::class, 'create'])->name('create');
-        Route::post('/', [\App\Http\Controllers\Admin\InfoController::class, 'store'])->name('store');
-        Route::get('/{info}', [\App\Http\Controllers\Admin\InfoController::class, 'show'])->name('show');
-        Route::get('/edit/{info}', [\App\Http\Controllers\Admin\InfoController::class, 'edit'])->name('edit');
-        Route::put('/{info}', [\App\Http\Controllers\Admin\InfoController::class, 'update'])->name('update');
-        Route::delete('/{info}', [\App\Http\Controllers\Admin\InfoController::class, 'destroy'])->name('delete');
+        Route::get('/', [\App\Http\Controllers\Doctor\InfoController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Doctor\InfoController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Doctor\InfoController::class, 'store'])->name('store');
+        Route::get('/{info}', [\App\Http\Controllers\Doctor\InfoController::class, 'show'])->name('show');
+        Route::get('/edit/{info}', [\App\Http\Controllers\Doctor\InfoController::class, 'edit'])->name('edit');
+        Route::put('/{info}', [\App\Http\Controllers\Doctor\InfoController::class, 'update'])->name('update');
+        Route::delete('/{info}', [\App\Http\Controllers\Doctor\InfoController::class, 'destroy'])->name('delete');
     });
 });

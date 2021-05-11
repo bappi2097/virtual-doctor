@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('patient'))
+@section('breadcrumbs', Breadcrumbs::render('doctor.patient'))
 
 @section('content')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.users.patient.create') }}"
+                        <a href="{{ route('doctor.users.patient.create') }}"
                             class="btn waves-effect waves-light btn-info">Add
                             Data</a>
                         <br>
@@ -24,7 +24,7 @@
                                         <th class="border-top-0">Name</th>
                                         <th class="border-top-0">Email</th>
                                         <th class="border-top-0">Status</th>
-                                        {{-- <th class="border-top-0">Banned</th> --}}
+                                        <th class="border-top-0">Banned</th>
                                         <th class="border-top-0">Action</th>
                                     </tr>
                                 </thead>
@@ -35,13 +35,13 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="m-r-10">
                                                         @empty($user->image)
-                                                            <a href="{{ route('admin.users.patient.show', $user->id) }}"
+                                                            <a href="{{ route('doctor.users.patient.show', $user->id) }}"
                                                                 class="btn btn-circle d-flex btn-{{ randomColor() }}">
                                                                 {{ substr($user->name, 0, 2) }}
                                                             </a>
                                                         @else
                                                             <a class=""
-                                                                href="{{ route('admin.users.patient.show', $user->id) }}">
+                                                                href="{{ route('doctor.users.patient.show', $user->id) }}">
                                                                 <img src="{{ asset($user->image ?: 'assets/images/users/male_avatar.svg') }}"
                                                                     alt="users" class="rounded-circle" width="40" />
                                                             </a>
@@ -58,14 +58,14 @@
                                                 <label
                                                     class="label label-{{ isActiveClass($user->isActive) }}">{{ isActiveText($user->isActive) }}</label>
                                             </td>
-                                            {{-- <td>
+                                            <td>
                                                 <div class="form-group">
                                                     <input name="ban" {{ isBan($user, 'check') }} data-onstyle="info"
                                                         data-offstyle="light" data-on="True" class="toggle patient-ban"
                                                         type="checkbox" data-toggle="toggle" data-off="False"
                                                         data-width="100" itemid="{{ $user->id }}">
                                                 </div>
-                                            </td> --}}
+                                            </td>
                                             <td class="d-flex justify-content-around">
                                                 <div class="dropdown">
                                                     <button class="btn btn-outline-danger" type="button"
@@ -76,40 +76,21 @@
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                         <li><a class="dropdown-item"
-                                                                href="{{ route('admin.healths.single', $user->id) }}">Health</a>
+                                                                href="{{ route('doctor.healths.single', $user->id) }}">Health</a>
                                                         </li>
                                                         <li><a class="dropdown-item"
-                                                                href="{{ route('admin.reports.single', $user->id) }}">Report</a>
+                                                                href="{{ route('doctor.reports.single', $user->id) }}">Report</a>
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                {{-- <a href="{{ route('admin.users.patient.appointment-index', $user->id) }}"
-                                                    class="btn btn-outline-danger" title="appointment">
-                                                    <i class="mdi mdi-heart-pulse"></i>
-                                                </a> --}}
-                                                <a href="{{ route('admin.users.patient.appointment-index', $user->id) }}"
+                                                <a href="{{ route('doctor.users.patient.appointment-index', $user->id) }}"
                                                     class="btn btn-secondary" title="appointment">
                                                     <i class="mdi mdi-calendar-check"></i>
                                                 </a>
-                                                <a href="{{ route('admin.users.patient.show', $user->id) }}"
+                                                <a href="{{ route('doctor.users.patient.show', $user->id) }}"
                                                     class="btn btn-success text-white" title="show">
                                                     <i class="mdi mdi-eye"></i>
                                                 </a>
-                                                <a href="{{ route('admin.users.patient.edit', $user->id) }}"
-                                                    class="btn btn-info text-white" title="edit">
-                                                    <i class="mdi mdi-pencil"></i>
-                                                </a>
-                                                <a href="{{ route('admin.users.patient.delete', $user->id) }}"
-                                                    class="btn btn-danger text-white" title="delete"
-                                                    onclick="event.preventDefault(); document.getElementById('delete-item{{ $user->id }}').submit();">
-                                                    <i class="mdi mdi-delete"></i>
-                                                </a>
-                                                <form id="delete-item{{ $user->id }}"
-                                                    action="{{ route('admin.users.patient.delete', $user->id) }}"
-                                                    method="POST" class="d-none">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -132,3 +113,30 @@
         <!-- ============================================================== -->
     </div>
 @endsection
+@push('script')
+    <script>
+        $(document).ready(() => {
+            $('.patient-ban').on('change', (e) => {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('doctor.users.patient.ban') }}",
+                    data: {
+                        id: e.target.getAttribute('itemid'),
+                        ban: $(event.target).hasClass('toggle-on')
+                    },
+                    success: function(data) {
+                        if (data == "true") {
+                            toastr.info("User not Banned");
+                        } else if (data == "false") {
+                            toastr.info("User successfullly Banned");
+                        }
+                    },
+                    error: function(error) {
+                        toastr.error("Something Went Wrong!");
+                    }
+                });
+            });
+        });
+
+    </script>
+@endpush

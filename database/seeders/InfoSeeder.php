@@ -14,7 +14,7 @@ class InfoSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Info::factory(15)->create()->each(function ($info) {
+        \App\Models\Info::factory(100)->create()->each(function ($info) {
             $tags = Tag::pluck('name')->all();
             $info->attachTag($tags[array_rand($tags)]);
         });

@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.appointment.edit', $appointment->id))
+@section('breadcrumbs', Breadcrumbs::render('doctor.appointment.edit', $appointment->id))
 
 @section('content')
     <div class="container-fluid">
@@ -10,11 +10,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <form action="{{ route('admin.appointments.update', $appointment->id) }}" method="POST">
+                    <form action="{{ route('doctor.appointments.update', $appointment->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
-                            <a href="{{ route('admin.appointments.index') }}"
+                            <a href="{{ route('doctor.appointments.index') }}"
                                 class="btn waves-effect waves-light btn-info">
                                 <i class="mdi mdi-arrow-left"></i> Back
                             </a>
@@ -29,6 +29,33 @@
                                                 <img id="user-image" class="img-fluid rounded"
                                                     src="{{ asset('assets/images/Calendar.svg') }}" alt="your image" />
                                             </center>
+                                        </div>
+                                        <div class="d-flex justify-content-around">
+                                            @if ($appointment->status == 'request')
+                                                <form
+                                                    action="{{ route('doctor.appointments.accepted', $appointment->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="btn btn-success">Accepted</button>
+                                                </form>
+                                                <form
+                                                    action="{{ route('doctor.appointments.rejected', $appointment->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="btn btn-danger">Rejected</button>
+                                                </form>
+                                            @endif
+                                            @if ($appointment->status == 'accepted')
+                                                <form
+                                                    action="{{ route('doctor.appointments.completed', $appointment->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="btn btn-success">Completed</button>
+                                                </form>
+                                            @endif
                                         </div>
                                         <div>
                                             <hr>
@@ -121,7 +148,7 @@
                                                     <div class="col-md-12">
                                                         <input type="time" name="start" id="start" placeholder="09:00 AM"
                                                             class="form-control form-control-line" min="09:00" max="21:00"
-                                                            value="{{ date('G:i', strtotime($appointment->start)) }}"
+                                                            value="{{ date('H:i', strtotime($appointment->start)) }}"
                                                             step="1800" required>
                                                         @error('start')
                                                             <span class="text-danger">
@@ -136,7 +163,7 @@
                                                     <div class="col-md-12">
                                                         <input type="time" name="end" id="end" placeholder="06:30 PM"
                                                             class="form-control form-control-line" min="09:00" max="21:00"
-                                                            value="{{ date('G:i', strtotime($appointment->end)) }}"
+                                                            value="{{ date('H:i', strtotime($appointment->end)) }}"
                                                             step="1800" required>
                                                         @error('end')
                                                             <span class="text-danger">
@@ -149,9 +176,7 @@
                                                     <label for="description" class="col-md-12">Description</label>
                                                     <div class="col-md-12">
                                                         <textarea name="description" id="description" cols="30" rows="10"
-                                                            class="form-control form-control-line summernote">
-                                                                                                                                                                                                    {!! $appointment->description !!}
-                                                                                                                                                                                                </textarea>
+                                                            class="form-control form-control-line summernote"> {!! $appointment->description !!} </textarea>
                                                         @error('description')
                                                             <span class="text-danger">
                                                                 <strong>{{ $message }}</strong>

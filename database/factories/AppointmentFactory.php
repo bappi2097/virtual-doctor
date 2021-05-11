@@ -24,7 +24,7 @@ class AppointmentFactory extends Factory
     public function definition()
     {
         $category = rand(1, 4);
-        $doctor = User::where('doctor_category_id', $category)->pluck('id')->all();
+        $doctor = User::role('doctor')->pluck('id')->all();
         $patient = User::role('patient')->pluck('id')->all();
         return [
             'doctor_category_id' => $category,
