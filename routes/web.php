@@ -137,6 +137,17 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
         Route::delete('/{document}', [\App\Http\Controllers\Admin\DocumentController::class, 'destroy'])->name('delete');
     });
 
+
+    Route::group(['as' => 'prescriptions.', 'prefix' => 'prescriptions'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\PrescriptionController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\PrescriptionController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\PrescriptionController::class, 'store'])->name('store');
+        Route::get('/{prescription}', [\App\Http\Controllers\Admin\PrescriptionController::class, 'show'])->name('show');
+        Route::get('/edit/{prescription}', [\App\Http\Controllers\Admin\PrescriptionController::class, 'edit'])->name('edit');
+        Route::put('/{prescription}', [\App\Http\Controllers\Admin\PrescriptionController::class, 'update'])->name('update');
+        Route::delete('/{prescription}', [\App\Http\Controllers\Admin\PrescriptionController::class, 'destroy'])->name('delete');
+    });
+
     Route::group(['as' => 'infos.', 'prefix' => 'infos'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\InfoController::class, 'index'])->name('index');
         Route::get('/create', [\App\Http\Controllers\Admin\InfoController::class, 'create'])->name('create');

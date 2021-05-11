@@ -215,6 +215,30 @@ Breadcrumbs::for('admin.info.edit', function ($trail, $id) {
     $trail->push('Edit', route('admin.infos.edit', $id));
 });
 
+// Dashboard > Prescription
+Breadcrumbs::for('admin.prescription', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Prescription', route('admin.prescriptions.index'));
+});
+
+// Dashboard > Prescription > Create
+Breadcrumbs::for('admin.prescription.create', function ($trail) {
+    $trail->parent('admin.prescription');
+    $trail->push('Create', route('admin.prescriptions.create'));
+});
+
+// Dashboard > Prescription > Show
+Breadcrumbs::for('admin.prescription.show', function ($trail, $id) {
+    $trail->parent('admin.prescription');
+    $trail->push('Show', route('admin.prescriptions.show', $id));
+});
+
+// Dashboard > Prescription > Edit
+Breadcrumbs::for('admin.prescription.edit', function ($trail, $id) {
+    $trail->parent('admin.prescription');
+    $trail->push('Edit', route('admin.prescriptions.edit', $id));
+});
+
 
 // Dashboard
 Breadcrumbs::for('doctor.dashboard', function ($trail) {

@@ -42,4 +42,14 @@ class Prescription extends Model
     {
         return $this->belongsTo(User::class, 'doctor_id', 'id')->role('doctor');
     }
+
+    /**
+     * appointment
+     *
+     * @return Appointment appointment
+     */
+    public function appointment()
+    {
+        return $this->hasOne(Appointment::class);
+    }
 }
