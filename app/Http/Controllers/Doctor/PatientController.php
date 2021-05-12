@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Models\User;
+use App\Models\Report;
 use App\Models\Appointment;
+use App\Models\DailyHealth;
+use App\Models\Prescription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -111,6 +114,45 @@ class PatientController extends Controller
     {
         return view('doctor.appointment.index', [
             'appointments' => Appointment::where('patient_id', $user->id)->with('doctor', 'patient', 'doctorCategory')->get()
+        ]);
+    }
+
+    /**
+     * Display specific user Health 
+     *
+     * @param  App\Models\User $user
+     * @return App\Models\DailyHealth $healths
+     */
+    public function healths(User $user)
+    {
+        return view('doctor.health.index', [
+            'healths' => DailyHealth::where('patient_id', $user->id)->with('patient')->get()
+        ]);
+    }
+
+    /**
+     * Display specific user report
+     *
+     * @param  App\Models\User $user
+     * @return App\Models\Report $reports
+     */
+    public function reports(User $user)
+    {
+        return view('doctor.report.index', [
+            'reports' => Report::where('patient_id', $user->id)->with('patient')->get()
+        ]);
+    }
+
+    /**
+     * Display specific user prescriptions
+     *
+     * @param  App\Models\User $user
+     * @return App\Models\Prescription $prescriptions
+     */
+    public function prescriptions(User $user)
+    {
+        return view('doctor.prescription.index', [
+            'prescriptions' => Prescription::where('patient_id', $user->id)->with('doctor', 'patient', 'appointment')->get()
         ]);
     }
 }

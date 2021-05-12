@@ -191,6 +191,9 @@ Route::group(['middleware' => ['auth', 'role:doctor', 'ban'], 'as' => 'doctor.',
             Route::get('/{user}', [\App\Http\Controllers\Doctor\PatientController::class, 'show'])->name('show');
             Route::post('/ban', [\App\Http\Controllers\Doctor\PatientController::class, 'ban'])->name('ban');
             Route::get('/appointment/{user}', [\App\Http\Controllers\Doctor\PatientController::class, 'appointmentIndex'])->name('appointment-index');
+            Route::get('/healths/{user}', [\App\Http\Controllers\Doctor\PatientController::class, 'healths'])->name('healths');
+            Route::get('/reports/{user}', [\App\Http\Controllers\Doctor\PatientController::class, 'reports'])->name('reports');
+            Route::get('/prescriptions/{user}', [\App\Http\Controllers\Doctor\PatientController::class, 'prescriptions'])->name('prescriptions');
         });
     });
 
@@ -239,6 +242,17 @@ Route::group(['middleware' => ['auth', 'role:doctor', 'ban'], 'as' => 'doctor.',
         Route::post('/{report}', [\App\Http\Controllers\Doctor\DocumentController::class, 'store'])->name('store');
         Route::delete('/{document}', [\App\Http\Controllers\Doctor\DocumentController::class, 'destroy'])->name('delete');
     });
+
+    Route::group(['as' => 'prescriptions.', 'prefix' => 'prescriptions'], function () {
+        Route::get('/', [\App\Http\Controllers\Doctor\PrescriptionController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Doctor\PrescriptionController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Doctor\PrescriptionController::class, 'store'])->name('store');
+        Route::get('/{prescription}', [\App\Http\Controllers\Doctor\PrescriptionController::class, 'show'])->name('show');
+        Route::get('/edit/{prescription}', [\App\Http\Controllers\Doctor\PrescriptionController::class, 'edit'])->name('edit');
+        Route::put('/{prescription}', [\App\Http\Controllers\Doctor\PrescriptionController::class, 'update'])->name('update');
+        Route::delete('/{prescription}', [\App\Http\Controllers\Doctor\PrescriptionController::class, 'destroy'])->name('delete');
+    });
+
     Route::group(['as' => 'infos.', 'prefix' => 'infos'], function () {
         Route::get('/', [\App\Http\Controllers\Doctor\InfoController::class, 'index'])->name('index');
         Route::get('/create', [\App\Http\Controllers\Doctor\InfoController::class, 'create'])->name('create');

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Doctor;
 
-use App\Http\Controllers\Controller;
+use App\Models\Appointment;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class PrescriptionController extends Controller
 {
@@ -15,7 +17,9 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
-        //
+        return view('doctor.prescription.index', [
+            'prescriptions' => Prescription::with('doctor', 'patient', 'appointment')->get()
+        ]);
     }
 
     /**
@@ -25,7 +29,7 @@ class PrescriptionController extends Controller
      */
     public function create()
     {
-        //
+        return view('doctor.prescription.create');
     }
 
     /**
@@ -36,7 +40,26 @@ class PrescriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'doctor_id' => 'required|exists:users,id',
+            'patient_id' => 'required|exists:users,id',
+            'appointment_id' => 'required|exists:appointments,id',
+            'description' => 'required|string',
+        ]);
+        $data = [
+            'doctor_id' => $request->doctor_id,
+            'patient_id' => $request->patient_id,
+            'description' => $request->description,
+        ];
+        $prescription = new Prescription($data);
+        if ($prescription->save()) {
+            $appointment = Appointment::where('id', $request->appointment_id)->first();
+            $prescription->appointment()->save($appointment);
+            Toastr::success('Successfully Prescription Added', "Success");
+        } else {
+            Toastr::error('Something Went Wrong!', "Error");
+        }
+        return redirect()->back();
     }
 
     /**
@@ -47,7 +70,10 @@ class PrescriptionController extends Controller
      */
     public function show(Prescription $prescription)
     {
-        //
+        $prescription->loadMissing(['doctor', 'patient', 'appointment']);
+        return view('doctor.prescription.show', [
+            'prescription' => $prescription
+        ]);
     }
 
     /**
@@ -58,7 +84,10 @@ class PrescriptionController extends Controller
      */
     public function edit(Prescription $prescription)
     {
-        //
+        $prescription->loadMissing(['doctor', 'patient', 'appointment']);
+        return view('doctor.prescription.edit', [
+            'prescription' => $prescription
+        ]);
     }
 
     /**
@@ -70,7 +99,24 @@ class PrescriptionController extends Controller
      */
     public function update(Request $request, Prescription $prescription)
     {
-        //
+        $this->validate($request, [
+            'doctor_id' => 'required|exists:users,id',
+            'patient_id' => 'required|exists:users,id',
+            'appointment_id' => 'required|exists:appointments,id',
+            'description' => 'required|string',
+        ]);
+        $data = [
+            'doctor_id' => $request->doctor_id,
+            'patient_id' => $request->patient_id,
+            'appointment_id' => $request->appointment_id,
+            'description' => $request->description,
+        ];
+        if ($prescription->update($data)) {
+            Toastr::success('Successfully Prescription Updated', "Success");
+        } else {
+            Toastr::error('Something Went Wrong!', "Error");
+        }
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +127,14 @@ class PrescriptionController extends Controller
      */
     public function destroy(Prescription $prescription)
     {
-        //
+        $appointment = Appointment::where('prescription_id', $prescription->id)->first();
+        $appointment->prescription_id = null;
+        $appointment->save();
+        if ($prescription->delete()) {
+            Toastr::success('Successfully Prescription Deleted', "Success");
+        } else {
+            Toastr::error('Something Went Wrong!', "Error");
+        }
+        return redirect()->back();
     }
 }

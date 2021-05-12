@@ -83,12 +83,18 @@
                                 <span class="hide-menu">Health</span>
                             </a>
                         </li>
-
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{ route('doctor.reports.index') }}" aria-expanded="false">
                                 <i class="mdi mdi-file-document"></i>
                                 <span class="hide-menu">Report</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('doctor.prescriptions.index') }}" aria-expanded="false">
+                                <i class="mdi mdi-medical-bag"></i>
+                                <span class="hide-menu">Prescription</span>
                             </a>
                         </li>
                     </ul>

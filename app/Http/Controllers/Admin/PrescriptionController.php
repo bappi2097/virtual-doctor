@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Appointment;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Appointment;
 use Brian2694\Toastr\Facades\Toastr;
 
 class PrescriptionController extends Controller

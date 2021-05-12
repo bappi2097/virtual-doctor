@@ -13,6 +13,15 @@
                     <div class="card-body">
                         <a href="{{ route('doctor.users.patient.index') }}" class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back </a>
+                        <a href="{{ route('doctor.users.patient.healths', $user->id) }}"
+                            class="btn waves-effect waves-light btn-outline-danger">
+                            <i class="mdi mdi-heart"></i> Health </a>
+                        <a href="{{ route('doctor.users.patient.reports', $user->id) }}"
+                            class="btn waves-effect waves-light btn-outline-secondary">
+                            <i class="mdi mdi-file-document"></i> Reports </a>
+                        <a href="{{ route('doctor.users.patient.prescriptions', $user->id) }}"
+                            class="btn waves-effect waves-light btn-outline-info">
+                            <i class="mdi mdi-medical-bag"></i> Prescriptions </a>
                         <br>
                         <hr><br>
                         <div class="row">
