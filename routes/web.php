@@ -329,7 +329,6 @@ Route::group(['middleware' => ['auth', 'role:patient', 'ban'], 'as' => 'patient.
 
     Route::group(['as' => 'healths.', 'prefix' => 'healths'], function () {
         Route::get('/', [\App\Http\Controllers\Patient\DailyHealthController::class, 'index'])->name('index');
-        Route::get('/patient/{patient}', [\App\Http\Controllers\Patient\DailyHealthController::class, 'single'])->name('single');
         Route::get('/create', [\App\Http\Controllers\Patient\DailyHealthController::class, 'create'])->name('create');
         Route::post('/', [\App\Http\Controllers\Patient\DailyHealthController::class, 'store'])->name('store');
         Route::get('/{dailyHealth}', [\App\Http\Controllers\Patient\DailyHealthController::class, 'show'])->name('show');

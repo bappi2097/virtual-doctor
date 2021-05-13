@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('patient.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.health.edit', $dailyHealth->id))
+@section('breadcrumbs', Breadcrumbs::render('patient.health.edit', $dailyHealth->id))
 
 @section('content')
     <div class="container-fluid">
@@ -10,11 +10,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <form action="{{ route('admin.healths.update', $dailyHealth->id) }}" method="POST">
+                    <form action="{{ route('patient.healths.update', $dailyHealth->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
-                            <a href="{{ route('admin.healths.index') }}" class="btn waves-effect waves-light btn-info">
+                            <a href="{{ route('patient.healths.index') }}" class="btn waves-effect waves-light btn-info">
                                 <i class="mdi mdi-arrow-left"></i> Back
                             </a>
                             <br>
@@ -39,25 +39,6 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <form class="form-horizontal form-material mx-2">
-                                                <div class="form-group">
-                                                    <label class="col-md-12" for="patient_id">Patient</label>
-                                                    <div class="col-md-12">
-                                                        <select name="patient_id" id="patient_id"
-                                                            class="form-control form-control-line selectpicker" required>
-                                                            @foreach (\App\Models\User::role('patient')->get() as $item)
-                                                                <option value="{{ $item->id }}"
-                                                                    {{ selected($item->id, $dailyHealth->patient_id) }}>
-                                                                    {{ $item->user_name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('patient_id')
-                                                            <span class="text-danger">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
                                                 <div class="form-group">
                                                     <label for="heart_beat" class="col-md-12">Heart Beat (in BPM)</label>
                                                     <div class="col-md-12">
