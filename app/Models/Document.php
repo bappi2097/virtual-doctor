@@ -9,6 +9,11 @@ class Document extends Model
 {
     use HasFactory;
 
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
         'patient_id',
         'report_id',

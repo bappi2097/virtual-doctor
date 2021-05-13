@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('patient.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.appointment.show', $appointment->id))
+@section('breadcrumbs', Breadcrumbs::render('patient.appointment.show', $appointment->id))
 
 @section('content')
     <div class="container-fluid">
@@ -11,11 +11,13 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.appointments.index') }}" class="btn waves-effect waves-light btn-info">
+                        <a href="{{ route('patient.appointments.index') }}" class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back
                         </a>
                         <br>
                         <hr><br>
+                        <span
+                            class="badge bg-{{ $appointment->statusClass() }} text-uppercase">{{ $appointment->status }}</span>
                         <div class="row">
                             <!-- Column -->
                             <div class="col-lg-4 col-xlg-3 col-md-5">
@@ -24,11 +26,20 @@
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <tr>
+                                                    <td>Status</td>
+                                                    <td>
+                                                        <span
+                                                            class="badge bg-{{ $appointment->statusClass() }} text-uppercase">
+                                                            {{ $appointment->status }}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <td>Doctor Category</td>
 
                                                     <td>
                                                         <a
-                                                            href="{{ route('admin.doctor-category.show', $appointment->doctorCategory->id) }}">{{ $appointment->doctorCategory->name }}</a>
+                                                            href="{{ route('patient.doctor-category.show', $appointment->doctorCategory->id) }}">{{ $appointment->doctorCategory->name }}</a>
                                                     </td>
                                                 </tr>
 
@@ -36,7 +47,7 @@
                                                     <td rowspan="2">Doctor</td>
                                                     <td>
                                                         <a
-                                                            href="{{ route('admin.users.doctor.show', $appointment->doctor->id) }}">{{ $appointment->doctor->name }}</a>
+                                                            href="{{ route('patient.users.doctor.show', $appointment->doctor->id) }}">{{ $appointment->doctor->name }}</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -44,25 +55,15 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td rowspan="2">Patient</td>
-                                                    <td>
-                                                        <a
-                                                            href="{{ route('admin.users.patient.show', $appointment->patient->id) }}">{{ $appointment->patient->name }}</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>{{ $appointment->patient->email }}</td>
-                                                </tr>
-
-                                                <tr>
                                                     <td>Date</td>
-                                                    <td>{{ date('l F j, Y', strtotime($appointment->day)) }}</td>
+                                                    <td>{{ empty($appointment->day) ? 'Not Reviewed' : date('l F j, Y', strtotime($appointment->day)) }}
+                                                    </td>
                                                 </tr>
 
                                                 <tr>
                                                     <td>Start-End</td>
                                                     <td>
-                                                        {{ date('g:i A', strtotime($appointment->start)) . '-' . date('g:i A', strtotime($appointment->end)) }}
+                                                        {{ empty($appointment->start) ? 'Not Reviewed' : date('g:i A', strtotime($appointment->start)) . '-' . date('g:i A', strtotime($appointment->end)) }}
                                                     </td>
                                                 </tr>
                                             </tbody>

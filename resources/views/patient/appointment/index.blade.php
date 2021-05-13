@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('patient.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.appointment'))
+@section('breadcrumbs', Breadcrumbs::render('patient.appointment'))
 
 @section('content')
     <div class="container-fluid">
@@ -11,18 +11,17 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.appointments.create') }}"
+                        <a href="{{ route('patient.appointments.create') }}"
                             class="btn waves-effect waves-light btn-info">Add
                             Data</a>
                         <br>
                         <hr><br>
                         <div class="table-responsive">
-                            <table id="zero_config" class="table v-middle">
+                            <table id="appointment_table" class="table v-middle">
                                 <thead>
                                     <tr class="bg-light">
                                         <th class="border-top-0">Category</th>
                                         <th class="border-top-0">Doctor</th>
-                                        <th class="border-top-0">Patient</th>
                                         <th class="border-top-0">Date</th>
                                         <th class="border-top-0">Start-End</th>
                                         <th class="border-top-0">Action</th>
@@ -33,27 +32,27 @@
                                         <tr>
                                             <td>{{ $item->doctorCategory->name }}</td>
                                             <td>{{ $item->doctor->name }}</td>
-                                            <td>{{ $item->patient->name }}</td>
-                                            <td>{{ date('l F j, Y', strtotime($item->day)) }}</td>
-                                            <td>{{ date('g:i A', strtotime($item->start)) . '-' . date('g:i A', strtotime($item->end)) }}
+                                            <td>{{ empty($item->day) ? 'Not Review' : date('l F j, Y', strtotime($item->day)) }}
+                                            </td>
+                                            <td>{{ empty($item->start) ? 'Not Review' : date('g:i A', strtotime($item->start)) . '-' . date('g:i A', strtotime($item->end)) }}
                                             </td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <a href="{{ route('admin.appointments.show', $item->id) }}"
+                                                    <a href="{{ route('patient.appointments.show', $item->id) }}"
                                                         class="btn btn-success text-white mx-2" title="show">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.appointments.edit', $item->id) }}"
+                                                    <a href="{{ route('patient.appointments.edit', $item->id) }}"
                                                         class="btn btn-info text-white mx-2" title="edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.appointments.delete', $item->id) }}"
+                                                    <a href="{{ route('patient.appointments.delete', $item->id) }}"
                                                         class="btn btn-danger text-white mx-2" title="delete"
                                                         onclick="event.preventDefault(); document.getElementById('delete-item{{ $item->id }}').submit();">
                                                         <i class="mdi mdi-delete"></i>
                                                     </a>
                                                     <form id="delete-item{{ $item->id }}"
-                                                        action="{{ route('admin.appointments.delete', $item->id) }}"
+                                                        action="{{ route('patient.appointments.delete', $item->id) }}"
                                                         method="POST" class="d-none">
                                                         @csrf
                                                         @method('DELETE')
@@ -81,3 +80,11 @@
         <!-- ============================================================== -->
     </div>
 @endsection
+@push('script')
+    <script>
+        $('#appointment_table').DataTable({
+            "ordering": false
+        });
+
+    </script>
+@endpush

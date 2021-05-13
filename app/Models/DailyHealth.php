@@ -9,6 +9,11 @@ class DailyHealth extends Model
 {
     use HasFactory;
 
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
         'patient_id',
         'heart_beat',
@@ -22,11 +27,23 @@ class DailyHealth extends Model
         return $this->belongsTo(User::class, 'patient_id')->role('patient');
     }
 
+    /**
+     * pressure
+     *
+     * @param  string $type
+     * @return void
+     */
     public function pressure($type = 'low')
     {
         return json_decode($this->pressure)->$type;
     }
 
+    /**
+     * extra
+     *
+     * @param  string $type
+     * @return void
+     */
     public function extra($type = 'bmi')
     {
         return json_decode($this->extra)->$type;

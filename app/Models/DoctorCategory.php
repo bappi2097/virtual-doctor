@@ -24,8 +24,9 @@ class DoctorCategory extends Model
     ];
 
     /**
-     * 
      * Get the options for generating the slug.
+     *
+     * @return SlugOptions
      */
     public function getSlugOptions(): SlugOptions
     {
@@ -45,6 +46,11 @@ class DoctorCategory extends Model
         return $this->hasMany(Appointment::class, 'doctor_category_id');
     }
 
+    /**
+     * doctorsData
+     *
+     * @return void
+     */
     public function doctorsData()
     {
         return $this->doctors()->get()->map(function ($item) {

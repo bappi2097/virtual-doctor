@@ -9,6 +9,11 @@ class DoctorSchedule extends Model
 {
     use HasFactory;
 
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
         'user_id',
         'day',

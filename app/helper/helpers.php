@@ -11,23 +11,49 @@
 //     return app()->getLocale() == "ar" ? true : false;
 // }
 
-function active($route, $text = "active")
+/**
+ * active
+ *
+ * @param  mixed $route
+ * @param  mixed $text
+ * @return string
+ */
+function active($route, $text = "active"): string
 {
     return request()->route()->getName() == $route ? $text : '';
 }
 
-function set_active($path, $active = 'active')
+/**
+ * set_active
+ *
+ * @param  mixed $path
+ * @param  mixed $active
+ * @return string
+ */
+function set_active($path, $active = 'active'): string
 {
     return call_user_func_array('Request::is', (array)$path) ? $active : '';
 }
 
-function notification($alert_type, $message)
+/**
+ * notification
+ *
+ * @param  mixed $alert_type
+ * @param  mixed $message
+ * @return array
+ */
+function notification($alert_type, $message): array
 {
     $notification['alert-type'] = $alert_type;
     $notification['message'] = $message;
     return $notification;
 }
 
+/**
+ * dashboardURL
+ *
+ * @return url
+ */
 function dashboardURL()
 {
     if (auth()->check()) {
@@ -35,13 +61,22 @@ function dashboardURL()
             return route('admin.dashboard');
         } else if (auth()->user()->hasRole('doctor')) {
             return route('doctor.dashboard');
+        } else if (auth()->user()->hasRole('patient')) {
+            return route('patient.dashboard');
         } else {
             return route('home');
         }
     }
 }
 
-function selected($data1, $data2)
+/**
+ * selected
+ *
+ * @param  mixed $data1
+ * @param  mixed $data2
+ * @return string
+ */
+function selected($data1, $data2): string
 {
     if (!is_array($data2)) {
         return $data1 == $data2 ? 'selected' : '';
@@ -50,13 +85,26 @@ function selected($data1, $data2)
     }
 }
 
-function isActiveText($no)
+/**
+ * isActiveText
+ *
+ * @param  integer $no
+ * @return string
+ */
+function isActiveText($no): string
 {
     $text = ['Deactive', 'Active'];
     return $text[$no] ?? '';
 }
 
-function isBan($user, $str = "bool")
+/**
+ * isBan
+ *
+ * @param  \App\Models\User $user
+ * @param  mixed $str
+ * @return string
+ */
+function isBan($user, $str = "bool"): string
 {
     if ($str == 'text') {
         return $user->hasRole('ban') ? 'True' : 'False';
@@ -69,13 +117,24 @@ function isBan($user, $str = "bool")
     }
 }
 
-function isActiveClass($no)
+/**
+ * isActiveClass
+ *
+ * @param  integer $no
+ * @return string
+ */
+function isActiveClass($no): string
 {
     $class = ['danger', 'success'];
     return $class[$no] ?? '';
 }
 
-function roleText()
+/**
+ * roleText
+ *
+ * @return string
+ */
+function roleText(): string
 {
     if (auth()->check()) {
         $role = ucwords(join(' ', auth()->user()->getRoleNames()->all()));
@@ -83,7 +142,12 @@ function roleText()
     }
 }
 
-function randomColor()
+/**
+ * randomColor
+ *
+ * @return string
+ */
+function randomColor(): string
 {
     $class = ['danger', 'info', 'primary', 'success', 'warning', 'megna', 'purple'];
     return $class[random_int(0, 6)] ?? '';
@@ -114,7 +178,14 @@ function randomColor()
 //     }
 // }
 
-function time_elapsed_string($datetime, $full = false)
+/**
+ * time_elapsed_string
+ *
+ * @param  string $datetime
+ * @param  boolean $full
+ * @return string
+ */
+function time_elapsed_string($datetime, $full = false): string
 {
     $now = new DateTime;
     $ago = new DateTime($datetime);
@@ -144,6 +215,12 @@ function time_elapsed_string($datetime, $full = false)
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
+/**
+ * days
+ *
+ * @param  mixed $value
+ * @return void
+ */
 function days($value = null)
 {
     $days = [
@@ -160,4 +237,22 @@ function days($value = null)
     } else {
         return collect($days)->where("value", $value)->first();
     }
+}
+
+/**
+ * appointmentStatusClass
+ *
+ * @param  string $status
+ * @return string
+ */
+function appointmentStatusClass($status): string
+{
+    $statusClass = [
+        'request' => 'secondary',
+        'accepted' => 'primary',
+        'completed' => 'success',
+        'cancelled' => 'danger',
+        'ignore' => 'warning'
+    ];
+    return $statusClass[$status] ?? '';
 }

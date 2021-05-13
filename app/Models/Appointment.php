@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Appointment extends Model
 {
     use HasFactory;
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
         'day',
         'end',
@@ -37,5 +42,16 @@ class Appointment extends Model
     public function prescription()
     {
         return $this->belongsTo(Prescription::class, 'prescription_id');
+    }
+
+    /**
+     * statusClass return appointment status 
+     * bootstrap 5 class
+     *
+     * @return string
+     */
+    public function statusClass(): string
+    {
+        return appointmentStatusClass($this->status);
     }
 }

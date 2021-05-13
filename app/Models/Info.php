@@ -10,6 +10,12 @@ use Spatie\Tags\Tag;
 class Info extends Model
 {
     use HasFactory, HasTags;
+
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
         'title',
         'address',
