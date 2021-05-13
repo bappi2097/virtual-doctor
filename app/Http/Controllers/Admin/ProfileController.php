@@ -61,7 +61,7 @@ class ProfileController extends Controller
         }
 
         if ($user->update($data)) {
-            Toastr::success('Successfully Admin Updated', "Success");
+            Toastr::success('Successfully Profile Updated', "Success");
         } else {
             Toastr::error('Something Went Wrong!', "Error");
         }

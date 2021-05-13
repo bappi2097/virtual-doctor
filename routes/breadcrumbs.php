@@ -1,5 +1,9 @@
 <?php
 
+/* -------------------------------------------------------------------------- */
+/*                           Admin Breadcrumb Start                           */
+/* -------------------------------------------------------------------------- */
+
 // Dashboard
 Breadcrumbs::for('admin.dashboard', function ($trail) {
     $trail->push('Dashboard', route('admin.dashboard'));
@@ -239,6 +243,13 @@ Breadcrumbs::for('admin.prescription.edit', function ($trail, $id) {
     $trail->push('Edit', route('admin.prescriptions.edit', $id));
 });
 
+/* -------------------------------------------------------------------------- */
+/*                            Admin Breadcrumb End                            */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                           Doctor Breadcrumb Start                          */
+/* -------------------------------------------------------------------------- */
 
 // Dashboard
 Breadcrumbs::for('doctor.dashboard', function ($trail) {
@@ -415,6 +426,232 @@ Breadcrumbs::for('doctor.prescription.edit', function ($trail, $id) {
     $trail->push('Edit', route('doctor.prescriptions.edit', $id));
 });
 
+/* -------------------------------------------------------------------------- */
+/*                           Doctor Breadcrumb end                            */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                          Patient Breadcrumb Start                          */
+/* -------------------------------------------------------------------------- */
+
+// Dashboard
+Breadcrumbs::for('patient.dashboard', function ($trail) {
+    $trail->push('Dashboard', route('patient.dashboard'));
+});
+
+// Profile
+Breadcrumbs::for('patient.profile', function ($trail) {
+    $trail->push('Profile', route('patient.profile.edit'));
+});
+
+// Dashboard > Doctor
+Breadcrumbs::for('patient.doctor', function ($trail) {
+    $trail->parent('patient.dashboard');
+    $trail->push('Doctor', route('patient.users.doctor.index'));
+});
+
+// Dashboard > Doctor > Create
+Breadcrumbs::for('patient.doctor.create', function ($trail) {
+    $trail->parent('patient.doctor');
+    $trail->push('Create', route('patient.users.doctor.create'));
+});
+
+// Dashboard > Doctor > Show
+Breadcrumbs::for('patient.doctor.show', function ($trail, $id) {
+    $trail->parent('patient.doctor');
+    $trail->push('Show', route('patient.users.doctor.show', $id));
+});
+
+
+// Dashboard > Doctor > Edit
+Breadcrumbs::for('patient.doctor.edit', function ($trail, $id) {
+    $trail->parent('patient.doctor');
+    $trail->push('Edit', route('patient.users.doctor.edit', $id));
+});
+
+// Dashboard > Doctor > Schedule
+Breadcrumbs::for('patient.doctor.schedule', function ($trail, $id) {
+    $trail->parent('patient.doctor');
+    $trail->push('Schedule', route('patient.users.doctor.doctor-schedule.edit', $id));
+});
+
+// Dashboard > Patient
+Breadcrumbs::for('patient.patient', function ($trail) {
+    $trail->parent('patient.dashboard');
+    $trail->push('Patient', route('patient.users.patient.index'));
+});
+
+// Dashboard > Patient > Create
+Breadcrumbs::for('patient.patient.create', function ($trail) {
+    $trail->parent('patient.patient');
+    $trail->push('Create', route('patient.users.patient.create'));
+});
+
+// Dashboard > Patient > Show
+Breadcrumbs::for('patient.patient.show', function ($trail, $id) {
+    $trail->parent('patient.patient');
+    $trail->push('Show', route('patient.users.patient.show', $id));
+});
+
+// Dashboard > Patient > Edit
+Breadcrumbs::for('patient.patient.edit', function ($trail, $id) {
+    $trail->parent('patient.patient');
+    $trail->push('Edit', route('patient.users.patient.edit', $id));
+});
+
+
+// Dashboard > Doctor Category
+Breadcrumbs::for('patient.doctor-category', function ($trail) {
+    $trail->parent('patient.dashboard');
+    $trail->push('Doctor Category', route('patient.doctor-category.index'));
+});
+
+// Dashboard > Doctor Category > Create
+Breadcrumbs::for('patient.doctor-category.create', function ($trail) {
+    $trail->parent('patient.doctor-category');
+    $trail->push('Create', route('patient.doctor-category.create'));
+});
+
+// Dashboard > Doctor Category > Show
+Breadcrumbs::for('patient.doctor-category.show', function ($trail, $id) {
+    $trail->parent('patient.doctor-category');
+    $trail->push('Show', route('patient.doctor-category.show', $id));
+});
+
+// Dashboard > Doctor Category > Edit
+Breadcrumbs::for('patient.doctor-category.edit', function ($trail, $id) {
+    $trail->parent('patient.doctor-category');
+    $trail->push('Edit', route('patient.doctor-category.edit', $id));
+});
+
+
+// Dashboard > Appointment
+Breadcrumbs::for('patient.appointment', function ($trail) {
+    $trail->parent('patient.dashboard');
+    $trail->push('Appointment', route('patient.appointments.index'));
+});
+
+// Dashboard > Appointment > Create
+Breadcrumbs::for('patient.appointment.create', function ($trail) {
+    $trail->parent('patient.appointment');
+    $trail->push('Create', route('patient.appointments.create'));
+});
+
+// Dashboard > Appointment > Show
+Breadcrumbs::for('patient.appointment.show', function ($trail, $id) {
+    $trail->parent('patient.appointment');
+    $trail->push('Show', route('patient.appointments.show', $id));
+});
+
+// Dashboard > Appointment > Edit
+Breadcrumbs::for('patient.appointment.edit', function ($trail, $id) {
+    $trail->parent('patient.appointment');
+    $trail->push('Edit', route('patient.appointments.edit', $id));
+});
+
+
+// Dashboard > Health
+Breadcrumbs::for('patient.health', function ($trail) {
+    $trail->parent('patient.dashboard');
+    $trail->push('Health', route('patient.healths.index'));
+});
+
+// Dashboard > Health > Create
+Breadcrumbs::for('patient.health.create', function ($trail) {
+    $trail->parent('patient.health');
+    $trail->push('Create', route('patient.healths.create'));
+});
+
+// Dashboard > Health > Show
+Breadcrumbs::for('patient.health.show', function ($trail, $id) {
+    $trail->parent('patient.health');
+    $trail->push('Show', route('patient.healths.show', $id));
+});
+
+// Dashboard > Health > Edit
+Breadcrumbs::for('patient.health.edit', function ($trail, $id) {
+    $trail->parent('patient.health');
+    $trail->push('Edit', route('patient.healths.edit', $id));
+});
+
+
+// Dashboard > Report
+Breadcrumbs::for('patient.report', function ($trail) {
+    $trail->parent('patient.dashboard');
+    $trail->push('Report', route('patient.reports.index'));
+});
+
+// Dashboard > Report > Create
+Breadcrumbs::for('patient.report.create', function ($trail) {
+    $trail->parent('patient.report');
+    $trail->push('Create', route('patient.reports.create'));
+});
+
+// Dashboard > Report > Show
+Breadcrumbs::for('patient.report.show', function ($trail, $id) {
+    $trail->parent('patient.report');
+    $trail->push('Show', route('patient.reports.show', $id));
+});
+
+// Dashboard > Report > Edit
+Breadcrumbs::for('patient.report.edit', function ($trail, $id) {
+    $trail->parent('patient.report');
+    $trail->push('Edit', route('patient.reports.edit', $id));
+});
+
+
+// Dashboard > Info
+Breadcrumbs::for('patient.info', function ($trail) {
+    $trail->parent('patient.dashboard');
+    $trail->push('Information', route('patient.infos.index'));
+});
+
+// Dashboard > Info > Create
+Breadcrumbs::for('patient.info.create', function ($trail) {
+    $trail->parent('patient.info');
+    $trail->push('Create', route('patient.infos.create'));
+});
+
+// Dashboard > Info > Show
+Breadcrumbs::for('patient.info.show', function ($trail, $id) {
+    $trail->parent('patient.info');
+    $trail->push('Show', route('patient.infos.show', $id));
+});
+
+// Dashboard > Info > Edit
+Breadcrumbs::for('patient.info.edit', function ($trail, $id) {
+    $trail->parent('patient.info');
+    $trail->push('Edit', route('patient.infos.edit', $id));
+});
+
+// Dashboard > Prescription
+Breadcrumbs::for('patient.prescription', function ($trail) {
+    $trail->parent('patient.dashboard');
+    $trail->push('Prescription', route('patient.prescriptions.index'));
+});
+
+// Dashboard > Prescription > Create
+Breadcrumbs::for('patient.prescription.create', function ($trail) {
+    $trail->parent('patient.prescription');
+    $trail->push('Create', route('patient.prescriptions.create'));
+});
+
+// Dashboard > Prescription > Show
+Breadcrumbs::for('patient.prescription.show', function ($trail, $id) {
+    $trail->parent('patient.prescription');
+    $trail->push('Show', route('patient.prescriptions.show', $id));
+});
+
+// Dashboard > Prescription > Edit
+Breadcrumbs::for('patient.prescription.edit', function ($trail, $id) {
+    $trail->parent('patient.prescription');
+    $trail->push('Edit', route('patient.prescriptions.edit', $id));
+});
+
+
+/* -------------------------------------------------------------------------- */
+/*                           Patient Breadcrumb End                           */
+/* -------------------------------------------------------------------------- */
 
 
 // // Home > Blog > [Category]

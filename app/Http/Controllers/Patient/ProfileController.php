@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Doctor;
+namespace App\Http\Controllers\Patient;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +19,7 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
-        return view('doctor.my-pages.profile', [
+        return view('patient.my-pages.profile', [
             'user' => $user
         ]);
     }
@@ -55,7 +55,7 @@ class ProfileController extends Controller
             if (Storage::disk("local")->exists($user->image)) {
                 Storage::disk("local")->delete($user->image);
             }
-            $data['image'] = Storage::disk("local")->put("images\\doctors", $request->image);
+            $data['image'] = Storage::disk("local")->put("images\\patients", $request->image);
         }
 
         if ($user->update($data)) {
