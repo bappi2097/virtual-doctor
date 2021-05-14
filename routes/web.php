@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth', 'role:admin', 'ban'], 'as' => 'admin.', '
         Route::put('/change-password', [\App\Http\Controllers\Admin\ProfileController::class, 'changePassword'])->name('change-password');
     });
 
+    /* ------------------------- Admin User Route Start ------------------------- */
+
 
     Route::group(['as' => 'users.', 'prefix' => 'users'], function () {
 

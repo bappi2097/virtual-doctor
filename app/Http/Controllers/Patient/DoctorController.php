@@ -37,7 +37,7 @@ class DoctorController extends Controller
     public function appointmentIndex(User $user)
     {
         return view('patient.appointment.index', [
-            'appointments' => Appointment::where('doctor_id', $user->id)->with('doctor', 'patient', 'doctorCategory')->get()
+            'appointments' => Appointment::where(['doctor_id' => $user->id, 'patient_id' => auth()->user()->id])->with('doctor', 'patient', 'doctorCategory')->get()
         ]);
     }
 }

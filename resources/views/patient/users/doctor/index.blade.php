@@ -33,13 +33,13 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="m-r-10">
                                                         @empty($user->image)
-                                                            <a href="{{ route('patient.users.patient.show', $user->id) }}"
+                                                            <a href="{{ route('patient.users.doctor.show', $user->id) }}"
                                                                 class="btn btn-circle d-flex btn-{{ randomColor() }}">
                                                                 {{ substr($user->name, 0, 2) }}
                                                             </a>
                                                         @else
                                                             <a class=""
-                                                                href="{{ route('patient.users.patient.show', $user->id) }}">
+                                                                href="{{ route('patient.users.doctor.show', $user->id) }}">
                                                                 <img src="{{ asset($user->image ?: 'assets/images/users/male_avatar.svg') }}"
                                                                     alt="users" class="rounded-circle" width="40" />
                                                             </a>
