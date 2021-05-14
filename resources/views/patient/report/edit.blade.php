@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('patient.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.report.edit', $report->id))
+@section('breadcrumbs', Breadcrumbs::render('patient.report.edit', $report->id))
 
 @section('content')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.reports.index') }}" class="btn waves-effect waves-light btn-info">
+                        <a href="{{ route('patient.reports.index') }}" class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back
                         </a>
                         <br>
@@ -42,7 +42,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-horizontal form-material mx-2">
-                                            <form action="{{ route('admin.reports.update', $report->id) }}" method="POST"
+                                            <form action="{{ route('patient.reports.update', $report->id) }}" method="POST"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
@@ -118,7 +118,7 @@
                                                             </td>
                                                             <td class="">
                                                                 <form
-                                                                    action="{{ route('admin.documents.delete', $item->id) }}"
+                                                                    action="{{ route('patient.documents.delete', $item->id) }}"
                                                                     method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -132,7 +132,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            <form action="{{ route('admin.documents.store', $report->id) }}"
+                                            <form action="{{ route('patient.documents.store', $report->id) }}"
                                                 method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 <table id="file_table">

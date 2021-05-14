@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('patient.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.report'))
+@section('breadcrumbs', Breadcrumbs::render('patient.report'))
 
 @section('content')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.reports.create') }}" class="btn waves-effect waves-light btn-info">Add
+                        <a href="{{ route('patient.reports.create') }}" class="btn waves-effect waves-light btn-info">Add
                             Data</a>
                         <br>
                         <hr><br>
@@ -19,7 +19,7 @@
                             <table id="zero_config" class="table v-middle">
                                 <thead>
                                     <tr class="bg-light">
-                                        <th class="border-top-0">Name</th>
+                                        <th class="border-top-0">Title</th>
                                         <th class="border-top-0">Description</th>
                                         <th class="border-top-0">Action</th>
                                     </tr>
@@ -31,21 +31,21 @@
                                             <td>{{ $item->description }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <a href="{{ route('admin.reports.show', $item->id) }}"
+                                                    <a href="{{ route('patient.reports.show', $item->id) }}"
                                                         class="btn btn-success text-white mx-2" title="show">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.reports.edit', $item->id) }}"
+                                                    <a href="{{ route('patient.reports.edit', $item->id) }}"
                                                         class="btn btn-info text-white mx-2" title="edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.reports.delete', $item->id) }}"
+                                                    <a href="{{ route('patient.reports.delete', $item->id) }}"
                                                         class="btn btn-danger text-white mx-2" title="delete"
                                                         onclick="event.preventDefault(); document.getElementById('delete-item{{ $item->id }}').submit();">
                                                         <i class="mdi mdi-delete"></i>
                                                     </a>
                                                     <form id="delete-item{{ $item->id }}"
-                                                        action="{{ route('admin.reports.delete', $item->id) }}"
+                                                        action="{{ route('patient.reports.delete', $item->id) }}"
                                                         method="POST" class="d-none">
                                                         @csrf
                                                         @method('DELETE')

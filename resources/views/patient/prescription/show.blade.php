@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('patient.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.prescription.show', $prescription->id))
+@section('breadcrumbs', Breadcrumbs::render('patient.prescription.show', $prescription->id))
 
 @section('content')
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.prescriptions.index') }}" class="btn waves-effect waves-light btn-info">
+                        <a href="{{ route('patient.prescriptions.index') }}" class="btn waves-effect waves-light btn-info">
                             <i class="mdi mdi-arrow-left"></i> Back
                         </a>
                         <br>
@@ -29,22 +29,11 @@
                                                     <td rowspan="2">Doctor</td>
                                                     <td>
                                                         <a
-                                                            href="{{ route('admin.users.doctor.show', $prescription->doctor->id) }}">{{ $prescription->doctor->name }}</a>
+                                                            href="{{ route('patient.users.doctor.show', $prescription->doctor->id) }}">{{ $prescription->doctor->name }}</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>{{ $prescription->doctor->email }}</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td rowspan="2">Patient</td>
-                                                    <td>
-                                                        <a
-                                                            href="{{ route('admin.users.patient.show', $prescription->patient->id) }}">{{ $prescription->patient->name }}</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>{{ $prescription->patient->email }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" class="text-center">Appointment</td>

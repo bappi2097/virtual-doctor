@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('patient.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.info'))
+@section('breadcrumbs', Breadcrumbs::render('patient.info'))
 
 @section('content')
     <div class="container-fluid">
@@ -11,8 +11,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.infos.create') }}" class="btn waves-effect waves-light btn-info">Add
-                            Data</a>
                         <br>
                         <hr><br>
                         <div class="table-responsive">
@@ -42,25 +40,10 @@
                                             <td>{{ $item->tags[0]->name }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <a href="{{ route('admin.infos.show', $item->id) }}"
+                                                    <a href="{{ route('patient.infos.show', $item->id) }}"
                                                         class="btn btn-success text-white mx-2" title="show">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.infos.edit', $item->id) }}"
-                                                        class="btn btn-info text-white mx-2" title="edit">
-                                                        <i class="mdi mdi-pencil"></i>
-                                                    </a>
-                                                    <a href="{{ route('admin.infos.delete', $item->id) }}"
-                                                        class="btn btn-danger text-white mx-2" title="delete"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-item{{ $item->id }}').submit();">
-                                                        <i class="mdi mdi-delete"></i>
-                                                    </a>
-                                                    <form id="delete-item{{ $item->id }}"
-                                                        action="{{ route('admin.infos.delete', $item->id) }}"
-                                                        method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>

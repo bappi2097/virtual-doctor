@@ -1,6 +1,6 @@
-@extends('admin.layouts.app')
+@extends('patient.layouts.app')
 
-@section('breadcrumbs', Breadcrumbs::render('admin.prescription'))
+@section('breadcrumbs', Breadcrumbs::render('patient.prescription'))
 
 @section('content')
     <div class="container-fluid">
@@ -11,9 +11,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('admin.prescriptions.create') }}"
-                            class="btn waves-effect waves-light btn-info">Add
-                            Data</a>
                         <br>
                         <hr><br>
                         <div class="table-responsive">
@@ -21,7 +18,6 @@
                                 <thead>
                                     <tr class="bg-light">
                                         <th class="border-top-0">Doctor</th>
-                                        <th class="border-top-0">Patient</th>
                                         <th class="border-top-0">Appointment</th>
                                         <th class="border-top-0">Action</th>
                                     </tr>
@@ -35,25 +31,10 @@
                                             <td>{{ date('l F j, Y', strtotime($item->appointment->day)) }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <a href="{{ route('admin.prescriptions.show', $item->id) }}"
+                                                    <a href="{{ route('patient.prescriptions.show', $item->id) }}"
                                                         class="btn btn-success text-white mx-2" title="show">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.prescriptions.edit', $item->id) }}"
-                                                        class="btn btn-info text-white mx-2" title="edit">
-                                                        <i class="mdi mdi-pencil"></i>
-                                                    </a>
-                                                    <a href="{{ route('admin.prescriptions.delete', $item->id) }}"
-                                                        class="btn btn-danger text-white mx-2" title="delete"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-item{{ $item->id }}').submit();">
-                                                        <i class="mdi mdi-delete"></i>
-                                                    </a>
-                                                    <form id="delete-item{{ $item->id }}"
-                                                        action="{{ route('admin.prescriptions.delete', $item->id) }}"
-                                                        method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
