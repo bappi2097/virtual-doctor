@@ -30,9 +30,7 @@ class AppointmentFactory extends Factory
             'doctor_category_id' => $category,
             'doctor_id' => $doctor[array_rand($doctor)],
             'patient_id' => $patient[array_rand($patient)],
-            'day' => $this->faker->date('Y-m-d', 'now'),
-            'start' => $this->faker->time('H:i:s', 'now'),
-            'end' => $this->faker->time('H:i:s', 'now'),
+            'status' => 'request',
             'description' => $this->faker->realText(1000, 2),
         ];
     }

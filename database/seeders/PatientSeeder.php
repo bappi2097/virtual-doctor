@@ -22,6 +22,7 @@ class PatientSeeder extends Seeder
             "phone_no" => "+99-555-248",
             "address" => "Rangpur, Bangladesh",
             "user_name" => "patient23",
+            "image" => "assets/images/users/2.jpg",
             "password" => bcrypt("password"),
         ]);
         $user->assignRole('patient');

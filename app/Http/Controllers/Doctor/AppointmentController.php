@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\DoctorCategory;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use DateTime;
 
 class AppointmentController extends Controller
 {
@@ -126,6 +127,7 @@ class AppointmentController extends Controller
             'start' => 'date_format:H:i',
             'end' => 'date_format:H:i|after:start',
             'description' => 'required|string',
+            'notification' => 'required|string',
         ]);
 
         $data = [
@@ -136,6 +138,7 @@ class AppointmentController extends Controller
             'start' => $request->start,
             'end' => $request->end,
             'description' => $request->description,
+            'notification' => $request->notification,
         ];
 
         $appointment->fill($data);
@@ -172,7 +175,11 @@ class AppointmentController extends Controller
      */
     public function accepted(Request $request, Appointment $appointment)
     {
-        $appointment->status = "accepted";
+        $this->validate($request, [
+            'notification' => 'required|string',
+        ]);
+        $appointment->status = $request->status == 'on' ? "accepted" : 'cancelled';
+        $appointment->notification = $request->notification;
         if ($appointment->save()) {
             Toastr::success('Successfully Appointment Accepted', "Success");
         } else {

@@ -275,6 +275,11 @@ Route::group(['middleware' => ['auth', 'role:doctor', 'ban'], 'as' => 'doctor.',
         Route::put('/{info}', [\App\Http\Controllers\Doctor\InfoController::class, 'update'])->name('update');
         Route::delete('/{info}', [\App\Http\Controllers\Doctor\InfoController::class, 'destroy'])->name('delete');
     });
+    Route::group(['as' => 'chat.', 'prefix' => 'chat'], function () {
+        // Route::get('/', [\App\Http\Controllers\ChatController::class, 'index'])->name('index');
+        Route::post('/{appointment}', [\App\Http\Controllers\ChatController::class, 'store'])->name('store');
+        Route::delete('/{chat}', [\App\Http\Controllers\ChatController::class, 'destroy'])->name('destroy');
+    });
 });
 
 /* -------------------------------------------------------------------------- */
@@ -364,5 +369,11 @@ Route::group(['middleware' => ['auth', 'role:patient', 'ban'], 'as' => 'patient.
     Route::group(['as' => 'infos.', 'prefix' => 'infos'], function () {
         Route::get('/', [\App\Http\Controllers\Patient\InfoController::class, 'index'])->name('index');
         Route::get('/{info}', [\App\Http\Controllers\Patient\InfoController::class, 'show'])->name('show');
+    });
+
+    Route::group(['as' => 'chat.', 'prefix' => 'chat'], function () {
+        // Route::get('/', [\App\Http\Controllers\ChatController::class, 'index'])->name('index');
+        Route::post('/{appointment}', [\App\Http\Controllers\ChatController::class, 'store'])->name('store');
+        Route::delete('/{chat}', [\App\Http\Controllers\ChatController::class, 'destroy'])->name('destroy');
     });
 });

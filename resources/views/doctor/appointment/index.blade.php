@@ -29,7 +29,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($appointments as $item)
-                                        <tr>
+                                        <tr class="@if ($item->isShowable()) {{ 'bg-warning' }} @endif">
                                             <td>{{ $item->patient->name }}</td>
                                             <td>{{ date('l F j, Y', strtotime($item->day)) }}</td>
                                             <td>{{ date('g:i A', strtotime($item->start)) . '-' . date('g:i A', strtotime($item->end)) }}

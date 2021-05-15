@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppointmentsTable extends Migration
+class CreateChatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('chats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('doctor_id');
             $table->foreignId('patient_id');
+            $table->foreignId('appointment_id');
             $table->foreignId('doctor_category_id');
-            $table->longText("description")->nullable();
-            $table->longText('notification')->nullable();
-            $table->date("day")->nullable();
-            $table->time('start')->nullable();
-            $table->time("end")->nullable();
-            $table->enum('status', ['request', 'accepted', 'completed', 'cancelled', 'ignore'])->nullable()->default('request');
+            $table->longText("text")->nullable();
+            $table->enum('type', ['doctor', 'patient', 'admin',])->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreateAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('chats');
     }
 }

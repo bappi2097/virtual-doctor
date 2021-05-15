@@ -24,6 +24,7 @@ class DoctorSeeder extends Seeder
             "address" => "Rangpur, Bangladesh",
             "user_name" => "doctor23",
             "password" => bcrypt("password"),
+            "image" => "assets/images/users/2.jpg",
             'doctor_category_id' => rand(1, 4),
         ]);
         $user->assignRole('doctor');

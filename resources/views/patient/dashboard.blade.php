@@ -110,7 +110,8 @@
                             </h5>
                         </div>
                     </div>
-                    <a href="/" class="btn btn-info float-end">Book Appointment</a>
+                    <a href="{{ route('patient.appointments.create') }}" class="btn btn-info float-end">Book
+                        Appointment</a>
                     <!-- title -->
                 </div>
                 <div class="table-responsive">
@@ -135,21 +136,21 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <a href="{{ route('admin.appointments.show', $item->id) }}"
+                                            <a href="{{ route('patient.appointments.show', $item->id) }}"
                                                 class="btn btn-success text-white mx-2" title="show">
                                                 <i class="mdi mdi-eye"></i>
                                             </a>
-                                            <a href="{{ route('admin.appointments.edit', $item->id) }}"
+                                            <a href="{{ route('patient.appointments.edit', $item->id) }}"
                                                 class="btn btn-info text-white mx-2" title="edit">
                                                 <i class="mdi mdi-pencil"></i>
                                             </a>
-                                            <a href="{{ route('admin.appointments.delete', $item->id) }}"
+                                            <a href="{{ route('patient.appointments.delete', $item->id) }}"
                                                 class="btn btn-danger text-white mx-2" title="delete"
                                                 onclick="event.preventDefault(); document.getElementById('delete-item{{ $item->id }}').submit();">
                                                 <i class="mdi mdi-delete"></i>
                                             </a>
                                             <form id="delete-item{{ $item->id }}"
-                                                action="{{ route('admin.appointments.delete', $item->id) }}"
+                                                action="{{ route('patient.appointments.delete', $item->id) }}"
                                                 method="POST" class="d-none">
                                                 @csrf
                                                 @method('DELETE')
@@ -185,7 +186,7 @@
                             </h5>
                         </div>
                     </div>
-                    <a href="/" class="btn btn-info float-end">Add Health</a>
+                    <a href="{{ route('patient.healths.create') }}" class="btn btn-info float-end">Add Health</a>
                     <!-- title -->
                 </div>
                 <div class="table-responsive">
@@ -211,21 +212,21 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <a href="{{ route('admin.healths.show', $item->id) }}"
+                                            <a href="{{ route('patient.healths.show', $item->id) }}"
                                                 class="btn btn-success text-white mx-2" title="show">
                                                 <i class="mdi mdi-eye"></i>
                                             </a>
-                                            <a href="{{ route('admin.healths.edit', $item->id) }}"
+                                            <a href="{{ route('patient.healths.edit', $item->id) }}"
                                                 class="btn btn-info text-white mx-2" title="edit">
                                                 <i class="mdi mdi-pencil"></i>
                                             </a>
-                                            <a href="{{ route('admin.healths.delete', $item->id) }}"
+                                            <a href="{{ route('patient.healths.delete', $item->id) }}"
                                                 class="btn btn-danger text-white mx-2" title="delete"
                                                 onclick="event.preventDefault(); document.getElementById('delete-item{{ $item->id }}').submit();">
                                                 <i class="mdi mdi-delete"></i>
                                             </a>
                                             <form id="delete-item{{ $item->id }}"
-                                                action="{{ route('admin.healths.delete', $item->id) }}" method="POST"
+                                                action="{{ route('patient.healths.delete', $item->id) }}" method="POST"
                                                 class="d-none">
                                                 @csrf
                                                 @method('DELETE')

@@ -16,7 +16,6 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
-        "pusher/pusher-php-server": "^7.0",
         "rap2hpoutre/laravel-log-viewer": "^1.7",
         "spatie/laravel-permission": "^4.0",
         "spatie/laravel-sluggable": "^2.6",

@@ -10,63 +10,64 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <form action="{{ route('doctor.appointments.update', $appointment->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="card-body">
-                            <a href="{{ route('doctor.appointments.index') }}"
-                                class="btn waves-effect waves-light btn-info">
-                                <i class="mdi mdi-arrow-left"></i> Back
-                            </a>
-                            <br>
-                            <hr><br>
-                            <div class="row">
-                                <!-- Column -->
-                                <div class="col-lg-4 col-xlg-3 col-md-5">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <center class="m-t-30">
-                                                <img id="user-image" class="img-fluid rounded"
-                                                    src="{{ asset('assets/images/Calendar.svg') }}" alt="your image" />
-                                            </center>
-                                        </div>
-                                        <div class="d-flex justify-content-around">
-                                            @if ($appointment->status == 'request')
-                                                <form
-                                                    action="{{ route('doctor.appointments.accepted', $appointment->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button class="btn btn-success">Accepted</button>
-                                                </form>
-                                                <form
-                                                    action="{{ route('doctor.appointments.rejected', $appointment->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button class="btn btn-danger">Rejected</button>
-                                                </form>
-                                            @endif
-                                            @if ($appointment->status == 'accepted')
-                                                <form
-                                                    action="{{ route('doctor.appointments.completed', $appointment->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button class="btn btn-success">Completed</button>
-                                                </form>
-                                            @endif
-                                        </div>
-                                        <div>
-                                            <hr>
-                                        </div>
+                    <div class="card-body">
+                        <a href="{{ route('doctor.appointments.index') }}" class="btn waves-effect waves-light btn-info">
+                            <i class="mdi mdi-arrow-left"></i> Back
+                        </a>
+                        <br>
+                        <hr><br>
+                        <div class="row">
+                            <!-- Column -->
+                            <div class="col-lg-4 col-xlg-3 col-md-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <center class="m-t-30">
+                                            <img id="user-image" class="img-fluid rounded"
+                                                src="{{ asset('assets/images/Calendar.svg') }}" alt="your image" />
+                                        </center>
                                     </div>
-                                </div> <!-- Column -->
-                                <!-- Column -->
-                                <div class="col-lg-8 col-xlg-9 col-md-7">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <form class="form-horizontal form-material mx-2">
+                                    <div class="d-flex justify-content-around">
+                                        @if ($appointment->status == 'request')
+                                            <form action="{{ route('doctor.appointments.accepted', $appointment->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="input-group">
+                                                    <label for="notification" class="label">Notification</label>
+                                                    <textarea name="notification" id="notification"
+                                                        class="form-control summernote"></textarea>
+                                                </div>
+                                                <div class="input-form my-2">
+                                                    <input name="status" data-onstyle="info" data-offstyle="light" checked
+                                                        data-on="Accepted" class="toggle" type="checkbox"
+                                                        data-toggle="toggle" data-off="Rejected" data-width="100" />
+                                                </div>
+                                                <button class="btn btn-primary">Update</button>
+                                            </form>
+                                        @endif
+                                        @if ($appointment->status == 'accepted')
+                                            <form action="{{ route('doctor.appointments.completed', $appointment->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="btn btn-success">Completed</button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div> <!-- Column -->
+                            <!-- Column -->
+                            <div class="col-lg-8 col-xlg-9 col-md-7">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-horizontal form-material mx-2">
+                                            <form action="{{ route('doctor.appointments.update', $appointment->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
                                                 <div class="form-group">
                                                     <label for="doctor-category" class="col-md-12">Doctor Category</label>
                                                     <div class="col-md-12">
@@ -184,8 +185,16 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-
-
+                                                <div class="form-group">
+                                                    <label for="notification" class="col-md-12">Notification</label>
+                                                    <textarea name="notification" id="notification"
+                                                        class="form-control summernote">{!! $appointment->notification !!} </textarea>
+                                                    @error('notification')
+                                                        <span class="text-danger">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
                                                 <div class="form-group">
                                                     <div class="col-sm-12">
                                                         <button class="btn btn-info text-white">Save</button>
@@ -194,10 +203,10 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div> <!-- Column -->
-                            </div>
+                                </div>
+                            </div> <!-- Column -->
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div> <!-- ============================================================== -->

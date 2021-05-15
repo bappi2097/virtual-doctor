@@ -22,6 +22,7 @@
                                     <tr class="bg-light">
                                         <th class="border-top-0">Category</th>
                                         <th class="border-top-0">Doctor</th>
+                                        <th class="border-top-0">Status</th>
                                         <th class="border-top-0">Date</th>
                                         <th class="border-top-0">Start-End</th>
                                         <th class="border-top-0">Action</th>
@@ -29,9 +30,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($appointments as $item)
-                                        <tr>
+                                        <tr class="@if ($item->isShowable()) {{ 'bg-warning' }} @endif">
                                             <td>{{ $item->doctorCategory->name }}</td>
                                             <td>{{ $item->doctor->name }}</td>
+                                            <td class="text-uppercase">{{ $item->status }}</td>
                                             <td>{{ empty($item->day) ? 'Not Review' : date('l F j, Y', strtotime($item->day)) }}
                                             </td>
                                             <td>{{ empty($item->start) ? 'Not Review' : date('g:i A', strtotime($item->start)) . '-' . date('g:i A', strtotime($item->end)) }}
