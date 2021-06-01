@@ -13,16 +13,16 @@
                 <div class="card-body">
                     <div class="d-md-flex align-items-center">
                         <div>
-                            <h4 class="card-title">Sales Summary</h4>
+                            <h4 class="card-title">Appointment Summary</h4>
                             <h5 class="card-subtitle">Overview of Latest Month</h5>
                         </div>
                         <div class="ms-auto d-flex no-block align-items-center">
                             <ul class="list-inline font-12 dl m-r-15 m-b-0">
                                 <li class="list-inline-item text-info">
-                                    <i class="fa fa-circle"></i> Iphone
+                                    <i class="fa fa-circle"></i> Appointment
                                 </li>
                                 <li class="list-inline-item text-primary">
-                                    <i class="fa fa-circle"></i> Ipad
+                                    <i class="fa fa-circle"></i> Registration
                                 </li>
                             </ul>
                         </div>
